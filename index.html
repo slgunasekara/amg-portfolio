@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Praveena Gunasekara | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+          rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
+<div id="cur"></div>
+<div id="cur2"></div>
 <canvas id="pcv"></canvas>
+<canvas id="heroCursorCanvas"></canvas>
 
 <!-- LOADING SCREEN -->
 <div id="loader">
+    <div class="ld-particles" id="ldParticles"></div>
     <div class="ld-inner">
         <div class="ld-logo-wrap">
             <svg class="ld-ring-svg" viewBox="0 0 160 160">
@@ -47,16 +52,15 @@
         <li><a href="#gallery" class="nl-a" data-sec="gallery">Gallery</a></li>
         <li><a href="#contact" class="ncta">Contact</a></li>
     </ul>
-    <!-- THEME TOGGLE BUTTON -->
-    <button class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
-        <span class="theme-icon sun"><i class="fas fa-sun"></i></span>
-        <span class="theme-icon moon"><i class="fas fa-moon"></i></span>
-        <span class="theme-slider"></span>
-    </button>
-    <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+    <!-- Nav Right: Dark Mode Toggle + Hamburger -->
+    <div class="nav-right">
+        <button class="dm-toggle" id="dmToggle" title="Toggle Dark Mode" aria-label="Toggle Dark Mode">
+            <span class="dm-sun">☀️</span>
+            <span class="dm-moon">🌙</span>
+        </button>
+        <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+    </div>
 </nav>
-
-<!-- Mobile Menu -->
 <div class="mmenu" id="mm">
     <a href="#home" onclick="cm()">Home</a>
     <a href="#about" onclick="cm()">About</a>
@@ -66,22 +70,23 @@
     <a href="#experience" onclick="cm()">Experience</a>
     <a href="#gallery" onclick="cm()">Gallery</a>
     <a href="#contact" onclick="cm()">Contact</a>
-    <div class="mm-theme">
-        <span>Theme:</span>
-        <button class="mm-theme-btn" onclick="toggleTheme()">
-            <i class="fas fa-sun" id="mmThemeIcon"></i>
-            <span id="mmThemeLabel">Light</span>
-        </button>
-    </div>
 </div>
 
-<!-- HERO -->
+<!-- HERO ----------------- -->
 <section id="home">
+    <!-- Hero Tubes Canvas -->
+    <canvas id="heroTubesCanvas"></canvas>
+
+    <!-- hero background -->
     <div class="hero-bg">
         <div class="hb-aurora hb-a1"></div>
         <div class="hb-aurora hb-a2"></div>
         <div class="hb-aurora hb-a3"></div>
+        <div class="hb-wave hb-w1"></div>
+        <div class="hb-wave hb-w2"></div>
         <canvas class="hb-canvas" id="heroCanvas"></canvas>
+        <div class="hb-glow hb-g1"></div>
+        <div class="hb-glow hb-g2"></div>
     </div>
 
     <div class="hcont">
@@ -91,15 +96,10 @@
                 <span class="greet-text">Hello, I AM</span>
                 <span class="gline"></span>
             </div>
-
-            <!-- TECHIE NAME ANIMATION -->
             <h1 class="hname">
-                <span class="name-line-1" id="nameLine1">A.Praveena Dhanushka</span>
-                <span class="name-line-2" id="nameLine2">Mendis Gunasekara</span>
-                <div class="name-cursor-bar"></div>
-                <div class="name-scanline"></div>
+                A.Praveena Dhanushka
+                <span class="bn" data-text="Mendis Gunasekara">Mendis Gunasekara</span>
             </h1>
-
             <p class="htitle">
                 <span class="ht-badge"><i class="fas fa-code"></i> Software Engineer</span>
                 <span class="ht-sep">|</span>
@@ -107,34 +107,41 @@
                 <span class="ht-sep">|</span>
                 <span>Business Owner</span>
             </p>
-
-            <div class="typed-w">
-                <span class="tw-prompt">&gt;&nbsp;</span>
-                <span id="typed"></span>
-                <span class="cb"></span>
-            </div>
-
+            <div class="typed-w"><span class="tw-prompt">&gt;&nbsp;</span><span id="typed"></span><span
+                    class="cb"></span></div>
             <div class="hinfo">
-                <div class="hii"><span class="hii-icon"><i class="fas fa-map-marker-alt"></i></span><span>Hikkaduwa, Sri Lanka</span></div>
-                <div class="hii"><span class="hii-icon"><i class="fas fa-envelope"></i></span><span class="copy-email" style="cursor:pointer">praveengunasekara7@gmail.com</span></div>
-                <div class="hii"><span class="hii-icon"><i class="fas fa-phone"></i></span><span>+94 76 442 4053</span></div>
+                <div class="hii"><span class="hii-icon"><i class="fas fa-map-marker-alt"></i></span><span>Hikkaduwa, Sri Lanka</span>
+                </div>
+                <div class="hii"><span class="hii-icon"><i class="fas fa-envelope"></i></span><span class="copy-email"
+                                                                                                    style="cursor:pointer">praveengunasekara7@gmail.com</span>
+                </div>
+                <div class="hii"><span class="hii-icon"><i class="fas fa-phone"></i></span><span>+94 76 442 4053</span>
+                </div>
             </div>
-
             <div class="hbtns">
                 <a href="#projects" class="bp"><i class="fas fa-rocket"></i>View My Work<span class="btn-shine"></span></a>
                 <a href="#contact" class="bo"><i class="fas fa-paper-plane"></i>Contact Me</a>
             </div>
-
             <div class="hsoc">
-                <a href="https://github.com/slgunasekara" class="soc-a" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/" class="soc-a" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/slgunasekara" class="soc-a" target="_blank" title="GitHub"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/" class="soc-a" target="_blank"
+                   title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 <a href="#" class="soc-a copy-email" title="Copy Email"><i class="fas fa-envelope"></i></a>
             </div>
-
             <div class="hstats">
-                <div class="hstat"><div class="sn" data-count="3" data-suffix="+">0+</div><div class="sl2">Years Business</div></div>
-                <div class="hstat"><div class="sn" data-count="4">0</div><div class="sl2">Projects</div></div>
-                <div class="hstat"><div class="sn" data-count="6" data-suffix="K+">0K+</div><div class="sl2">LinkedIn</div></div>
+                <div class="hstat">
+                    <div class="sn" data-count="3" data-suffix="+">0+</div>
+                    <div class="sl2">Years Business</div>
+                </div>
+                <div class="hstat">
+                    <div class="sn" data-count="4">0</div>
+                    <div class="sl2">Projects</div>
+                </div>
+                <div class="hstat">
+                    <div class="sn" data-count="6" data-suffix="K+">0K+</div>
+                    <div class="sl2">LinkedIn</div>
+                </div>
             </div>
         </div>
 
@@ -147,12 +154,20 @@
                 <div class="hcorner hc-tr"></div>
                 <div class="hcorner hc-bl"></div>
                 <div class="hcorner hc-br"></div>
-                <div class="horbit horbit1"><div class="horbit-dot"></div></div>
-                <div class="horbit horbit2"><div class="horbit-dot hod2"></div></div>
-                <div class="horbit horbit3"><div class="horbit-dot hod3"></div></div>
+                <div class="horbit horbit1">
+                    <div class="horbit-dot"></div>
+                </div>
+                <div class="horbit horbit2">
+                    <div class="horbit-dot hod2"></div>
+                </div>
+                <div class="horbit horbit3">
+                    <div class="horbit-dot hod3"></div>
+                </div>
                 <div class="hfborder">
                     <div class="hfinner">
-                        <img src="assets/My%20image%20.jpg" alt="Praveena Gunasekara" onerror="this.style.display='none'"/>
+                        <img src="assets/My%20image%20.jpg"
+                             alt="Praveena Gunasekara"
+                             onerror="this.style.display='none'"/>
                         <div class="img-overlay"></div>
                         <div class="img-scan"></div>
                     </div>
@@ -161,17 +176,29 @@
                 <div class="fb fb1"><i class="fas fa-code"></i>Full-Stack Dev</div>
                 <div class="fb fb2"><i class="fas fa-brain"></i>AI/ML Engineer</div>
                 <div class="fb fb3"><i class="fas fa-plane"></i>Business Owner</div>
+                <div class="hhud hhud-l">
+                    <div class="hhud-line"></div>
+                    <div class="hhud-line short"></div>
+                    <div class="hhud-line"></div>
+                </div>
+                <div class="hhud hhud-r">
+                    <div class="hhud-line"></div>
+                    <div class="hhud-line short"></div>
+                    <div class="hhud-line"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="hero-scroll-hint">
-        <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+        <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+        </div>
         <span>Scroll to explore</span>
     </div>
 </section>
 
-<!-- ABOUT -->
+<!--ABOUT ----------------------->
 <section id="about">
     <div class="sh rv">
         <h2 class="st">About <span>Me</span></h2>
@@ -180,27 +207,52 @@
     <div class="agrid">
         <div class="aimgw rvl">
             <div class="aimg" id="aboutImgWrap">
-                <img src="assets/Myimage2.png" alt="About Praveena" onerror="this.onerror=null;this.style.display='none';"/>
+                <img src="assets/Myimage2.png" alt="About Praveena"
+                     onerror="this.onerror=null;this.style.display='none';document.getElementById('aboutImgWrap').classList.add('img-fallback');"/>
                 <div class="aimg-frame"></div>
             </div>
             <div class="astatb"><span class="snum">3+</span><span class="slbl">Yrs Business</span></div>
         </div>
         <div class="atxt rvr">
             <h3>Software Engineering Student &amp; Entrepreneur</h3>
-            <p>Results-driven Software Engineering student at IJSE with comprehensive expertise in full-stack development, database management, and AI/ML technologies. Proficient in Python, Java, MySQL, PostgreSQL, and modern web technologies.</p>
-            <p>Entrepreneurial business owner of <strong style="color:var(--blue)">Gunasekara Travels</strong> with 3+ years of proven success in operations management and customer relations.</p>
-            <p>Strong analytical foundation from advanced studies in Combined Mathematics, Physics and Chemistry, plus leadership experience as school prefect and 6,000+ LinkedIn connections.</p>
+            <p>Results-driven Software Engineering student at IJSE with comprehensive expertise in full-stack
+                development, database management, and AI/ML technologies. Proficient in Python, Java, MySQL, PostgreSQL,
+                and modern web technologies.</p>
+            <p>Entrepreneurial business owner of <strong style="color:var(--blue)">Gunasekara Travels</strong> with 3+
+                years of proven success in operations management and customer relations.</p>
+            <p>Strong analytical foundation from advanced studies in Combined Mathematics, Physics and Chemistry, plus
+                leadership experience as school prefect and 6,000+ LinkedIn connections.</p>
             <div class="adet">
-                <div class="adi"><i class="fas fa-user"></i><div><div class="adl">Name</div><div class="adv">A. Praveena D. M. G.</div></div></div>
-                <div class="adi"><i class="fas fa-map-marker-alt"></i><div><div class="adl">Location</div><div class="adv">Hikkaduwa, Sri Lanka</div></div></div>
-                <div class="adi"><i class="fab fa-linkedin"></i><div><div class="adl">LinkedIn</div><div class="adv">6,000+ Followers</div></div></div>
-                <div class="adi"><i class="fas fa-language"></i><div><div class="adl">Languages</div><div class="adv">Sinhala, English</div></div></div>
+                <div class="adi"><i class="fas fa-user"></i>
+                    <div>
+                        <div class="adl">Name</div>
+                        <div class="adv">A. Praveena D. M. G.</div>
+                    </div>
+                </div>
+                <div class="adi"><i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <div class="adl">Location</div>
+                        <div class="adv">Hikkaduwa, Sri Lanka</div>
+                    </div>
+                </div>
+                <div class="adi"><i class="fab fa-linkedin"></i>
+                    <div>
+                        <div class="adl">LinkedIn</div>
+                        <div class="adv">6,000+ Followers</div>
+                    </div>
+                </div>
+                <div class="adi"><i class="fas fa-language"></i>
+                    <div>
+                        <div class="adl">Languages</div>
+                        <div class="adv">Sinhala, English</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- SKILLS -->
+<!--SKILLS------------------------- -->
 <section id="skills">
     <div class="sh rv">
         <h2 class="st">Skills &amp; <span>Expertise</span></h2>
@@ -209,14 +261,39 @@
     <div class="sgrid">
         <div class="sc2 rvl">
             <h3><i class="fas fa-terminal"></i>Technical Proficiency</h3>
-            <div class="ski"><div class="skh"><span class="skn">Java</span><span class="skp">90%</span></div><div class="skbar"><div class="skfill" data-w="90"></div></div></div>
-            <div class="ski"><div class="skh"><span class="skn">Python</span><span class="skp">82%</span></div><div class="skbar"><div class="skfill" data-w="82"></div></div></div>
-            <div class="ski"><div class="skh"><span class="skn">JavaScript</span><span class="skp">75%</span></div><div class="skbar"><div class="skfill" data-w="75"></div></div></div>
-            <div class="ski"><div class="skh"><span class="skn">PHP</span><span class="skp">65%</span></div><div class="skbar"><div class="skfill" data-w="65"></div></div></div>
-            <div class="ski"><div class="skh"><span class="skn">MySQL / PostgreSQL</span><span class="skp">80%</span></div><div class="skbar"><div class="skfill" data-w="80"></div></div></div>
-            <div class="ski"><div class="skh"><span class="skn">HTML / CSS</span><span class="skp">88%</span></div><div class="skbar"><div class="skfill" data-w="88"></div></div></div>
-            <div class="ski"><div class="skh"><span class="skn">JavaFX</span><span class="skp">72%</span></div><div class="skbar"><div class="skfill" data-w="72"></div></div></div>
-            <div class="ski"><div class="skh"><span class="skn">OOP / Design Patterns</span><span class="skp">85%</span></div><div class="skbar"><div class="skfill" data-w="85"></div></div></div>
+            <div class="ski">
+                <div class="skh"><span class="skn">Java</span><span class="skp">90%</span></div>
+                <div class="skbar"><div class="skfill" data-w="90"></div></div>
+            </div>
+            <div class="ski">
+                <div class="skh"><span class="skn">Python</span><span class="skp">82%</span></div>
+                <div class="skbar"><div class="skfill" data-w="82"></div></div>
+            </div>
+            <div class="ski">
+                <div class="skh"><span class="skn">JavaScript</span><span class="skp">75%</span></div>
+                <div class="skbar"><div class="skfill" data-w="75"></div></div>
+            </div>
+            <div class="ski">
+                <div class="skh"><span class="skn">PHP</span><span class="skp">65%</span></div>
+                <div class="skbar"><div class="skfill" data-w="65"></div></div>
+            </div>
+            <div class="ski">
+                <div class="skh"><span class="skn">MySQL / PostgreSQL</span><span class="skp">80%</span></div>
+                <div class="skbar"><div class="skfill" data-w="80"></div></div>
+            </div>
+            <div class="ski">
+                <div class="skh"><span class="skn">HTML / CSS</span><span class="skp">88%</span></div>
+                <div class="skbar"><div class="skfill" data-w="88"></div></div>
+            </div>
+            <div class="ski">
+                <div class="skh"><span class="skn">JavaFX</span><span class="skp">72%</span></div>
+                <div class="skbar"><div class="skfill" data-w="72"></div></div>
+            </div>
+            <div class="ski">
+                <div class="skh"><span class="skn">OOP / Design Patterns</span><span class="skp">85%</span></div>
+                <div class="skbar"><div class="skfill" data-w="85"></div></div>
+            </div>
+
             <h3 style="margin-top:2.5rem"><i class="fas fa-briefcase"></i>Professional Skills</h3>
             <div class="ptags" id="proTags">
                 <span class="ptag" style="--d:0ms">Team Building</span>
@@ -231,8 +308,67 @@
                 <span class="ptag" style="--d:540ms">Research Skills</span>
             </div>
         </div>
+
         <div class="sc2 rvr">
             <h3><i class="fas fa-circle-nodes"></i>Tools &amp; Technologies</h3>
+            <div class="orb-system" id="orbSys">
+                <div class="orb-core">
+                    <div class="orb-core-inner">
+                        <i class="fas fa-microchip"></i>
+                        <span>Tech<br/>Stack</span>
+                    </div>
+                    <div class="orb-pulse"></div>
+                    <div class="orb-pulse2"></div>
+                    <div class="orb-pulse3"></div>
+                </div>
+                <div class="orb-ring orb-r1" id="orbR1">
+                    <div class="orb-wrap" style="--a:0deg">
+                        <div class="orb-node" style="--c:#1a1a1a"><i class="fab fa-github"></i><span>GitHub</span></div>
+                    </div>
+                    <div class="orb-wrap" style="--a:60deg">
+                        <div class="orb-node" style="--c:#d4a017"><i class="fab fa-linux"></i><span>Linux</span></div>
+                    </div>
+                    <div class="orb-wrap" style="--a:120deg">
+                        <div class="orb-node" style="--c:#4479a1"><i class="fas fa-database"></i><span>MySQL</span></div>
+                    </div>
+                    <div class="orb-wrap" style="--a:180deg">
+                        <div class="orb-node" style="--c:#ef4444"><i class="fab fa-java"></i><span>Java</span></div>
+                    </div>
+                    <div class="orb-wrap" style="--a:240deg">
+                        <div class="orb-node" style="--c:#3b82f6"><i class="fab fa-python"></i><span>Python</span></div>
+                    </div>
+                    <div class="orb-wrap" style="--a:300deg">
+                        <div class="orb-node" style="--c:#e05c3a"><i class="fas fa-desktop"></i><span>IntelliJ</span></div>
+                    </div>
+                </div>
+                <div class="orb-ring orb-r2" id="orbR2">
+                    <div class="orb-wrap" style="--a:0deg">
+                        <div class="orb-node" style="--c:#e34c26"><i class="fab fa-html5"></i><span>HTML</span></div>
+                    </div>
+                    <div class="orb-wrap" style="--a:45deg">
+                        <div class="orb-node" style="--c:#264de4"><i class="fab fa-css3-alt"></i><span>CSS</span></div>
+                    </div>
+                    <div class="orb-wrap" style="--a:90deg">
+                        <div class="orb-node" style="--c:#d4a017"><i class="fab fa-js"></i><span>JavaScript</span></div>
+                    </div>
+                    <div class="orb-wrap" style="--a:135deg">
+                        <div class="orb-node" style="--c:#00599c"><i class="fas fa-code"></i><span>C++</span></div>
+                    </div>
+                    <div class="orb-wrap" style="--a:180deg">
+                        <div class="orb-node" style="--c:#6db33f"><i class="fas fa-leaf"></i><span>Spring</span></div>
+                    </div>
+                    <div class="orb-wrap" style="--a:225deg">
+                        <div class="orb-node" style="--c:#7c3aed"><i class="fas fa-brain"></i><span>AI / ML</span></div>
+                    </div>
+                    <div class="orb-wrap" style="--a:270deg">
+                        <div class="orb-node" style="--c:#0ea5e9"><i class="fas fa-gamepad"></i><span>Game Dev</span></div>
+                    </div>
+                    <div class="orb-wrap" style="--a:315deg">
+                        <div class="orb-node" style="--c:#ec4899"><i class="fas fa-camera"></i><span>Photo</span></div>
+                    </div>
+                </div>
+                <div class="orb-tooltip" id="orbTip"></div>
+            </div>
             <div class="orb-mobile-grid">
                 <div class="omc" style="--c:#1a1a1a"><i class="fab fa-github"></i><span>GitHub</span></div>
                 <div class="omc" style="--c:#d4a017"><i class="fab fa-linux"></i><span>Linux</span></div>
@@ -253,7 +389,7 @@
     </div>
 </section>
 
-<!-- PROJECTS -->
+<!--PROJECTS -------------------------------->
 <section id="projects">
     <div class="sh rv">
         <h2 class="st">Featured <span>Projects</span></h2>
@@ -279,6 +415,7 @@
                 </div>
             </div>
         </div>
+
         <div class="pc rv" data-pid="1" style="transition-delay:.08s" onclick="openProject(1)">
             <div class="pthumb">
                 <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&q=80" alt="Connect Four"/>
@@ -297,6 +434,7 @@
                 </div>
             </div>
         </div>
+
         <div class="pc rv" data-pid="2" style="transition-delay:.16s" onclick="openProject(2)">
             <div class="pthumb">
                 <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&q=80" alt="POS System"/>
@@ -315,6 +453,7 @@
                 </div>
             </div>
         </div>
+
         <div class="pc rv" data-pid="3" style="transition-delay:.24s" onclick="openProject(3)">
             <div class="pthumb">
                 <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=500&q=80" alt="UI/UX Design"/>
@@ -349,18 +488,28 @@
             <h2 class="pm-title" id="pm-title"></h2>
             <div class="pm-course" id="pm-course"></div>
             <p class="pm-desc" id="pm-desc"></p>
-            <div class="pm-section"><h4><i class="fas fa-star"></i> Key Features</h4><ul class="pm-features" id="pm-features"></ul></div>
-            <div class="pm-section"><h4><i class="fas fa-code"></i> Tech Stack</h4><div class="pm-tech" id="pm-tech"></div></div>
+            <div class="pm-section">
+                <h4><i class="fas fa-star"></i> Key Features</h4>
+                <ul class="pm-features" id="pm-features"></ul>
+            </div>
+            <div class="pm-section">
+                <h4><i class="fas fa-code"></i> Tech Stack</h4>
+                <div class="pm-tech" id="pm-tech"></div>
+            </div>
             <div class="pm-actions">
-                <a class="pm-gh-btn" id="pm-gh-btn" href="#" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+                <a class="pm-gh-btn" id="pm-gh-btn" href="#" target="_blank">
+                    <i class="fab fa-github"></i> View on GitHub
+                </a>
                 <span class="pm-status" id="pm-status"></span>
             </div>
         </div>
     </div>
 </div>
 
-<!-- EDUCATION -->
+<!-- EDUCATION ------------------------------->
 <section id="education">
+    <canvas id="eduCanvas"></canvas>
+    <div class="edu-overlay"></div>
     <div class="sh rv" style="position:relative;z-index:2">
         <h2 class="st">My <span>Education</span></h2>
         <div class="sl"><span class="sd"></span></div>
@@ -429,7 +578,7 @@
     </div>
 </section>
 
-<!-- EXPERIENCE -->
+<!-- EXPERIENCE ------------------------- -->
 <section id="experience">
     <div class="sh rv">
         <h2 class="st">My <span>Experience</span></h2>
@@ -453,9 +602,10 @@
                 <div class="exc-more"><i class="fas fa-arrow-right"></i> Click for details</div>
             </div>
         </div>
+
         <div class="exc rv" style="transition-delay:.15s" onclick="openExp(1)">
             <div class="exc-img">
-                <img src="assets/gallery/FB_IMG_1755176113507.jpg" alt="Gunasekara Travels" onerror="this.src='https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80'"/>
+                <img src="assets/gallery/FB_IMG_1755176113507.jpg" alt="Gunasekara Travels"/>
                 <div class="exc-img-overlay"></div>
                 <div class="exc-img-icon"><i class="fas fa-plane-departure"></i></div>
             </div>
@@ -487,30 +637,69 @@
             </div>
         </div>
         <div class="em-body">
-            <div class="em-section"><h4><i class="fas fa-info-circle"></i> Overview</h4><p id="em-desc"></p></div>
-            <div class="em-section"><h4><i class="fas fa-trophy"></i> Key Achievements</h4><ul id="em-achievements"></ul></div>
-            <div class="em-section"><h4><i class="fas fa-tags"></i> Skills Gained</h4><div id="em-tags" class="em-tags"></div></div>
+            <div class="em-section">
+                <h4><i class="fas fa-info-circle"></i> Overview</h4>
+                <p id="em-desc"></p>
+            </div>
+            <div class="em-section">
+                <h4><i class="fas fa-trophy"></i> Key Achievements</h4>
+                <ul id="em-achievements"></ul>
+            </div>
+            <div class="em-section">
+                <h4><i class="fas fa-tags"></i> Skills Gained</h4>
+                <div id="em-tags" class="em-tags"></div>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- GALLERY -->
+<!--GALLERY ------------------->
 <section id="gallery">
     <div class="sh rv">
         <h2 class="st">My <span>Gallery</span></h2>
         <div class="sl"><span class="sd"></span></div>
     </div>
-    <p class="gallery-intro rv">A glimpse into my <span>world</span> — projects, memories, and moments. Click any image to view full screen.</p>
+    <p class="gallery-intro rv">
+        A glimpse into my <span>world</span> — projects, memories, and moments. Click any image to view full screen.
+    </p>
+
     <div class="gallery-grid" id="galleryGrid">
-        <div class="gallery-item rv"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80" alt="Coding"/><div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div><div class="gallery-overlay"><div class="gallery-caption"><h4>Software Projects</h4><p>Java development at IJSE</p></div></div></div>
-        <div class="gallery-item rv" style="--rd:.05s"><img src="assets/gallery/ijse.png" alt="Campus" onerror="this.src='https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?w=600&q=80'"/><div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div><div class="gallery-overlay"><div class="gallery-caption"><h4>Campus Life</h4><p>IJSE — Software Engineering</p></div></div></div>
-        <div class="gallery-item rv" style="--rd:.1s"><img src="assets/gallery/amg.png" alt="Travel" onerror="this.src='https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=600&q=80'"/><div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div><div class="gallery-overlay"><div class="gallery-caption"><h4>GTA VI</h4><p>Character</p></div></div></div>
-        <div class="gallery-item rv" style="--rd:.15s"><img src="assets/gallery/FB_IMG_1755176113507.jpg" alt="Photography" onerror="this.src='https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=600&q=80'"/><div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div><div class="gallery-overlay"><div class="gallery-caption"><h4>Gunasekara Travels</h4><p>ICO</p></div></div></div>
-        <div class="gallery-item rv" style="--rd:.2s"><img src="assets/gallery/IMG_20250331_143040.jpg" alt="Web Dev" onerror="this.src='https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&q=80'"/><div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div><div class="gallery-overlay"><div class="gallery-caption"><h4>Businessman</h4><p>CeylonMora (AMG Group)</p></div></div></div>
-        <div class="gallery-item rv" style="--rd:.25s"><img src="assets/gallery/IMG_20250401_130609.jpg" alt="Journey" onerror="this.src='https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80'"/><div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div><div class="gallery-overlay"><div class="gallery-caption"><h4>On the Road</h4><p>Gunasekara Travels journeys</p></div></div></div>
-        <div class="gallery-item rv" style="--rd:.3s"><img src="assets/gallery/santa-fe.jpg" alt="Teamwork" onerror="this.src='https://images.unsplash.com/photo-1526925539332-aa3b66e35444?w=600&q=80'"/><div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div><div class="gallery-overlay"><div class="gallery-caption"><h4>My Vehicle</h4><p>Hyundai Santa fe CM</p></div></div></div>
-        <div class="gallery-item rv" style="--rd:.35s"><img src="assets/gallery/My%20image%20.jpg" alt="Leisure" onerror="this.src='https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=600&q=80'"/><div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div><div class="gallery-overlay"><div class="gallery-caption"><h4>AMG</h4><p>amg</p></div></div></div>
-        <div class="gallery-item rv" style="--rd:.4s"><img src="assets/gallery/My%20image%202.png" alt="Laptop" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80'"/><div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div><div class="gallery-overlay"><div class="gallery-caption"><h4>AMG</h4><p>amg</p></div></div></div>
+        <div class="gallery-item rv"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80" alt="Coding"/>
+            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>Software Projects</h4><p>Java development at IJSE</p></div></div>
+        </div>
+        <div class="gallery-item rv" style="--rd:.05s"><img src="assets/gallery/ijse.png" alt="Campus"/>
+            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>Campus Life</h4><p>IJSE — Software Engineering</p></div></div>
+        </div>
+        <div class="gallery-item rv" style="--rd:.1s"><img src="assets/gallery/amg.png" alt="Travel"/>
+            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>GTA VI</h4><p>Character</p></div></div>
+        </div>
+        <div class="gallery-item rv" style="--rd:.15s"><img src="assets/gallery/FB_IMG_1755176113507.jpg" alt="Photography"/>
+            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>Gunasekara Travels</h4><p>ICO</p></div></div>
+        </div>
+        <div class="gallery-item rv" style="--rd:.2s"><img src="assets/gallery/IMG_20250331_143040.jpg" alt="Web Dev"/>
+            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>Businessman</h4><p>CeylonMora (AMG Group)</p></div></div>
+        </div>
+        <div class="gallery-item rv" style="--rd:.25s"><img src="assets/gallery/IMG_20250401_130609.jpg" alt="Journey"/>
+            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>On the Road</h4><p>Gunasekara Travels journeys</p></div></div>
+        </div>
+        <div class="gallery-item rv" style="--rd:.3s"><img src="assets/gallery/santa-fe.jpg" alt="Teamwork"/>
+            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>My Vehicle</h4><p>Hyundai Santa fe CM</p></div></div>
+        </div>
+        <div class="gallery-item rv" style="--rd:.35s"><img src="assets/gallery/My%20image%20.jpg" alt="Leisure"/>
+            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>AMG</h4><p>amg</p></div></div>
+        </div>
+        <div class="gallery-item rv" style="--rd:.4s"><img src="assets/gallery/My%20image%202.png" alt="Laptop"/>
+            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>AMG</h4><p>amg</p></div></div>
+        </div>
     </div>
 </section>
 
@@ -518,7 +707,10 @@
 <div class="lightbox" id="lightbox">
     <div class="lb-inner" id="lbInner">
         <img id="lbImg" src="" alt=""/>
-        <div class="lb-caption"><h4 id="lbTitle"></h4><p id="lbDesc"></p></div>
+        <div class="lb-caption">
+            <h4 id="lbTitle"></h4>
+            <p id="lbDesc"></p>
+        </div>
         <div class="lb-nav">
             <button class="lb-btn" onclick="lbNav(-1)"><i class="fas fa-chevron-left"></i></button>
             <span id="lbCounter" class="lb-counter"></span>
@@ -528,7 +720,7 @@
     </div>
 </div>
 
-<!-- CONTACT -->
+<!-- CONTACT ---------------------- -->
 <section id="contact">
     <div class="sh rv">
         <h2 class="st">Get In <span>Touch</span></h2>
@@ -538,21 +730,77 @@
         <div class="cinfo rvl">
             <h3>Let's <span>Connect</span></h3>
             <p>I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out!</p>
-            <div class="ci"><div class="cic"><i class="fas fa-envelope"></i></div><div class="cit"><div class="cil">Email</div><div class="civ"><a href="#" class="copy-email">praveengunasekara7@gmail.com</a></div></div></div>
-            <div class="ci"><div class="cic"><i class="fas fa-phone"></i></div><div class="cit"><div class="cil">Phone</div><div class="civ">+94 76 442 4053</div></div></div>
-            <div class="ci"><div class="cic"><i class="fas fa-map-marker-alt"></i></div><div class="cit"><div class="cil">Location</div><div class="civ">Hikkaduwa, Southern Province, Sri Lanka</div></div></div>
-            <div class="ci"><div class="cic"><i class="fab fa-github"></i></div><div class="cit"><div class="cil">GitHub</div><div class="civ"><a href="https://github.com/slgunasekara" target="_blank">github.com/slgunasekara</a></div></div></div>
-            <div class="ci"><div class="cic"><i class="fab fa-linkedin-in"></i></div><div class="cit"><div class="cil">LinkedIn</div><div class="civ"><a href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/" target="_blank">Praveena Gunasekara</a></div></div></div>
+            <div class="ci">
+                <div class="cic"><i class="fas fa-envelope"></i></div>
+                <div class="cit">
+                    <div class="cil">Email</div>
+                    <div class="civ"><a href="#" class="copy-email">praveengunasekara7@gmail.com</a></div>
+                </div>
+            </div>
+            <div class="ci">
+                <div class="cic"><i class="fas fa-phone"></i></div>
+                <div class="cit">
+                    <div class="cil">Phone</div>
+                    <div class="civ">+94 76 442 4053</div>
+                </div>
+            </div>
+            <div class="ci">
+                <div class="cic"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="cit">
+                    <div class="cil">Location</div>
+                    <div class="civ">Hikkaduwa, Southern Province, Sri Lanka</div>
+                </div>
+            </div>
+            <div class="ci">
+                <div class="cic"><i class="fab fa-github"></i></div>
+                <div class="cit">
+                    <div class="cil">GitHub</div>
+                    <div class="civ"><a href="https://github.com/slgunasekara" target="_blank">github.com/slgunasekara</a></div>
+                </div>
+            </div>
+            <div class="ci">
+                <div class="cic"><i class="fab fa-linkedin-in"></i></div>
+                <div class="cit">
+                    <div class="cil">LinkedIn</div>
+                    <div class="civ"><a href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/" target="_blank">Praveena Gunasekara</a></div>
+                </div>
+            </div>
+            <div class="cmap">
+                <div class="cmap-inner">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Hikkaduwa, Sri Lanka 🇱🇰</span>
+                </div>
+            </div>
         </div>
+
         <div class="rvr">
             <div class="cform-card">
                 <div class="fr">
-                    <div class="fg float-label"><input type="text" id="fn" placeholder=" " autocomplete="off"/><label for="fn">Your Name</label><div class="fg-line"></div></div>
-                    <div class="fg float-label"><input type="email" id="fe" placeholder=" " autocomplete="off"/><label for="fe">Email Address</label><div class="fg-line"></div></div>
+                    <div class="fg float-label">
+                        <input type="text" id="fn" placeholder=" " autocomplete="off"/>
+                        <label for="fn">Your Name</label>
+                        <div class="fg-line"></div>
+                    </div>
+                    <div class="fg float-label">
+                        <input type="email" id="fe" placeholder=" " autocomplete="off"/>
+                        <label for="fe">Email Address</label>
+                        <div class="fg-line"></div>
+                    </div>
                 </div>
-                <div class="fg float-label"><input type="text" id="fs" placeholder=" " autocomplete="off"/><label for="fs">Subject</label><div class="fg-line"></div></div>
-                <div class="fg float-label"><textarea id="fm" placeholder=" "></textarea><label for="fm">Your Message</label><div class="fg-line"></div></div>
-                <button class="bsend" onclick="sendMsg()"><span class="bsend-text"><i class="fas fa-paper-plane"></i>Send Message</span><span class="bsend-shine"></span></button>
+                <div class="fg float-label">
+                    <input type="text" id="fs" placeholder=" " autocomplete="off"/>
+                    <label for="fs">Subject</label>
+                    <div class="fg-line"></div>
+                </div>
+                <div class="fg float-label">
+                    <textarea id="fm" placeholder=" "></textarea>
+                    <label for="fm">Your Message</label>
+                    <div class="fg-line"></div>
+                </div>
+                <button class="bsend" onclick="sendMsg()">
+                    <span class="bsend-text"><i class="fas fa-paper-plane"></i>Send Message</span>
+                    <span class="bsend-shine"></span>
+                </button>
                 <div class="fmsg" id="fmsg"></div>
             </div>
         </div>
@@ -574,7 +822,111 @@
 </footer>
 
 <button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fas fa-arrow-up"></i></button>
-<div id="emailToast"><i class="fas fa-check-circle" style="color:#059669"></i> Email copied to clipboard!</div>
+
+<div id="emailToast">
+    <i class="fas fa-check-circle" style="color:#059669"></i>
+    Email copied to clipboard!
+</div>
+
+<!--HERO TUBES — ====== -->
+<script type="module">
+    import TubesCursor from "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js";
+
+    const heroSection = document.getElementById('home');
+    const heroTubesCanvas = document.getElementById('heroTubesCanvas');
+    let heroApp = null, heroStarted = false;
+
+    const colorPalettes = [
+        {tubes: ["#2563eb", "#0ea5e9", "#4f46e5"], lights: ["#60a5fa", "#38bdf8", "#818cf8", "#a5b4fc"]},
+        {tubes: ["#0ea5e9", "#06b6d4", "#2563eb"], lights: ["#38bdf8", "#67e8f9", "#60a5fa", "#7dd3fc"]},
+        {tubes: ["#4f46e5", "#7c3aed", "#2563eb"], lights: ["#818cf8", "#a78bfa", "#60a5fa", "#c4b5fd"]},
+        {tubes: ["#0284c7", "#0ea5e9", "#38bdf8"], lights: ["#7dd3fc", "#38bdf8", "#bae6fd", "#60a5fa"]},
+        {tubes: ["#1e3a8a", "#2563eb", "#0ea5e9"], lights: ["#93c5fd", "#60a5fa", "#38bdf8", "#a5b4fc"]},
+    ];
+    let paletteIdx = 0;
+
+    function initHeroTubes() {
+        if (heroStarted) return;
+        heroStarted = true;
+        try {
+            const p = colorPalettes[0];
+            heroApp = TubesCursor(heroTubesCanvas, {
+                tubes: {
+                    colors: p.tubes,
+                    lights: {intensity: 100, colors: p.lights}
+                }
+            });
+
+            let lastShift = 0;
+            heroSection.addEventListener('mousemove', () => {
+                const now = Date.now();
+                if (now - lastShift < 3000) return;
+                lastShift = now;
+                paletteIdx = (paletteIdx + 1) % colorPalettes.length;
+                if (heroApp && heroApp.tubes && heroApp.tubes.setColors) {
+                    heroApp.tubes.setColors(colorPalettes[paletteIdx].tubes);
+                }
+            });
+
+            heroSection.addEventListener('click', () => {
+                paletteIdx = (paletteIdx + 1) % colorPalettes.length;
+                const np = colorPalettes[paletteIdx];
+                if (heroApp && heroApp.tubes && heroApp.tubes.setColors) {
+                    heroApp.tubes.setColors(np.tubes);
+                }
+            });
+
+        } catch (e) {
+            console.warn('Hero TubesCursor failed:', e);
+        }
+    }
+
+    const heroObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) initHeroTubes();
+        });
+    }, {threshold: 0.05});
+    heroObs.observe(heroSection);
+</script>
+
+<!-- EDUCATION TUBES -->
+<script type="module">
+    import TubesCursor from "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js";
+
+    const section = document.getElementById('education');
+    const canvas = document.getElementById('eduCanvas');
+    let app = null, started = false;
+
+    function initTubes() {
+        if (started) return;
+        started = true;
+        try {
+            app = TubesCursor(canvas, {
+                tubes: {
+                    colors: ["#2563eb", "#1e3a8a", "#0ea5e9"],
+                    lights: {intensity: 150, colors: ["#60a5fa", "#38bdf8", "#818cf8", "#a5b4fc"]}
+                }
+            });
+            section.addEventListener('click', () => {
+                if (!app) return;
+                app.tubes.setColors([
+                    "#" + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0"),
+                    "#" + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0"),
+                    "#" + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0")
+                ]);
+            });
+        } catch (e) {
+            console.warn('TubesCursor failed:', e);
+        }
+    }
+
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) initTubes();
+        });
+    }, {threshold: 0.1});
+    obs.observe(section);
+</script>
 
 <script src="script.js"></script>
 </body>
