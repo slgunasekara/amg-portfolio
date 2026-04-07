@@ -556,35 +556,32 @@
         <h2 class="st">My <span>Assignments</span></h2>
         <div class="sl"><span class="sd"></span></div>
     </div>
-    <p class="section-sub rv">Click any task card to view details, run the code, and watch demo videos</p>
 
-    <!-- TAB SWITCHER -->
-    <div class="asgn-tabs rv" id="asgnTabs">
-        <button class="asgn-tab active" data-tab="0" onclick="switchAsgnTab(0)">
-            <span class="at-num">01</span>
-            <span class="at-label">Assignment 01</span>
-            <span class="at-sub">HTML &amp; CSS Fundamentals</span>
-        </button>
-        <button class="asgn-tab" data-tab="1" onclick="switchAsgnTab(1)">
-            <span class="at-num">02</span>
-            <span class="at-label">Assignment 02</span>
-            <span class="at-sub">CSS Animations &amp; Interactive UI</span>
-        </button>
+    <!-- TAB ROW: pill switcher + github -->
+    <div class="asgn-tab-row rv">
+        <div class="asgn-pills" id="asgnTabs">
+            <button class="asgn-tab active" data-tab="0" onclick="switchAsgnTab(0)">
+                <span class="at-dot"></span> Assignment 01
+            </button>
+            <button class="asgn-tab" data-tab="1" onclick="switchAsgnTab(1)">
+                <span class="at-dot"></span> Assignment 02
+            </button>
+        </div>
+        <a id="apGhBtn" href="https://github.com/slgunasekara" class="asgn-gh-btn" target="_blank">
+            <i class="fab fa-github"></i> View on GitHub
+        </a>
     </div>
 
-    <!-- SINGLE PANEL -->
-    <div class="asgn-panel rv" id="asgnPanel">
+    <!-- PANEL — no frame, flows with page -->
+    <div class="asgn-panel" id="asgnPanel">
         <div class="asgn-panel-header">
             <div class="asgn-panel-info">
-                <span class="ap-num" id="apNum">01</span>
+                <span class="ap-badge" id="apBadge"><i class="fas fa-folder-open"></i> Assignment 01</span>
                 <div>
-                    <div class="ap-title" id="apTitle">Assignment 01</div>
-                    <div class="ap-sub" id="apSub">HTML &amp; CSS Fundamentals</div>
+                    <div class="ap-title" id="apTitle">HTML &amp; CSS Fundamentals</div>
+                    <div class="ap-sub" id="apSub">6 tasks · Click any card to view details or run</div>
                 </div>
             </div>
-            <a id="apGhBtn" href="https://github.com/slgunasekara" class="asgn-gh-btn" target="_blank">
-                <i class="fab fa-github"></i> View on GitHub
-            </a>
         </div>
 
         <div class="dot-stepper" id="asgnStepper">

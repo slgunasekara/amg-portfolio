@@ -3134,87 +3134,76 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
 }
 
 /* ======================================================
-   ASSIGNMENT TABS
+   ASSIGNMENT TABS — compact pill switcher
    ====================================================== */
-.asgn-tabs {
+.asgn-tab-row {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
+    align-items: center;
+    justify-content: space-between;
     flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.asgn-pills {
+    display: inline-flex;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 4px;
+    gap: 2px;
 }
 
 .asgn-tab {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: .9rem;
-    padding: 1rem 1.6rem;
-    border-radius: 16px;
-    border: 2px solid var(--border);
-    background: var(--card);
-    cursor: pointer;
-    transition: border-color .25s, background .25s, box-shadow .25s, transform .2s;
-    text-align: left;
+    gap: .5rem;
+    padding: .48rem 1.25rem;
+    border-radius: 50px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: .88rem;
+    font-weight: 600;
     font-family: inherit;
-    flex: 1;
-    min-width: 200px;
+    cursor: pointer;
+    transition: background .22s, color .22s, box-shadow .22s;
+    white-space: nowrap;
+}
+
+.asgn-tab .at-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: .4;
+    transition: opacity .22s, transform .22s;
+    flex-shrink: 0;
 }
 
 .asgn-tab:hover {
-    border-color: var(--blue);
-    background: rgba(37,99,235,.06);
-    transform: translateY(-2px);
+    color: var(--text);
 }
+
+.asgn-tab:hover .at-dot { opacity: .7; }
 
 .asgn-tab.active {
-    border-color: var(--blue);
-    background: rgba(37,99,235,.1);
-    box-shadow: 0 0 0 1px rgba(37,99,235,.2), 0 8px 28px rgba(37,99,235,.15);
+    background: var(--blue);
+    color: #fff;
+    box-shadow: 0 2px 10px rgba(37,99,235,.35);
 }
 
-.at-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: var(--blue);
-    opacity: .35;
-    line-height: 1;
-    transition: opacity .25s;
-}
-
-.asgn-tab.active .at-num,
-.asgn-tab:hover .at-num {
-    opacity: 1;
-}
-
-.at-label {
-    display: block;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text);
-    line-height: 1.2;
-}
-
-.at-sub {
-    display: block;
-    font-size: .78rem;
-    color: var(--muted);
-    margin-top: 2px;
+.asgn-tab.active .at-dot {
+    background: #fff;
+    opacity: .85;
+    transform: scale(1.2);
 }
 
 /* ======================================================
-   ASSIGNMENT PANEL
+   ASSIGNMENT PANEL — frameless, clean
    ====================================================== */
 .asgn-panel {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 22px;
-    padding: 2rem 2rem 1.8rem;
-    transition: border-color .3s, box-shadow .3s;
-}
-
-.asgn-panel:hover {
-    border-color: rgba(37,99,235,.4);
-    box-shadow: 0 8px 32px rgba(37,99,235,.1);
+    /* No border, no card background — flows with page */
 }
 
 .asgn-panel-header {
@@ -3222,53 +3211,60 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1.8rem;
-    padding-bottom: 1.4rem;
-    border-bottom: 1px solid var(--border);
+    gap: .8rem;
+    margin-bottom: 1.6rem;
 }
 
 .asgn-panel-info {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: .75rem;
 }
 
-.ap-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 2.2rem;
-    font-weight: 700;
+.ap-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .3rem .85rem;
+    border-radius: 50px;
+    background: rgba(37,99,235,.1);
+    border: 1px solid rgba(37,99,235,.2);
     color: var(--blue);
-    line-height: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .04em;
 }
+
+.ap-badge i { font-size: .65rem; }
 
 .ap-title {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--text);
 }
 
 .ap-sub {
-    font-size: .82rem;
+    font-size: .8rem;
     color: var(--muted);
-    margin-top: 2px;
+    margin-top: 1px;
 }
 
-/* Panel content fade-swap animation */
+/* Fade-swap animation */
 .asgn-panel.switching {
     opacity: 0;
-    transform: translateY(8px);
-    transition: opacity .18s ease, transform .18s ease;
+    transform: translateY(6px);
+    transition: opacity .16s ease, transform .16s ease;
 }
 
 .asgn-panel.entering {
     opacity: 1;
     transform: translateY(0);
-    transition: opacity .22s ease .05s, transform .22s ease .05s;
+    transition: opacity .22s ease .04s, transform .22s ease .04s;
 }
 
 @media (max-width: 600px) {
-    .asgn-tab { padding: .8rem 1.1rem; min-width: 140px; }
-    .at-num { font-size: 1.4rem; }
-    .asgn-panel { padding: 1.2rem 1rem 1rem; }
+    .asgn-tab-row { gap: .6rem; }
+    .asgn-tab { padding: .42rem .9rem; font-size: .82rem; }
+    .ap-title { font-size: .95rem; }
 }

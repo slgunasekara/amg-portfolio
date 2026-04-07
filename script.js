@@ -914,26 +914,30 @@ function switchAsgnTab(idx) {
     if (idx === _activeAsgnTab) return;
     _activeAsgnTab = idx;
 
-    // Update tab button states
+    // Update pill states
     document.querySelectorAll('.asgn-tab').forEach((btn, i) => {
         btn.classList.toggle('active', i === idx);
     });
 
     const asgn = assignmentsData[idx];
     const panel = document.getElementById('asgnPanel');
+    const subtitles = ['HTML & CSS Fundamentals', 'CSS Animations & Interactive UI'];
+    const taskCounts = [6, 7];
 
-    // Fade out → swap content → fade in
+    // Fade out → swap → fade in
     panel.classList.add('switching');
     setTimeout(() => {
-        document.getElementById('apNum').textContent = String(idx + 1).padStart(2, '0');
-        document.getElementById('apTitle').textContent = asgn.label;
-        document.getElementById('apSub').textContent = idx === 0 ? 'HTML & CSS Fundamentals' : 'CSS Animations & Interactive UI';
+        // Update panel header info
+        document.getElementById('apBadge').innerHTML = `<i class="fas fa-folder-open"></i> ${asgn.label}`;
+        document.getElementById('apTitle').textContent = subtitles[idx];
+        document.getElementById('apSub').textContent = `${taskCounts[idx]} tasks · Click any card to view details or run`;
         document.getElementById('apGhBtn').href = asgn.githubUrl;
+
         buildAsgnPanel(idx);
         panel.classList.remove('switching');
         panel.classList.add('entering');
-        setTimeout(() => panel.classList.remove('entering'), 250);
-    }, 180);
+        setTimeout(() => panel.classList.remove('entering'), 260);
+    }, 170);
 }
 
 /* ===== DOT STEPPER ENGINE ===== */
