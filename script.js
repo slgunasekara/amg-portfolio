@@ -557,8 +557,12 @@ function closeExpModal(e, force) {
 /* Close modals on Escape */
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
+        if (document.getElementById('fsRunOverlay').style.display !== 'none') {
+            tmCloseFullscreen(); return;
+        }
         closeProjectModal(null, true);
         closeExpModal(null, true);
+        closeTaskModal(null, true);
         closeLightbox();
     }
 });
@@ -731,6 +735,318 @@ function sendMsg() {
     msg.textContent = '✓ Opening your email client...';
     msg.className = 'fmsg ok';
     setTimeout(() => msg.textContent = '', 4000);
+}
+
+/* ===== ASSIGNMENTS DATA ===== */
+const assignmentsData = [
+    {
+        label: "Assignment 01",
+        githubUrl: "https://github.com/slgunasekara",
+        tasks: [
+            {
+                num: "Task 01",
+                title: "CSS Grid Layout & Viewport Design",
+                desc: "A responsive CSS grid layout demonstrating advanced viewport-based sizing and coordinate systems. Features dynamic grid areas with precise percentage-based positioning and overflow control.",
+                thumb: "assets/assignments/assignment 01/ass_1_assets/image/Task_01.png",
+                taskFile: "assets/assignments/assignment 01/assignment/Task_01.html",
+                videoFile: null
+            },
+            {
+                num: "Task 02",
+                title: "Flexbox & Responsive Components",
+                desc: "Flexbox-based responsive component layout exploring alignment, justify-content, and fluid sizing techniques for modern web design.",
+                thumb: "assets/assignments/assignment 01/ass_1_assets/image/Task_02.png",
+                taskFile: "assets/assignments/assignment 01/assignment/Task_02.html",
+                videoFile: null
+            },
+            {
+                num: "Task 03",
+                title: "CSS Selectors & Specificity",
+                desc: "Deep dive into CSS selectors including combinators, pseudo-classes, and specificity rules to craft precise styling without JavaScript.",
+                thumb: "assets/assignments/assignment 01/ass_1_assets/image/Task_03.png",
+                taskFile: "assets/assignments/assignment 01/assignment/Task_03.html",
+                videoFile: null
+            },
+            {
+                num: "Task 04",
+                title: "Typography & Color Systems",
+                desc: "Exploration of web typography hierarchy, custom color palettes, CSS variables, and consistent design systems across components.",
+                thumb: "assets/assignments/assignment 01/ass_1_assets/image/Task_04.png",
+                taskFile: "assets/assignments/assignment 01/assignment/Task_04.html",
+                videoFile: null
+            },
+            {
+                num: "Task 05",
+                title: "Box Model & Spacing",
+                desc: "Practical exploration of the CSS box model — margin, padding, border-box sizing, and their effects on layout and element dimensions.",
+                thumb: "assets/assignments/assignment 01/ass_1_assets/image/Task_05.png",
+                taskFile: "assets/assignments/assignment 01/assignment/Task_05.html",
+                videoFile: null
+            },
+            {
+                num: "Task 06",
+                title: "Positioning & Z-Index",
+                desc: "Mastering CSS positioning contexts — static, relative, absolute, fixed and sticky — combined with z-index layering for complex UI overlays.",
+                thumb: "assets/assignments/assignment 01/ass_1_assets/image/Taks_06.png",
+                taskFile: "assets/assignments/assignment 01/assignment/Task_06.html",
+                videoFile: null
+            }
+        ]
+    },
+    {
+        label: "Assignment 02",
+        githubUrl: "https://github.com/slgunasekara",
+        tasks: [
+            {
+                num: "Task 01",
+                title: "CSS Animations & Keyframes",
+                desc: "Smooth CSS-only animations using @keyframes, animation timing functions, and iteration control for engaging UI motion.",
+                thumb: "assets/assignments/assignment 02/ass_2_assets/image/Task_01.png",
+                taskFile: "assets/assignments/assignment 02/assignment/Task_01.html",
+                videoFile: "assets/assignments/assignment 02/ass_2_assets/video/Task_01.mp4"
+            },
+            {
+                num: "Task 02",
+                title: "Hover Transitions & Micro-Interactions",
+                desc: "Rich hover-state micro-interactions using CSS transitions, transform, and filter effects to craft delightful interactive elements.",
+                thumb: "assets/assignments/assignment 02/ass_2_assets/image/Task_02.png",
+                taskFile: "assets/assignments/assignment 02/assignment/Task_02.html",
+                videoFile: "assets/assignments/assignment 02/ass_2_assets/video/Task_02.mp4"
+            },
+            {
+                num: "Task 03",
+                title: "3D Transforms & Perspective",
+                desc: "CSS 3D transforms including rotateX/Y/Z, perspective, and backface-visibility to build immersive flip-card and depth effects.",
+                thumb: "assets/assignments/assignment 02/ass_2_assets/image/Task_03.png",
+                taskFile: "assets/assignments/assignment 02/assignment/Task_03.html",
+                videoFile: "assets/assignments/assignment 02/ass_2_assets/video/Task_03.mp4"
+            },
+            {
+                num: "Task 04",
+                title: "Canvas & JavaScript Drawing",
+                desc: "HTML5 Canvas API usage for programmatic 2D drawing — paths, arcs, gradients, and animation frames for dynamic visual content.",
+                thumb: "assets/assignments/assignment 02/ass_2_assets/image/Task_04.png",
+                taskFile: "assets/assignments/assignment 02/assignment/Task_04.html",
+                videoFile: "assets/assignments/assignment 02/ass_2_assets/video/Task_04.mp4"
+            },
+            {
+                num: "Task 05",
+                title: "DOM Manipulation & Events",
+                desc: "Real-time DOM manipulation responding to user events — click, input, resize — to build interactive UI components purely with vanilla JavaScript.",
+                thumb: "assets/assignments/assignment 02/ass_2_assets/image/Task_05.png",
+                taskFile: "assets/assignments/assignment 02/assignment/Task_05.html",
+                videoFile: "assets/assignments/assignment 02/ass_2_assets/video/Task_05.mp4"
+            },
+            {
+                num: "Task 06",
+                title: "CSS Variables & Theming",
+                desc: "Dynamic theming system using CSS custom properties, JavaScript variable overrides, and live theme-switching without page reload.",
+                thumb: "assets/assignments/assignment 02/ass_2_assets/image/Task_06.png",
+                taskFile: "assets/assignments/assignment 02/assignment/Task_06.html",
+                videoFile: "assets/assignments/assignment 02/ass_2_assets/video/Task_06.mp4"
+            },
+            {
+                num: "Task 07",
+                title: "Responsive Navigation & Layout",
+                desc: "Fully responsive navigation system with mobile hamburger menu, smooth scroll, and adaptive layout breakpoints.",
+                thumb: "assets/assignments/assignment 02/ass_2_assets/image/Task_07.png",
+                taskFile: "assets/assignments/assignment 02/assignment/Task_07.html",
+                videoFile: "assets/assignments/assignment 02/ass_2_assets/video/Task_07.mp4"
+            }
+        ]
+    }
+];
+
+/* ===== ASSIGNMENT TASK CARD BUILDER ===== */
+function buildAsgnStepper(asgnIdx) {
+    const asgn = assignmentsData[asgnIdx];
+    const track = document.getElementById('asgn' + asgnIdx + 'Track');
+    const dotsEl = document.getElementById('asgn' + asgnIdx + 'Dots');
+    if (!track || !dotsEl) return;
+
+    track.innerHTML = '';
+    dotsEl.innerHTML = '';
+
+    asgn.tasks.forEach((task, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'ds-slide';
+        slide.innerHTML = `
+            <div class="asgn-task-card" onclick="openTaskModal(${asgnIdx}, ${i})">
+                <div class="atc-thumb">
+                    <img src="${task.thumb}" alt="${task.title}" loading="lazy"
+                         onerror="this.parentElement.style.background='var(--bg2)';this.style.display='none'"/>
+                    <div class="atc-thumb-overlay"></div>
+                    <span class="atc-num">${task.num}</span>
+                    ${task.videoFile ? '<span class="atc-has-video"><i class="fas fa-video"></i> Video</span>' : ''}
+                </div>
+                <div class="atc-body">
+                    <div class="atc-title">${task.title}</div>
+                    <p class="atc-desc">${task.desc}</p>
+                    <div class="atc-footer">
+                        <button class="atc-run-btn" onclick="event.stopPropagation();openTaskModal(${asgnIdx},${i},true)">
+                            <i class="fas fa-play"></i> Run
+                        </button>
+                        <span class="atc-click-hint"><i class="fas fa-info-circle"></i> Click for details</span>
+                    </div>
+                </div>
+            </div>`;
+        track.appendChild(slide);
+
+        const dot = document.createElement('span');
+        dot.className = 'ds-dot' + (i === 0 ? ' active' : '');
+        dot.dataset.idx = i;
+        dotsEl.appendChild(dot);
+    });
+
+    initDotStepper('asgn' + asgnIdx + 'Track', 'asgn' + asgnIdx + 'Dots', 'asgn' + asgnIdx + 'Prev', 'asgn' + asgnIdx + 'Next');
+}
+
+/* ===== DOT STEPPER ENGINE ===== */
+function initDotStepper(trackId, dotsId, prevId, nextId) {
+    const track = document.getElementById(trackId);
+    const dotsEl = document.getElementById(dotsId);
+    const prevBtn = document.getElementById(prevId);
+    const nextBtn = document.getElementById(nextId);
+    if (!track) return;
+
+    let current = 0;
+    const slides = () => track.querySelectorAll('.ds-slide');
+    const dots = () => dotsEl ? dotsEl.querySelectorAll('.ds-dot') : [];
+
+    function goTo(idx) {
+        const count = slides().length;
+        if (count === 0) return;
+        current = ((idx % count) + count) % count;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots().forEach((d, i) => d.classList.toggle('active', i === current));
+        if (prevBtn) prevBtn.disabled = current === 0;
+        if (nextBtn) nextBtn.disabled = current === count - 1;
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+
+    if (dotsEl) {
+        dotsEl.addEventListener('click', e => {
+            const dot = e.target.closest('.ds-dot');
+            if (dot) goTo(parseInt(dot.dataset.idx));
+        });
+    }
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    track.parentElement.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive: true});
+    track.parentElement.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+    }, {passive: true});
+
+    goTo(0);
+}
+
+/* ===== INIT ALL STEPPERS ===== */
+document.addEventListener('DOMContentLoaded', () => {
+    // Projects stepper
+    initDotStepper('projectsTrack', 'projectsDots', 'projectsPrev', 'projectsNext');
+    // Assignment steppers
+    buildAsgnStepper(0);
+    buildAsgnStepper(1);
+});
+
+/* ===== TASK MODAL ===== */
+let _tmData = null;
+
+function openTaskModal(asgnIdx, taskIdx, autoRun) {
+    const asgn = assignmentsData[asgnIdx];
+    const task = asgn.tasks[taskIdx];
+    _tmData = task;
+
+    document.getElementById('tm-asgn-badge').textContent = asgn.label;
+    document.getElementById('tm-task-num').textContent = task.num;
+    document.getElementById('tm-title').textContent = task.title;
+    document.getElementById('tm-desc').textContent = task.desc;
+
+    // Show/hide video button
+    const vidBtn = document.getElementById('tmVidBtn');
+    vidBtn.style.display = task.videoFile ? 'inline-flex' : 'none';
+    vidBtn.classList.remove('active');
+    vidBtn.innerHTML = '<i class="fas fa-video"></i> Watch Demo';
+
+    document.getElementById('tmGhBtn').href = asgn.githubUrl;
+
+    // Reset video area
+    const vidArea = document.getElementById('tmVideoArea');
+    const video = document.getElementById('tmVideo');
+    vidArea.style.display = 'none';
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+
+    const modal = document.getElementById('taskModal');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    if (autoRun) setTimeout(() => tmOpenFullscreen(), 120);
+}
+
+/* Open task in a true fullscreen overlay */
+function tmOpenFullscreen() {
+    if (!_tmData) return;
+    const overlay = document.getElementById('fsRunOverlay');
+    const iframe = document.getElementById('fsrIframe');
+    const title = document.getElementById('fsrTitle');
+
+    title.textContent = (_tmData.num || '') + ' — ' + (_tmData.title || '');
+    iframe.src = '';                  // clear first to force reload
+    requestAnimationFrame(() => {
+        iframe.src = _tmData.taskFile;
+    });
+
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+}
+
+function tmCloseFullscreen() {
+    const overlay = document.getElementById('fsRunOverlay');
+    const iframe = document.getElementById('fsrIframe');
+    iframe.src = '';
+    overlay.style.display = 'none';
+    // keep task modal open if it was open
+}
+
+/* Video toggle — set src directly on <video>, no <source> needed */
+function tmToggleVideo() {
+    if (!_tmData || !_tmData.videoFile) return;
+    const area = document.getElementById('tmVideoArea');
+    const video = document.getElementById('tmVideo');
+    const btn = document.getElementById('tmVidBtn');
+    const isOpen = area.style.display !== 'none';
+    if (isOpen) {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+        area.style.display = 'none';
+        btn.classList.remove('active');
+        btn.innerHTML = '<i class="fas fa-video"></i> Watch Demo';
+    } else {
+        area.style.display = 'block';
+        video.src = _tmData.videoFile;   // set directly — most reliable cross-browser
+        video.load();
+        video.play().catch(() => {});     // autoplay; gracefully fail if blocked
+        btn.classList.add('active');
+        btn.innerHTML = '<i class="fas fa-stop"></i> Close Video';
+    }
+}
+
+function closeTaskModal(e, force) {
+    if (!force && e && e.target !== document.getElementById('taskModal')) return;
+    document.getElementById('taskModal').classList.remove('open');
+    document.body.style.overflow = '';
+    const video = document.getElementById('tmVideo');
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+    _tmData = null;
 }
 
 /* ===== SMOOTH SCROLL ===== */

@@ -47,6 +47,7 @@
         <li><a href="#about" class="nl-a" data-sec="about">About</a></li>
         <li><a href="#skills" class="nl-a" data-sec="skills">Skills</a></li>
         <li><a href="#projects" class="nl-a" data-sec="projects">Projects</a></li>
+        <li><a href="#assignments" class="nl-a" data-sec="assignments">Assignments</a></li>
         <li><a href="#education" class="nl-a" data-sec="education">Education</a></li>
         <li><a href="#experience" class="nl-a" data-sec="experience">Experience</a></li>
         <li><a href="#contributors" class="nl-a" data-sec="contributors">Contributors</a></li>
@@ -87,6 +88,7 @@
     <a href="#about" onclick="cm()">About</a>
     <a href="#skills" onclick="cm()">Skills</a>
     <a href="#projects" onclick="cm()">Projects</a>
+    <a href="#assignments" onclick="cm()">Assignments</a>
     <a href="#education" onclick="cm()">Education</a>
     <a href="#experience" onclick="cm()">Experience</a>
     <a href="#gallery" onclick="cm()">Gallery</a>
@@ -417,81 +419,102 @@
         <div class="sl"><span class="sd"></span></div>
     </div>
     <p class="section-sub rv">Click any project to see full details &amp; GitHub repository</p>
-    <div class="pgrid">
-        <div class="pc rv" data-pid="0" onclick="openProject(0)">
-            <div class="pthumb">
-                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&q=80" alt="Stock Management"/>
-                <div class="pthumb-overlay"></div>
-                <span class="pthumb-tag">Java / CLI</span>
-                <div class="pthumb-hover"><i class="fas fa-external-link-alt"></i><span>View Details</span></div>
-            </div>
-            <div class="pbody">
-                <h3>Stock Management System</h3>
-                <div class="pcourse"><i class="fas fa-graduation-cap"></i> PRF Coursework — Programming Fundamentals</div>
-                <p>CLI-based stock management system with inventory tracking, stock level management, and robust data handling &amp; validation.</p>
-                <div class="ptgs"><span class="ptg">Java</span><span class="ptg">CLI</span><span class="ptg">OOP</span><span class="ptg">Data Structures</span></div>
-                <div class="pc-footer">
-                    <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
-                    <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
+
+    <!-- DOT STEPPER -->
+    <div class="dot-stepper rv" id="projectsStepper">
+        <div class="ds-track-wrap">
+            <div class="ds-track" id="projectsTrack">
+                <div class="ds-slide">
+                    <div class="pc" data-pid="0" onclick="openProject(0)">
+                        <div class="pthumb">
+                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&q=80" alt="Stock Management"/>
+                            <div class="pthumb-overlay"></div>
+                            <span class="pthumb-tag">Java / CLI</span>
+                            <div class="pthumb-hover"><i class="fas fa-external-link-alt"></i><span>View Details</span></div>
+                        </div>
+                        <div class="pbody">
+                            <h3>Stock Management System</h3>
+                            <div class="pcourse"><i class="fas fa-graduation-cap"></i> PRF Coursework — Programming Fundamentals</div>
+                            <p>CLI-based stock management system with inventory tracking, stock level management, and robust data handling &amp; validation.</p>
+                            <div class="ptgs"><span class="ptg">Java</span><span class="ptg">CLI</span><span class="ptg">OOP</span><span class="ptg">Data Structures</span></div>
+                            <div class="pc-footer">
+                                <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
+                                <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ds-slide">
+                    <div class="pc" data-pid="1" onclick="openProject(1)">
+                        <div class="pthumb">
+                            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&q=80" alt="Connect Four"/>
+                            <div class="pthumb-overlay"></div>
+                            <span class="pthumb-tag">Java / AI</span>
+                            <div class="pthumb-hover"><i class="fas fa-external-link-alt"></i><span>View Details</span></div>
+                        </div>
+                        <div class="pbody">
+                            <h3>Connect Four Game with AI</h3>
+                            <div class="pcourse"><i class="fas fa-graduation-cap"></i> OOP Coursework — Object-Oriented Programming</div>
+                            <p>Classic Connect Four game with intelligent AI opponent, showcasing AI algorithm design and OOP design principles.</p>
+                            <div class="ptgs"><span class="ptg">Java</span><span class="ptg">AI Algorithm</span><span class="ptg">OOP</span><span class="ptg">Minimax</span></div>
+                            <div class="pc-footer">
+                                <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
+                                <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ds-slide">
+                    <div class="pc" data-pid="2" onclick="openProject(2)">
+                        <div class="pthumb">
+                            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&q=80" alt="POS System"/>
+                            <div class="pthumb-overlay"></div>
+                            <span class="pthumb-tag">JavaFX / MySQL</span>
+                            <div class="pthumb-hover"><i class="fas fa-external-link-alt"></i><span>View Details</span></div>
+                        </div>
+                        <div class="pbody">
+                            <h3>Point of Sale (POS) System</h3>
+                            <div class="pcourse"><i class="fas fa-graduation-cap"></i> GDSE Semester Final Project</div>
+                            <p>Comprehensive POS system with inventory management, customer handling, billing, and full MySQL database integration.</p>
+                            <div class="ptgs"><span class="ptg">JavaFX</span><span class="ptg">MySQL</span><span class="ptg">CRUD</span><span class="ptg">GUI</span></div>
+                            <div class="pc-footer">
+                                <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
+                                <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ds-slide">
+                    <div class="pc" data-pid="3" onclick="openProject(3)">
+                        <div class="pthumb">
+                            <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=500&q=80" alt="UI/UX Design"/>
+                            <div class="pthumb-overlay"></div>
+                            <span class="pthumb-tag">Figma / UI/UX</span>
+                            <div class="pthumb-hover"><i class="fas fa-external-link-alt"></i><span>View Details</span></div>
+                        </div>
+                        <div class="pbody">
+                            <h3>UI/UX for Special Needs Students</h3>
+                            <div class="pcourse"><i class="fas fa-graduation-cap"></i> IIT Foundation — Innovative Solutions Module</div>
+                            <p>Accessibility-focused UI/UX design project for special needs students with user-centered design and Figma prototyping.</p>
+                            <div class="ptgs"><span class="ptg">Figma</span><span class="ptg">UI/UX</span><span class="ptg">Accessibility</span><span class="ptg">No-Code</span></div>
+                            <div class="pc-footer">
+                                <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
+                                <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="pc rv" data-pid="1" style="transition-delay:.08s" onclick="openProject(1)">
-            <div class="pthumb">
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&q=80" alt="Connect Four"/>
-                <div class="pthumb-overlay"></div>
-                <span class="pthumb-tag">Java / AI</span>
-                <div class="pthumb-hover"><i class="fas fa-external-link-alt"></i><span>View Details</span></div>
+        <div class="ds-controls">
+            <button class="ds-arrow ds-prev" id="projectsPrev" aria-label="Previous project"><i class="fas fa-chevron-left"></i></button>
+            <div class="ds-dots" id="projectsDots">
+                <span class="ds-dot active" data-idx="0"></span>
+                <span class="ds-dot" data-idx="1"></span>
+                <span class="ds-dot" data-idx="2"></span>
+                <span class="ds-dot" data-idx="3"></span>
             </div>
-            <div class="pbody">
-                <h3>Connect Four Game with AI</h3>
-                <div class="pcourse"><i class="fas fa-graduation-cap"></i> OOP Coursework — Object-Oriented Programming</div>
-                <p>Classic Connect Four game with intelligent AI opponent, showcasing AI algorithm design and OOP design principles.</p>
-                <div class="ptgs"><span class="ptg">Java</span><span class="ptg">AI Algorithm</span><span class="ptg">OOP</span><span class="ptg">Minimax</span></div>
-                <div class="pc-footer">
-                    <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
-                    <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="pc rv" data-pid="2" style="transition-delay:.16s" onclick="openProject(2)">
-            <div class="pthumb">
-                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&q=80" alt="POS System"/>
-                <div class="pthumb-overlay"></div>
-                <span class="pthumb-tag">JavaFX / MySQL</span>
-                <div class="pthumb-hover"><i class="fas fa-external-link-alt"></i><span>View Details</span></div>
-            </div>
-            <div class="pbody">
-                <h3>Point of Sale (POS) System</h3>
-                <div class="pcourse"><i class="fas fa-graduation-cap"></i> GDSE Semester Final Project</div>
-                <p>Comprehensive POS system with inventory management, customer handling, billing, and full MySQL database integration.</p>
-                <div class="ptgs"><span class="ptg">JavaFX</span><span class="ptg">MySQL</span><span class="ptg">CRUD</span><span class="ptg">GUI</span></div>
-                <div class="pc-footer">
-                    <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
-                    <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="pc rv" data-pid="3" style="transition-delay:.24s" onclick="openProject(3)">
-            <div class="pthumb">
-                <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=500&q=80" alt="UI/UX Design"/>
-                <div class="pthumb-overlay"></div>
-                <span class="pthumb-tag">Figma / UI/UX</span>
-                <div class="pthumb-hover"><i class="fas fa-external-link-alt"></i><span>View Details</span></div>
-            </div>
-            <div class="pbody">
-                <h3>UI/UX for Special Needs Students</h3>
-                <div class="pcourse"><i class="fas fa-graduation-cap"></i> IIT Foundation — Innovative Solutions Module</div>
-                <p>Accessibility-focused UI/UX design project for special needs students with user-centered design and Figma prototyping.</p>
-                <div class="ptgs"><span class="ptg">Figma</span><span class="ptg">UI/UX</span><span class="ptg">Accessibility</span><span class="ptg">No-Code</span></div>
-                <div class="pc-footer">
-                    <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
-                    <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
-                </div>
-            </div>
+            <button class="ds-arrow ds-next" id="projectsNext" aria-label="Next project"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 </section>
@@ -525,6 +548,117 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- ASSIGNMENTS -------------------------------->
+<section id="assignments">
+    <div class="sh rv">
+        <h2 class="st">My <span>Assignments</span></h2>
+        <div class="sl"><span class="sd"></span></div>
+    </div>
+    <p class="section-sub rv">Click any task card to view details, run the code, and watch demo videos</p>
+
+    <!-- ASSIGNMENT 01 -->
+    <div class="asgn-block rv" id="asgnBlock0">
+        <div class="asgn-header">
+            <div class="asgn-num">01</div>
+            <div class="asgn-info">
+                <h3>Assignment 01</h3>
+                <p>HTML &amp; CSS Fundamentals</p>
+            </div>
+            <a href="https://github.com/slgunasekara" class="asgn-gh-btn" target="_blank">
+                <i class="fab fa-github"></i> View on GitHub
+            </a>
+        </div>
+        <div class="dot-stepper" id="asgn0Stepper">
+            <div class="ds-track-wrap">
+                <div class="ds-track" id="asgn0Track">
+                    <!-- Task cards injected by JS -->
+                </div>
+            </div>
+            <div class="ds-controls">
+                <button class="ds-arrow ds-prev" id="asgn0Prev" aria-label="Previous task"><i class="fas fa-chevron-left"></i></button>
+                <div class="ds-dots" id="asgn0Dots"></div>
+                <button class="ds-arrow ds-next" id="asgn0Next" aria-label="Next task"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ASSIGNMENT 02 -->
+    <div class="asgn-block rv" id="asgnBlock1" style="transition-delay:.12s">
+        <div class="asgn-header">
+            <div class="asgn-num">02</div>
+            <div class="asgn-info">
+                <h3>Assignment 02</h3>
+                <p>CSS Animations &amp; Interactive UI</p>
+            </div>
+            <a href="https://github.com/slgunasekara" class="asgn-gh-btn" target="_blank">
+                <i class="fab fa-github"></i> View on GitHub
+            </a>
+        </div>
+        <div class="dot-stepper" id="asgn1Stepper">
+            <div class="ds-track-wrap">
+                <div class="ds-track" id="asgn1Track">
+                    <!-- Task cards injected by JS -->
+                </div>
+            </div>
+            <div class="ds-controls">
+                <button class="ds-arrow ds-prev" id="asgn1Prev" aria-label="Previous task"><i class="fas fa-chevron-left"></i></button>
+                <div class="ds-dots" id="asgn1Dots"></div>
+                <button class="ds-arrow ds-next" id="asgn1Next" aria-label="Next task"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TASK MODAL -->
+<div class="modal-overlay" id="taskModal" onclick="closeTaskModal(event)">
+    <div class="tm-box">
+        <button class="modal-close" onclick="closeTaskModal(null,true)"><i class="fas fa-times"></i></button>
+        <div class="tm-header">
+            <div class="tm-tag-row">
+                <span class="tm-asgn-badge" id="tm-asgn-badge">Assignment 01</span>
+                <span class="tm-task-num" id="tm-task-num">Task 01</span>
+            </div>
+            <h2 class="tm-title" id="tm-title"></h2>
+        </div>
+        <div class="tm-body">
+            <p class="tm-desc" id="tm-desc"></p>
+            <div class="tm-actions">
+                <button class="tm-btn tm-run" id="tmRunBtn" onclick="tmOpenFullscreen()">
+                    <i class="fas fa-play"></i> Run Code
+                </button>
+                <button class="tm-btn tm-vid" id="tmVidBtn" onclick="tmToggleVideo()" style="display:none">
+                    <i class="fas fa-video"></i> Watch Demo
+                </button>
+                <a class="tm-btn tm-gh" id="tmGhBtn" href="https://github.com/slgunasekara" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+            <!-- Video embed stays inside modal -->
+            <div id="tmVideoArea" class="tm-embed-area" style="display:none">
+                <div class="tm-embed-header">
+                    <span><i class="fas fa-video"></i> Demo Video</span>
+                    <button onclick="tmToggleVideo()" class="tm-close-embed"><i class="fas fa-times"></i></button>
+                </div>
+                <video id="tmVideo" controls playsinline preload="metadata">
+                    Your browser does not support video.
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FULLSCREEN RUN OVERLAY -->
+<div id="fsRunOverlay" style="display:none">
+    <div class="fsr-bar">
+        <button class="fsr-back" onclick="tmCloseFullscreen()">
+            <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <div class="fsr-title" id="fsrTitle"></div>
+        <div class="fsr-spacer"></div>
+    </div>
+    <iframe id="fsrIframe" src="" frameborder="0" allowfullscreen></iframe>
 </div>
 
 <!-- EDUCATION ------------------------------->
