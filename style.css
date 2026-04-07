@@ -2310,6 +2310,243 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
     .switch { font-size: 11px; }
 }
 
+/* ===== CONTRIBUTORS ===== */
+#contributors {
+    padding: 7rem 5%;
+    background: linear-gradient(180deg, var(--bg2), var(--bg3));
+}
+
+.contrib-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.contrib-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    transition: .4s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.contrib-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue-dark), var(--blue), var(--cyan));
+    transform: scaleX(0);
+    transition: .4s;
+    transform-origin: left;
+}
+
+.contrib-card:hover {
+    border-color: var(--border2);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px);
+}
+
+.contrib-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Image wrap */
+.contrib-img-wrap {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 1.5rem;
+}
+
+.contrib-img-ring {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px dashed rgba(37, 99, 235, .25);
+    animation: contribRingCW 12s linear infinite;
+}
+
+.contrib-img-ring2 {
+    inset: -16px;
+    border-color: rgba(14, 165, 233, .15);
+    animation: contribRingCCW 18s linear infinite;
+}
+
+@keyframes contribRingCW { to { transform: rotate(360deg) } }
+@keyframes contribRingCCW { to { transform: rotate(-360deg) } }
+
+.contrib-card:hover .contrib-img-ring,
+.contrib-card:hover .contrib-img-ring2 {
+    animation-play-state: paused;
+}
+
+.contrib-avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue), var(--cyan));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8rem;
+    color: rgba(255,255,255,.5);
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(37,99,235,.3);
+    transition: .4s;
+}
+
+.contrib-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 50%;
+    position: absolute;
+    inset: 0;
+}
+
+.contrib-card:hover .contrib-avatar {
+    box-shadow: 0 0 40px rgba(37,99,235,.5);
+    transform: scale(1.05);
+}
+
+/* Glow border spin */
+.contrib-avatar::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--blue-dark), var(--blue), var(--cyan), var(--indigo), var(--blue-dark));
+    z-index: -1;
+    animation: contribBorderSpin 4s linear infinite;
+}
+
+@keyframes contribBorderSpin {
+    to { transform: rotate(360deg) }
+}
+
+.contrib-badge {
+    position: absolute;
+    bottom: 0;
+    right: -4px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    border: 2px solid var(--card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: .72rem;
+    box-shadow: var(--shadow-sm);
+    z-index: 2;
+}
+
+/* Card body */
+.contrib-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--txt);
+    letter-spacing: .5px;
+    margin-bottom: .3rem;
+}
+
+.contrib-role {
+    font-size: .82rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: .5rem;
+    letter-spacing: .5px;
+}
+
+.contrib-company {
+    font-size: .78rem;
+    color: var(--txt3);
+    line-height: 1.6;
+    margin-bottom: .5rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: .4rem;
+}
+
+.contrib-company i {
+    color: var(--cyan);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.contrib-relation {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    background: var(--blue-ultra);
+    border: 1px solid var(--blue-light);
+    color: var(--blue);
+    padding: .25rem .8rem;
+    border-radius: 20px;
+    font-size: .74rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+}
+
+.contrib-relation i {
+    color: #ef4444;
+    font-size: .7rem;
+}
+
+.contrib-linkedin {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .6rem 1.4rem;
+    background: linear-gradient(135deg, #0077b5, #00a0dc);
+    color: #fff;
+    border-radius: var(--radius-sm);
+    font-size: .8rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: .5px;
+    transition: .3s;
+    box-shadow: 0 4px 14px rgba(0, 119, 181, .3);
+}
+
+.contrib-linkedin:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 119, 181, .45);
+    background: linear-gradient(135deg, #005f8e, #0077b5);
+}
+
+.contrib-linkedin i {
+    font-size: .9rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .contrib-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 580px) {
+    .contrib-grid {
+        grid-template-columns: 1fr;
+        max-width: 380px;
+    }
+}
+
 @media (max-width: 480px) {
     .st { font-size: 1.4rem }
     .hname { font-size: 1.6rem }
