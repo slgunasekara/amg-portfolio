@@ -1,41 +1,53 @@
+/* ===== EMAIL INJECTION (prevents Cloudflare obfuscation) ===== */
+(function () {
+    const u = 'praveengunasekara7';
+    const d = 'gmail.com';
+    const email = u + '@' + d;
+
+    // Inject into all display spots
+    const heroEl = document.getElementById('heroEmail');
+    if (heroEl) heroEl.textContent = email;
+
+    const contactEl = document.getElementById('contactEmail');
+    if (contactEl) contactEl.textContent = email;
+
+    // Store for copy function
+    window._AMG_EMAIL = email;
+})();
+
 /* ===== DARK MODE TOGGLE ===== */
 (function () {
     const STORAGE_KEY = 'amg-theme';
-    const btn = document.getElementById('dmToggle');
+    const checkbox = document.getElementById('dmToggle');
     const html = document.documentElement;
-
-    // Apply saved theme immediately (before page paint)
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === 'dark') {
-        html.setAttribute('data-theme', 'dark');
-    }
 
     function setTheme(theme) {
         if (theme === 'dark') {
             html.setAttribute('data-theme', 'dark');
+            if (checkbox) checkbox.checked = true;
             localStorage.setItem(STORAGE_KEY, 'dark');
         } else {
             html.removeAttribute('data-theme');
+            if (checkbox) checkbox.checked = false;
             localStorage.setItem(STORAGE_KEY, 'light');
         }
     }
 
-    function toggleTheme() {
-        const isDark = html.getAttribute('data-theme') === 'dark';
-        // Ripple effect on toggle
-        btn.style.transform = 'scale(0.85) rotate(30deg)';
-        setTimeout(() => { btn.style.transform = ''; }, 200);
-        setTheme(isDark ? 'light' : 'dark');
-    }
-
-    if (btn) {
-        btn.addEventListener('click', toggleTheme);
-    }
-
-    // Sync with OS preference if no saved preference
-    if (!saved) {
+    // Apply saved theme immediately
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+        setTheme(saved);
+    } else {
+        // Sync with OS preference if no saved preference
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         if (prefersDark) setTheme('dark');
+    }
+
+    // Listen to checkbox change
+    if (checkbox) {
+        checkbox.addEventListener('change', () => {
+            setTheme(checkbox.checked ? 'dark' : 'light');
+        });
     }
 
     // Listen for OS theme changes
@@ -655,7 +667,10 @@ function loadMorePhotos() {
 
 /* ===== EMAIL COPY ===== */
 (function () {
-    const EMAIL = 'praveengunasekara7@gmail.com';
+    function getEmail() {
+        return window._AMG_EMAIL || ('praveengunasekara7' + '@' + 'gmail.com');
+    }
+
     const toast = document.getElementById('emailToast');
 
     function showToast() {
@@ -670,6 +685,7 @@ function loadMorePhotos() {
 
     function copyEmail(e) {
         e.preventDefault();
+        const EMAIL = getEmail();
         navigator.clipboard.writeText(EMAIL).then(showToast).catch(() => {
             const ta = document.createElement('textarea');
             ta.value = EMAIL;
@@ -691,6 +707,10 @@ function loadMorePhotos() {
 })();
 
 /* ===== CONTACT ===== */
+function getEmail() {
+    return window._AMG_EMAIL || ('praveengunasekara7' + '@' + 'gmail.com');
+}
+
 function sendMsg() {
     const n = document.getElementById('fn').value.trim();
     const e = document.getElementById('fe').value.trim();
@@ -707,7 +727,7 @@ function sendMsg() {
         msg.className = 'fmsg err';
         return;
     }
-    window.location.href = `mailto:praveengunasekara7@gmail.com?subject=${encodeURIComponent(s || 'Portfolio Contact')}&body=${encodeURIComponent('Name: ' + n + '\nEmail: ' + e + '\n\n' + m)}`;
+    window.location.href = `mailto:${getEmail()}?subject=${encodeURIComponent(s || 'Portfolio Contact')}&body=${encodeURIComponent('Name: ' + n + '\nEmail: ' + e + '\n\n' + m)}`;
     msg.textContent = '✓ Opening your email client...';
     msg.className = 'fmsg ok';
     setTimeout(() => msg.textContent = '', 4000);
