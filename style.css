@@ -3132,3 +3132,143 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
     background: #000;
     border-radius: 0 0 14px 14px;
 }
+
+/* ======================================================
+   ASSIGNMENT TABS
+   ====================================================== */
+.asgn-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+    flex-wrap: wrap;
+}
+
+.asgn-tab {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    padding: 1rem 1.6rem;
+    border-radius: 16px;
+    border: 2px solid var(--border);
+    background: var(--card);
+    cursor: pointer;
+    transition: border-color .25s, background .25s, box-shadow .25s, transform .2s;
+    text-align: left;
+    font-family: inherit;
+    flex: 1;
+    min-width: 200px;
+}
+
+.asgn-tab:hover {
+    border-color: var(--blue);
+    background: rgba(37,99,235,.06);
+    transform: translateY(-2px);
+}
+
+.asgn-tab.active {
+    border-color: var(--blue);
+    background: rgba(37,99,235,.1);
+    box-shadow: 0 0 0 1px rgba(37,99,235,.2), 0 8px 28px rgba(37,99,235,.15);
+}
+
+.at-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--blue);
+    opacity: .35;
+    line-height: 1;
+    transition: opacity .25s;
+}
+
+.asgn-tab.active .at-num,
+.asgn-tab:hover .at-num {
+    opacity: 1;
+}
+
+.at-label {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+}
+
+.at-sub {
+    display: block;
+    font-size: .78rem;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+/* ======================================================
+   ASSIGNMENT PANEL
+   ====================================================== */
+.asgn-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 2rem 2rem 1.8rem;
+    transition: border-color .3s, box-shadow .3s;
+}
+
+.asgn-panel:hover {
+    border-color: rgba(37,99,235,.4);
+    box-shadow: 0 8px 32px rgba(37,99,235,.1);
+}
+
+.asgn-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.asgn-panel-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.ap-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1;
+}
+
+.ap-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.ap-sub {
+    font-size: .82rem;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+/* Panel content fade-swap animation */
+.asgn-panel.switching {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .18s ease, transform .18s ease;
+}
+
+.asgn-panel.entering {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity .22s ease .05s, transform .22s ease .05s;
+}
+
+@media (max-width: 600px) {
+    .asgn-tab { padding: .8rem 1.1rem; min-width: 140px; }
+    .at-num { font-size: 1.4rem; }
+    .asgn-panel { padding: 1.2rem 1rem 1rem; }
+}

@@ -558,54 +558,43 @@
     </div>
     <p class="section-sub rv">Click any task card to view details, run the code, and watch demo videos</p>
 
-    <!-- ASSIGNMENT 01 -->
-    <div class="asgn-block rv" id="asgnBlock0">
-        <div class="asgn-header">
-            <div class="asgn-num">01</div>
-            <div class="asgn-info">
-                <h3>Assignment 01</h3>
-                <p>HTML &amp; CSS Fundamentals</p>
-            </div>
-            <a href="https://github.com/slgunasekara" class="asgn-gh-btn" target="_blank">
-                <i class="fab fa-github"></i> View on GitHub
-            </a>
-        </div>
-        <div class="dot-stepper" id="asgn0Stepper">
-            <div class="ds-track-wrap">
-                <div class="ds-track" id="asgn0Track">
-                    <!-- Task cards injected by JS -->
-                </div>
-            </div>
-            <div class="ds-controls">
-                <button class="ds-arrow ds-prev" id="asgn0Prev" aria-label="Previous task"><i class="fas fa-chevron-left"></i></button>
-                <div class="ds-dots" id="asgn0Dots"></div>
-                <button class="ds-arrow ds-next" id="asgn0Next" aria-label="Next task"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
+    <!-- TAB SWITCHER -->
+    <div class="asgn-tabs rv" id="asgnTabs">
+        <button class="asgn-tab active" data-tab="0" onclick="switchAsgnTab(0)">
+            <span class="at-num">01</span>
+            <span class="at-label">Assignment 01</span>
+            <span class="at-sub">HTML &amp; CSS Fundamentals</span>
+        </button>
+        <button class="asgn-tab" data-tab="1" onclick="switchAsgnTab(1)">
+            <span class="at-num">02</span>
+            <span class="at-label">Assignment 02</span>
+            <span class="at-sub">CSS Animations &amp; Interactive UI</span>
+        </button>
     </div>
 
-    <!-- ASSIGNMENT 02 -->
-    <div class="asgn-block rv" id="asgnBlock1" style="transition-delay:.12s">
-        <div class="asgn-header">
-            <div class="asgn-num">02</div>
-            <div class="asgn-info">
-                <h3>Assignment 02</h3>
-                <p>CSS Animations &amp; Interactive UI</p>
+    <!-- SINGLE PANEL -->
+    <div class="asgn-panel rv" id="asgnPanel">
+        <div class="asgn-panel-header">
+            <div class="asgn-panel-info">
+                <span class="ap-num" id="apNum">01</span>
+                <div>
+                    <div class="ap-title" id="apTitle">Assignment 01</div>
+                    <div class="ap-sub" id="apSub">HTML &amp; CSS Fundamentals</div>
+                </div>
             </div>
-            <a href="https://github.com/slgunasekara" class="asgn-gh-btn" target="_blank">
+            <a id="apGhBtn" href="https://github.com/slgunasekara" class="asgn-gh-btn" target="_blank">
                 <i class="fab fa-github"></i> View on GitHub
             </a>
         </div>
-        <div class="dot-stepper" id="asgn1Stepper">
+
+        <div class="dot-stepper" id="asgnStepper">
             <div class="ds-track-wrap">
-                <div class="ds-track" id="asgn1Track">
-                    <!-- Task cards injected by JS -->
-                </div>
+                <div class="ds-track" id="asgnTrack"></div>
             </div>
             <div class="ds-controls">
-                <button class="ds-arrow ds-prev" id="asgn1Prev" aria-label="Previous task"><i class="fas fa-chevron-left"></i></button>
-                <div class="ds-dots" id="asgn1Dots"></div>
-                <button class="ds-arrow ds-next" id="asgn1Next" aria-label="Next task"><i class="fas fa-chevron-right"></i></button>
+                <button class="ds-arrow ds-prev" id="asgnPrev" aria-label="Previous task"><i class="fas fa-chevron-left"></i></button>
+                <div class="ds-dots" id="asgnDots"></div>
+                <button class="ds-arrow ds-next" id="asgnNext" aria-label="Next task"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     </div>

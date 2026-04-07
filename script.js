@@ -858,10 +858,13 @@ const assignmentsData = [
 ];
 
 /* ===== ASSIGNMENT TASK CARD BUILDER ===== */
-function buildAsgnStepper(asgnIdx) {
+/* ===== ASSIGNMENT STEPPER — single shared panel ===== */
+let _activeAsgnTab = 0;
+
+function buildAsgnPanel(asgnIdx) {
     const asgn = assignmentsData[asgnIdx];
-    const track = document.getElementById('asgn' + asgnIdx + 'Track');
-    const dotsEl = document.getElementById('asgn' + asgnIdx + 'Dots');
+    const track = document.getElementById('asgnTrack');
+    const dotsEl = document.getElementById('asgnDots');
     if (!track || !dotsEl) return;
 
     track.innerHTML = '';
@@ -898,7 +901,39 @@ function buildAsgnStepper(asgnIdx) {
         dotsEl.appendChild(dot);
     });
 
-    initDotStepper('asgn' + asgnIdx + 'Track', 'asgn' + asgnIdx + 'Dots', 'asgn' + asgnIdx + 'Prev', 'asgn' + asgnIdx + 'Next');
+    // Reset track position to 0
+    track.style.transition = 'none';
+    track.style.transform = 'translateX(0)';
+    requestAnimationFrame(() => {
+        track.style.transition = '';
+        initDotStepper('asgnTrack', 'asgnDots', 'asgnPrev', 'asgnNext');
+    });
+}
+
+function switchAsgnTab(idx) {
+    if (idx === _activeAsgnTab) return;
+    _activeAsgnTab = idx;
+
+    // Update tab button states
+    document.querySelectorAll('.asgn-tab').forEach((btn, i) => {
+        btn.classList.toggle('active', i === idx);
+    });
+
+    const asgn = assignmentsData[idx];
+    const panel = document.getElementById('asgnPanel');
+
+    // Fade out → swap content → fade in
+    panel.classList.add('switching');
+    setTimeout(() => {
+        document.getElementById('apNum').textContent = String(idx + 1).padStart(2, '0');
+        document.getElementById('apTitle').textContent = asgn.label;
+        document.getElementById('apSub').textContent = idx === 0 ? 'HTML & CSS Fundamentals' : 'CSS Animations & Interactive UI';
+        document.getElementById('apGhBtn').href = asgn.githubUrl;
+        buildAsgnPanel(idx);
+        panel.classList.remove('switching');
+        panel.classList.add('entering');
+        setTimeout(() => panel.classList.remove('entering'), 250);
+    }, 180);
 }
 
 /* ===== DOT STEPPER ENGINE ===== */
@@ -908,6 +943,18 @@ function initDotStepper(trackId, dotsId, prevId, nextId) {
     const prevBtn = document.getElementById(prevId);
     const nextBtn = document.getElementById(nextId);
     if (!track) return;
+
+    // Remove old listeners by cloning buttons
+    if (prevBtn) {
+        const p2 = prevBtn.cloneNode(true);
+        prevBtn.parentNode.replaceChild(p2, prevBtn);
+    }
+    if (nextBtn) {
+        const n2 = nextBtn.cloneNode(true);
+        nextBtn.parentNode.replaceChild(n2, nextBtn);
+    }
+    const prev = document.getElementById(prevId);
+    const next = document.getElementById(nextId);
 
     let current = 0;
     const slides = () => track.querySelectorAll('.ds-slide');
@@ -919,15 +966,17 @@ function initDotStepper(trackId, dotsId, prevId, nextId) {
         current = ((idx % count) + count) % count;
         track.style.transform = `translateX(-${current * 100}%)`;
         dots().forEach((d, i) => d.classList.toggle('active', i === current));
-        if (prevBtn) prevBtn.disabled = current === 0;
-        if (nextBtn) nextBtn.disabled = current === count - 1;
+        if (prev) prev.disabled = current === 0;
+        if (next) next.disabled = current === count - 1;
     }
 
-    if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
-    if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+    if (prev) prev.addEventListener('click', () => goTo(current - 1));
+    if (next) next.addEventListener('click', () => goTo(current + 1));
 
     if (dotsEl) {
-        dotsEl.addEventListener('click', e => {
+        const newDots = dotsEl.cloneNode(true);
+        dotsEl.parentNode.replaceChild(newDots, dotsEl);
+        document.getElementById(dotsId).addEventListener('click', e => {
             const dot = e.target.closest('.ds-dot');
             if (dot) goTo(parseInt(dot.dataset.idx));
         });
@@ -935,8 +984,9 @@ function initDotStepper(trackId, dotsId, prevId, nextId) {
 
     // Touch/swipe support
     let touchStartX = 0;
-    track.parentElement.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive: true});
-    track.parentElement.addEventListener('touchend', e => {
+    const wrap = track.parentElement;
+    wrap.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive: true});
+    wrap.addEventListener('touchend', e => {
         const dx = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
     }, {passive: true});
@@ -948,9 +998,8 @@ function initDotStepper(trackId, dotsId, prevId, nextId) {
 document.addEventListener('DOMContentLoaded', () => {
     // Projects stepper
     initDotStepper('projectsTrack', 'projectsDots', 'projectsPrev', 'projectsNext');
-    // Assignment steppers
-    buildAsgnStepper(0);
-    buildAsgnStepper(1);
+    // Load assignment 01 by default
+    buildAsgnPanel(0);
 });
 
 /* ===== TASK MODAL ===== */
