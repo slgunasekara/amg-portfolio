@@ -941,35 +941,45 @@ function switchAsgnTab(idx) {
 }
 
 /* ===== DOT STEPPER ENGINE ===== */
+/* ===== DOT STEPPER ENGINE ===== */
 function initDotStepper(trackId, dotsId, prevId, nextId) {
     const track = document.getElementById(trackId);
-    const dotsEl = document.getElementById(dotsId);
-    const prevBtn = document.getElementById(prevId);
-    const nextBtn = document.getElementById(nextId);
     if (!track) return;
 
-    // Remove old listeners by cloning buttons
-    if (prevBtn) {
-        const p2 = prevBtn.cloneNode(true);
-        prevBtn.parentNode.replaceChild(p2, prevBtn);
-    }
-    if (nextBtn) {
-        const n2 = nextBtn.cloneNode(true);
-        nextBtn.parentNode.replaceChild(n2, nextBtn);
-    }
+    // Clone buttons to strip old event listeners
+    [prevId, nextId].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.parentNode.replaceChild(el.cloneNode(true), el);
+    });
+
+    // Clone dots container to strip old listeners
+    const dotsElOld = document.getElementById(dotsId);
+    if (dotsElOld) dotsElOld.parentNode.replaceChild(dotsElOld.cloneNode(true), dotsElOld);
+
+    // Fresh references after cloning
     const prev = document.getElementById(prevId);
     const next = document.getElementById(nextId);
 
     let current = 0;
-    const slides = () => track.querySelectorAll('.ds-slide');
-    const dots = () => dotsEl ? dotsEl.querySelectorAll('.ds-dot') : [];
+
+    // Always query live DOM — never cache stale references
+    const slides  = () => track.querySelectorAll('.ds-slide');
+    const getDots = () => {
+        const el = document.getElementById(dotsId);
+        return el ? Array.from(el.querySelectorAll('.ds-dot')) : [];
+    };
 
     function goTo(idx) {
         const count = slides().length;
         if (count === 0) return;
         current = ((idx % count) + count) % count;
         track.style.transform = `translateX(-${current * 100}%)`;
-        dots().forEach((d, i) => d.classList.toggle('active', i === current));
+
+        // Update dot active state
+        getDots().forEach((d, i) => {
+            d.classList.toggle('active', i === current);
+        });
+
         if (prev) prev.disabled = current === 0;
         if (next) next.disabled = current === count - 1;
     }
@@ -977,23 +987,23 @@ function initDotStepper(trackId, dotsId, prevId, nextId) {
     if (prev) prev.addEventListener('click', () => goTo(current - 1));
     if (next) next.addEventListener('click', () => goTo(current + 1));
 
-    if (dotsEl) {
-        const newDots = dotsEl.cloneNode(true);
-        dotsEl.parentNode.replaceChild(newDots, dotsEl);
-        document.getElementById(dotsId).addEventListener('click', e => {
+    // Dot click — delegated on the container
+    const dotsContainer = document.getElementById(dotsId);
+    if (dotsContainer) {
+        dotsContainer.addEventListener('click', e => {
             const dot = e.target.closest('.ds-dot');
-            if (dot) goTo(parseInt(dot.dataset.idx));
+            if (dot) goTo(parseInt(dot.dataset.idx, 10));
         });
     }
 
-    // Touch/swipe support
+    // Touch / swipe support
     let touchStartX = 0;
     const wrap = track.parentElement;
-    wrap.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive: true});
+    wrap.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     wrap.addEventListener('touchend', e => {
         const dx = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
-    }, {passive: true});
+    }, { passive: true });
 
     goTo(0);
 }
