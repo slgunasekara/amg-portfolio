@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="web, html, css, javascript, js, java, python">
+    <meta name="description" content="World best web development tutorials">
+    <meta name="author" content="IJSE">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        section{
+            position: relative;
+        }
+        section > div{
+            width: 300px;
+            height: 150px;
+            background-color: greenyellow;
+            border: 10px solid black;
+            border-radius: 20px;
+            animation-name: mymove;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+
+        section > div > div:first-child{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 15px;
+            top: 130px;
+            border-radius: 50%;
+            background-color: gainsboro;
+            border: 10px solid black;
+            border-right: 10px solid gray;
+            border-left: 10px solid gray;
+            animation-name: mymove1;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+        div:nth-child(2){
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 228px;
+            top: 130px;
+            border-radius: 50%;
+            background-color: gainsboro;
+            border: 10px solid black;
+            border-right: 10px solid gray;
+            border-left: 10px solid gray;
+            animation-name: mymove1;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+
+        div:nth-child(3){
+            width: 27px;
+            height: 23px;
+            position: absolute;
+            left: 28px;
+            top: 42px;
+            background-color: yellow;
+            border: 10px solid black;
+        }
+
+
+        div:nth-child(4){
+            width: 27px;
+            height: 23px;
+            position: absolute;
+            left: 244px;
+            top: 42px;
+            background-color: yellow;
+            border: 10px solid black;
+        }
+
+
+        @keyframes mymove{
+            from{
+                transform: translateX(0px);
+            }
+            to{
+                transform: translateX(1000px);
+            }
+        }
+
+
+        @keyframes mymove1{
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(720deg);
+
+
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<section>
+    <div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+
+</section>
+
+
+</body>
+</html>

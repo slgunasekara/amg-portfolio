@@ -49,11 +49,38 @@
         <li><a href="#projects" class="nl-a" data-sec="projects">Projects</a></li>
         <li><a href="#education" class="nl-a" data-sec="education">Education</a></li>
         <li><a href="#experience" class="nl-a" data-sec="experience">Experience</a></li>
+        <li><a href="#contributors" class="nl-a" data-sec="contributors">Contributors</a></li>
         <li><a href="#gallery" class="nl-a" data-sec="gallery">Gallery</a></li>
         <li><a href="#contact" class="ncta">Contact</a></li>
     </ul>
-    <div class="nav-indicator" id="navInd"></div>
-    <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+    <!-- Nav Right: Dark Mode Toggle Switch + Hamburger -->
+    <div class="nav-right">
+        <label class="switch" title="Toggle Dark Mode">
+            <input class="switch__input" id="dmToggle" type="checkbox" role="switch" aria-label="Toggle Dark Mode">
+            <svg class="switch__icon switch__icon--light" viewBox="0 0 12 12" width="12px" height="12px" aria-hidden="true">
+                <g fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round">
+                    <circle cx="6" cy="6" r="2" />
+                    <g stroke-dasharray="1.5 1.5">
+                        <polyline points="6 10,6 11.5" transform="rotate(0,6,6)" />
+                        <polyline points="6 10,6 11.5" transform="rotate(45,6,6)" />
+                        <polyline points="6 10,6 11.5" transform="rotate(90,6,6)" />
+                        <polyline points="6 10,6 11.5" transform="rotate(135,6,6)" />
+                        <polyline points="6 10,6 11.5" transform="rotate(180,6,6)" />
+                        <polyline points="6 10,6 11.5" transform="rotate(225,6,6)" />
+                        <polyline points="6 10,6 11.5" transform="rotate(270,6,6)" />
+                        <polyline points="6 10,6 11.5" transform="rotate(315,6,6)" />
+                    </g>
+                </g>
+            </svg>
+            <svg class="switch__icon switch__icon--dark" viewBox="0 0 12 12" width="12px" height="12px" aria-hidden="true">
+                <g fill="none" stroke="#fff" stroke-width="1" stroke-linejoin="round" transform="rotate(-45,6,6)">
+                    <path d="m9,10c-2.209,0-4-1.791-4-4s1.791-4,4-4c.304,0,.598.041.883.105-.995-.992-2.367-1.605-3.883-1.605C2.962.5.5,2.962.5,6s2.462,5.5,5.5,5.5c1.516,0,2.888-.613,3.883-1.605-.285.064-.578.105-.883.105Z"/>
+                </g>
+            </svg>
+            <span class="switch__sr">Dark Mode</span>
+        </label>
+        <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+    </div>
 </nav>
 <div class="mmenu" id="mm">
     <a href="#home" onclick="cm()">Home</a>
@@ -63,6 +90,7 @@
     <a href="#education" onclick="cm()">Education</a>
     <a href="#experience" onclick="cm()">Experience</a>
     <a href="#gallery" onclick="cm()">Gallery</a>
+    <a href="#contributors" onclick="cm()">Contributors</a>
     <a href="#contact" onclick="cm()">Contact</a>
 </div>
 
@@ -106,8 +134,7 @@
             <div class="hinfo">
                 <div class="hii"><span class="hii-icon"><i class="fas fa-map-marker-alt"></i></span><span>Hikkaduwa, Sri Lanka</span>
                 </div>
-                <div class="hii"><span class="hii-icon"><i class="fas fa-envelope"></i></span><span class="copy-email"
-                                                                                                    style="cursor:pointer">praveengunasekara7@gmail.com</span>
+                <div class="hii"><span class="hii-icon"><i class="fas fa-envelope"></i></span><span class="copy-email" style="cursor:pointer" id="heroEmail"></span>
                 </div>
                 <div class="hii"><span class="hii-icon"><i class="fas fa-phone"></i></span><span>+94 76 442 4053</span>
                 </div>
@@ -257,51 +284,35 @@
             <h3><i class="fas fa-terminal"></i>Technical Proficiency</h3>
             <div class="ski">
                 <div class="skh"><span class="skn">Java</span><span class="skp">90%</span></div>
-                <div class="skbar">
-                    <div class="skfill" data-w="90"></div>
-                </div>
+                <div class="skbar"><div class="skfill" data-w="90"></div></div>
             </div>
             <div class="ski">
                 <div class="skh"><span class="skn">Python</span><span class="skp">82%</span></div>
-                <div class="skbar">
-                    <div class="skfill" data-w="82"></div>
-                </div>
+                <div class="skbar"><div class="skfill" data-w="82"></div></div>
             </div>
             <div class="ski">
                 <div class="skh"><span class="skn">JavaScript</span><span class="skp">75%</span></div>
-                <div class="skbar">
-                    <div class="skfill" data-w="75"></div>
-                </div>
+                <div class="skbar"><div class="skfill" data-w="75"></div></div>
             </div>
             <div class="ski">
                 <div class="skh"><span class="skn">PHP</span><span class="skp">65%</span></div>
-                <div class="skbar">
-                    <div class="skfill" data-w="65"></div>
-                </div>
+                <div class="skbar"><div class="skfill" data-w="65"></div></div>
             </div>
             <div class="ski">
                 <div class="skh"><span class="skn">MySQL / PostgreSQL</span><span class="skp">80%</span></div>
-                <div class="skbar">
-                    <div class="skfill" data-w="80"></div>
-                </div>
+                <div class="skbar"><div class="skfill" data-w="80"></div></div>
             </div>
             <div class="ski">
                 <div class="skh"><span class="skn">HTML / CSS</span><span class="skp">88%</span></div>
-                <div class="skbar">
-                    <div class="skfill" data-w="88"></div>
-                </div>
+                <div class="skbar"><div class="skfill" data-w="88"></div></div>
             </div>
             <div class="ski">
                 <div class="skh"><span class="skn">JavaFX</span><span class="skp">72%</span></div>
-                <div class="skbar">
-                    <div class="skfill" data-w="72"></div>
-                </div>
+                <div class="skbar"><div class="skfill" data-w="72"></div></div>
             </div>
             <div class="ski">
                 <div class="skh"><span class="skn">OOP / Design Patterns</span><span class="skp">85%</span></div>
-                <div class="skbar">
-                    <div class="skfill" data-w="85"></div>
-                </div>
+                <div class="skbar"><div class="skfill" data-w="85"></div></div>
             </div>
 
             <h3 style="margin-top:2.5rem"><i class="fas fa-briefcase"></i>Professional Skills</h3>
@@ -339,8 +350,7 @@
                         <div class="orb-node" style="--c:#d4a017"><i class="fab fa-linux"></i><span>Linux</span></div>
                     </div>
                     <div class="orb-wrap" style="--a:120deg">
-                        <div class="orb-node" style="--c:#4479a1"><i class="fas fa-database"></i><span>MySQL</span>
-                        </div>
+                        <div class="orb-node" style="--c:#4479a1"><i class="fas fa-database"></i><span>MySQL</span></div>
                     </div>
                     <div class="orb-wrap" style="--a:180deg">
                         <div class="orb-node" style="--c:#ef4444"><i class="fab fa-java"></i><span>Java</span></div>
@@ -349,8 +359,7 @@
                         <div class="orb-node" style="--c:#3b82f6"><i class="fab fa-python"></i><span>Python</span></div>
                     </div>
                     <div class="orb-wrap" style="--a:300deg">
-                        <div class="orb-node" style="--c:#e05c3a"><i class="fas fa-desktop"></i><span>IntelliJ</span>
-                        </div>
+                        <div class="orb-node" style="--c:#e05c3a"><i class="fas fa-desktop"></i><span>IntelliJ</span></div>
                     </div>
                 </div>
                 <div class="orb-ring orb-r2" id="orbR2">
@@ -373,8 +382,7 @@
                         <div class="orb-node" style="--c:#7c3aed"><i class="fas fa-brain"></i><span>AI / ML</span></div>
                     </div>
                     <div class="orb-wrap" style="--a:270deg">
-                        <div class="orb-node" style="--c:#0ea5e9"><i class="fas fa-gamepad"></i><span>Game Dev</span>
-                        </div>
+                        <div class="orb-node" style="--c:#0ea5e9"><i class="fas fa-gamepad"></i><span>Game Dev</span></div>
                     </div>
                     <div class="orb-wrap" style="--a:315deg">
                         <div class="orb-node" style="--c:#ec4899"><i class="fas fa-camera"></i><span>Photo</span></div>
@@ -419,12 +427,9 @@
             </div>
             <div class="pbody">
                 <h3>Stock Management System</h3>
-                <div class="pcourse"><i class="fas fa-graduation-cap"></i> PRF Coursework — Programming Fundamentals
-                </div>
-                <p>CLI-based stock management system with inventory tracking, stock level management, and robust data
-                    handling &amp; validation.</p>
-                <div class="ptgs"><span class="ptg">Java</span><span class="ptg">CLI</span><span
-                        class="ptg">OOP</span><span class="ptg">Data Structures</span></div>
+                <div class="pcourse"><i class="fas fa-graduation-cap"></i> PRF Coursework — Programming Fundamentals</div>
+                <p>CLI-based stock management system with inventory tracking, stock level management, and robust data handling &amp; validation.</p>
+                <div class="ptgs"><span class="ptg">Java</span><span class="ptg">CLI</span><span class="ptg">OOP</span><span class="ptg">Data Structures</span></div>
                 <div class="pc-footer">
                     <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
                     <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
@@ -441,12 +446,9 @@
             </div>
             <div class="pbody">
                 <h3>Connect Four Game with AI</h3>
-                <div class="pcourse"><i class="fas fa-graduation-cap"></i> OOP Coursework — Object-Oriented Programming
-                </div>
-                <p>Classic Connect Four game with intelligent AI opponent, showcasing AI algorithm design and OOP design
-                    principles.</p>
-                <div class="ptgs"><span class="ptg">Java</span><span class="ptg">AI Algorithm</span><span class="ptg">OOP</span><span
-                        class="ptg">Minimax</span></div>
+                <div class="pcourse"><i class="fas fa-graduation-cap"></i> OOP Coursework — Object-Oriented Programming</div>
+                <p>Classic Connect Four game with intelligent AI opponent, showcasing AI algorithm design and OOP design principles.</p>
+                <div class="ptgs"><span class="ptg">Java</span><span class="ptg">AI Algorithm</span><span class="ptg">OOP</span><span class="ptg">Minimax</span></div>
                 <div class="pc-footer">
                     <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
                     <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
@@ -464,10 +466,8 @@
             <div class="pbody">
                 <h3>Point of Sale (POS) System</h3>
                 <div class="pcourse"><i class="fas fa-graduation-cap"></i> GDSE Semester Final Project</div>
-                <p>Comprehensive POS system with inventory management, customer handling, billing, and full MySQL
-                    database integration.</p>
-                <div class="ptgs"><span class="ptg">JavaFX</span><span class="ptg">MySQL</span><span
-                        class="ptg">CRUD</span><span class="ptg">GUI</span></div>
+                <p>Comprehensive POS system with inventory management, customer handling, billing, and full MySQL database integration.</p>
+                <div class="ptgs"><span class="ptg">JavaFX</span><span class="ptg">MySQL</span><span class="ptg">CRUD</span><span class="ptg">GUI</span></div>
                 <div class="pc-footer">
                     <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
                     <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
@@ -484,12 +484,9 @@
             </div>
             <div class="pbody">
                 <h3>UI/UX for Special Needs Students</h3>
-                <div class="pcourse"><i class="fas fa-graduation-cap"></i> IIT Foundation — Innovative Solutions Module
-                </div>
-                <p>Accessibility-focused UI/UX design project for special needs students with user-centered design and
-                    Figma prototyping.</p>
-                <div class="ptgs"><span class="ptg">Figma</span><span class="ptg">UI/UX</span><span class="ptg">Accessibility</span><span
-                        class="ptg">No-Code</span></div>
+                <div class="pcourse"><i class="fas fa-graduation-cap"></i> IIT Foundation — Innovative Solutions Module</div>
+                <p>Accessibility-focused UI/UX design project for special needs students with user-centered design and Figma prototyping.</p>
+                <div class="ptgs"><span class="ptg">Figma</span><span class="ptg">UI/UX</span><span class="ptg">Accessibility</span><span class="ptg">No-Code</span></div>
                 <div class="pc-footer">
                     <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
                     <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
@@ -541,9 +538,7 @@
     <div class="etl" style="position:relative;z-index:2">
         <div class="ei r rv">
             <div class="ee"></div>
-            <div class="edc">
-                <div class="edot"></div>
-            </div>
+            <div class="edc"><div class="edot"></div></div>
             <div class="ec">
                 <div class="eyr">JAN 2025 – MAY 2027</div>
                 <div class="edeg">Graduate Diploma in Software Engineering (GDSE)</div>
@@ -558,16 +553,12 @@
                 <div class="einst">IJSE | Institute of Software Engineering</div>
                 <div class="edet">Artificial Intelligence, Machine Learning, Intelligent Systems Development</div>
             </div>
-            <div class="edc">
-                <div class="edot"></div>
-            </div>
+            <div class="edc"><div class="edot"></div></div>
             <div class="ee"></div>
         </div>
         <div class="ei r rv" style="transition-delay:.2s">
             <div class="ee"></div>
-            <div class="edc">
-                <div class="edot"></div>
-            </div>
+            <div class="edc"><div class="edot"></div></div>
             <div class="ec">
                 <div class="eyr">FEB 2025 – SEP 2025</div>
                 <div class="edeg">Certificate Course in English Language</div>
@@ -582,16 +573,12 @@
                 <div class="einst">Java Institute for Advanced Technology</div>
                 <div class="edet">Web development fundamentals and 2D game development using Java</div>
             </div>
-            <div class="edc">
-                <div class="edot"></div>
-            </div>
+            <div class="edc"><div class="edot"></div></div>
             <div class="ee"></div>
         </div>
         <div class="ei r rv" style="transition-delay:.4s">
             <div class="ee"></div>
-            <div class="edc">
-                <div class="edot"></div>
-            </div>
+            <div class="edc"><div class="edot"></div></div>
             <div class="ec">
                 <div class="eyr">2020 – 2024</div>
                 <div class="edeg">Advanced Level — Combined Maths, Physics, Chemistry</div>
@@ -606,9 +593,7 @@
                 <div class="einst">G/Sri Devananda College, Ambalangoda</div>
                 <div class="edet">Activities: Chess · Football · Art Group · Science Group</div>
             </div>
-            <div class="edc">
-                <div class="edot"></div>
-            </div>
+            <div class="edc"><div class="edot"></div></div>
             <div class="ee"></div>
         </div>
     </div>
@@ -633,11 +618,8 @@
                 <div class="extt">Undergraduate Student</div>
                 <div class="exorg">IJSE — Institute of Software Engineering</div>
                 <div class="exprd"><i class="fas fa-calendar-alt"></i>February 2025 – Present</div>
-                <div class="exdsc">Focusing on AI/ML Engineering, Full-Stack Web Development, and Intelligent Systems
-                    using Python, Java, and SQL.
-                </div>
-                <div class="extgs"><span class="extg">AI/ML</span><span class="extg">Full-Stack</span><span
-                        class="extg">Python</span><span class="extg">Java</span><span class="extg">Linux</span></div>
+                <div class="exdsc">Focusing on AI/ML Engineering, Full-Stack Web Development, and Intelligent Systems using Python, Java, and SQL.</div>
+                <div class="extgs"><span class="extg">AI/ML</span><span class="extg">Full-Stack</span><span class="extg">Python</span><span class="extg">Java</span><span class="extg">Linux</span></div>
                 <div class="exc-more"><i class="fas fa-arrow-right"></i> Click for details</div>
             </div>
         </div>
@@ -653,11 +635,8 @@
                 <div class="extt">Business Owner &amp; Director</div>
                 <div class="exorg">Gunasekara Travels</div>
                 <div class="exprd"><i class="fas fa-calendar-alt"></i>July 2022 – Present | Seenigama, Hikkaduwa</div>
-                <div class="exdsc">Managing operations, finance, marketing, and customer relations for a successful
-                    travel &amp; transportation business.
-                </div>
-                <div class="extgs"><span class="extg">Operations</span><span class="extg">Finance</span><span
-                        class="extg">Marketing</span><span class="extg">Leadership</span></div>
+                <div class="exdsc">Managing operations, finance, marketing, and customer relations for a successful travel &amp; transportation business.</div>
+                <div class="extgs"><span class="extg">Operations</span><span class="extg">Finance</span><span class="extg">Marketing</span><span class="extg">Leadership</span></div>
                 <div class="exc-more"><i class="fas fa-arrow-right"></i> Click for details</div>
             </div>
         </div>
@@ -695,6 +674,81 @@
     </div>
 </div>
 
+<!-- CONTRIBUTORS ----------------------->
+<section id="contributors">
+    <div class="sh rv">
+        <h2 class="st">People Who <span>Contribute</span></h2>
+        <div class="sl"><span class="sd"></span></div>
+    </div>
+    <p class="section-sub rv">The amazing people who inspire and support my journey</p>
+    <div class="contrib-grid">
+
+        <div class="contrib-card rv">
+            <div class="contrib-img-wrap">
+                <div class="contrib-img-ring"></div>
+                <div class="contrib-img-ring contrib-img-ring2"></div>
+                <div class="contrib-avatar">
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQGkw-GHiiNT8A/profile-displayphoto-scale_400_400/B56ZlV0iLSI8Ag-/0/1758081460497?e=1776902400&v=beta&t=iE_R7zdYFG-E6P3caGCSqazJ_fqZPESfVK4SL9GEC0M" alt="Umesh Gunasekara" onerror="this.style.display='none'"/>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="contrib-badge"><i class="fas fa-code"></i></div>
+            </div>
+            <div class="contrib-body">
+                <h3 class="contrib-name">Umesh Gunasekara</h3>
+                <div class="contrib-role">Senior Software Engineer</div>
+                <div class="contrib-company"><i class="fas fa-building"></i> Land Transport Authority (LTA), Singapore</div>
+                <div class="contrib-relation">My Brother</div>
+                <a href="https://www.linkedin.com/in/umesh-gunasekara-37767060/" target="_blank" class="contrib-linkedin">
+                    <i class="fab fa-linkedin-in"></i> View LinkedIn
+                </a>
+            </div>
+        </div>
+
+        <div class="contrib-card rv" style="transition-delay:.1s">
+            <div class="contrib-img-wrap">
+                <div class="contrib-img-ring"></div>
+                <div class="contrib-img-ring contrib-img-ring2"></div>
+                <div class="contrib-avatar">
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQFDnRTzA_TKAA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1665896522207?e=1776902400&v=beta&t=-qs6wGVDhDhgkCInxwr8VRQo_W9DjODz2gevaEOAYn4" alt="Krishan Gunasekara" onerror="this.style.display='none'"/>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="contrib-badge"><i class="fas fa-laptop-code"></i></div>
+            </div>
+            <div class="contrib-body">
+                <h3 class="contrib-name">Krishan Gunasekara</h3>
+                <div class="contrib-role">Senior Software Engineer</div>
+                <div class="contrib-company"><i class="fas fa-building"></i> Rabbit Solutions</div>
+                <div class="contrib-relation">My Brother</div>
+                <a href="https://www.linkedin.com/in/krishan-gunasekara-51458b223/" target="_blank" class="contrib-linkedin">
+                    <i class="fab fa-linkedin-in"></i> View LinkedIn
+                </a>
+            </div>
+        </div>
+
+        <div class="contrib-card rv" style="transition-delay:.2s">
+            <div class="contrib-img-wrap">
+                <div class="contrib-img-ring"></div>
+                <div class="contrib-img-ring contrib-img-ring2"></div>
+                <div class="contrib-avatar">
+                    <img src="https://media.licdn.com/dms/image/v2/C4D03AQH7UpBynS3FAQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1595247333260?e=1776902400&v=beta&t=YN5mq5OA6qpJmvG0LK2ZFPXI3VNADG2s0T7Nd2vSBrs" alt="Nadeeshani Jayawardana" onerror="this.style.display='none'"/>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="contrib-badge"><i class="fas fa-shield-alt"></i></div>
+            </div>
+            <div class="contrib-body">
+                <h3 class="contrib-name">Nadeeshani Jayawardana</h3>
+                <div class="contrib-role">Senior Software Engineer</div>
+                <div class="contrib-company"><i class="fas fa-building"></i> Thales Digital Identity &amp; Security, Singapore</div>
+                <div class="contrib-relation">My Sister</div>
+                <a href="https://www.linkedin.com/in/kanchana-jayawardana/" target="_blank" class="contrib-linkedin">
+                    <i class="fab fa-linkedin-in"></i> View LinkedIn
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <!--GALLERY ------------------->
 <section id="gallery">
     <div class="sh rv">
@@ -706,73 +760,43 @@
     </p>
 
     <div class="gallery-grid" id="galleryGrid">
-        <div class="gallery-item rv"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80"
-                                          alt="Coding"/>
+        <div class="gallery-item rv"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80" alt="Coding"/>
             <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay">
-                <div class="gallery-caption"><h4>Software Projects</h4>
-                    <p>Java development at IJSE</p></div>
-            </div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>Software Projects</h4><p>Java development at IJSE</p></div></div>
         </div>
         <div class="gallery-item rv" style="--rd:.05s"><img src="assets/gallery/ijse.png" alt="Campus"/>
             <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay">
-                <div class="gallery-caption"><h4>Campus Life</h4>
-                    <p>IJSE — Software Engineering</p></div>
-            </div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>Campus Life</h4><p>IJSE — Software Engineering</p></div></div>
         </div>
         <div class="gallery-item rv" style="--rd:.1s"><img src="assets/gallery/amg.png" alt="Travel"/>
             <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay">
-                <div class="gallery-caption"><h4>GTA VI</h4>
-                    <p>Character</p></div>
-            </div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>GTA VI</h4><p>Character</p></div></div>
         </div>
-        <div class="gallery-item rv" style="--rd:.15s"><img src="assets/gallery/FB_IMG_1755176113507.jpg"
-                                                            alt="Photography"/>
+        <div class="gallery-item rv" style="--rd:.15s"><img src="assets/gallery/FB_IMG_1755176113507.jpg" alt="Photography"/>
             <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay">
-                <div class="gallery-caption"><h4>Gunasekara Travels</h4>
-                    <p>ICO</p></div>
-            </div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>Gunasekara Travels</h4><p>ICO</p></div></div>
         </div>
         <div class="gallery-item rv" style="--rd:.2s"><img src="assets/gallery/IMG_20250331_143040.jpg" alt="Web Dev"/>
             <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay">
-                <div class="gallery-caption"><h4>Businessman</h4>
-                    <p>CeylonMora (AMG Group)</p></div>
-            </div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>Businessman</h4><p>CeylonMora (AMG Group)</p></div></div>
         </div>
         <div class="gallery-item rv" style="--rd:.25s"><img src="assets/gallery/IMG_20250401_130609.jpg" alt="Journey"/>
             <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay">
-                <div class="gallery-caption"><h4>On the Road</h4>
-                    <p>Gunasekara Travels journeys</p></div>
-            </div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>On the Road</h4><p>Gunasekara Travels journeys</p></div></div>
         </div>
         <div class="gallery-item rv" style="--rd:.3s"><img src="assets/gallery/santa-fe.jpg" alt="Teamwork"/>
             <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay">
-                <div class="gallery-caption"><h4>My Vehicle</h4>
-                    <p>Hyundai Santa fe CM</p></div>
-            </div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>My Vehicle</h4><p>Hyundai Santa fe CM</p></div></div>
         </div>
         <div class="gallery-item rv" style="--rd:.35s"><img src="assets/gallery/My%20image%20.jpg" alt="Leisure"/>
             <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay">
-                <div class="gallery-caption"><h4>AMG</h4>
-                    <p>amg</p></div>
-            </div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>AMG</h4><p>amg</p></div></div>
         </div>
         <div class="gallery-item rv" style="--rd:.4s"><img src="assets/gallery/My%20image%202.png" alt="Laptop"/>
             <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay">
-                <div class="gallery-caption"><h4>AMG</h4>
-                    <p>amg</p></div>
-            </div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>AMG</h4><p>amg</p></div></div>
         </div>
     </div>
-
 </section>
 
 <!-- LIGHTBOX -->
@@ -806,7 +830,7 @@
                 <div class="cic"><i class="fas fa-envelope"></i></div>
                 <div class="cit">
                     <div class="cil">Email</div>
-                    <div class="civ"><a href="#" class="copy-email">praveengunasekara7@gmail.com</a></div>
+                    <div class="civ"><a href="#" class="copy-email" id="contactEmail"></a></div>
                 </div>
             </div>
             <div class="ci">
@@ -827,19 +851,16 @@
                 <div class="cic"><i class="fab fa-github"></i></div>
                 <div class="cit">
                     <div class="cil">GitHub</div>
-                    <div class="civ"><a href="https://github.com/slgunasekara"
-                                        target="_blank">github.com/slgunasekara</a></div>
+                    <div class="civ"><a href="https://github.com/slgunasekara" target="_blank">github.com/slgunasekara</a></div>
                 </div>
             </div>
             <div class="ci">
                 <div class="cic"><i class="fab fa-linkedin-in"></i></div>
                 <div class="cit">
                     <div class="cil">LinkedIn</div>
-                    <div class="civ"><a href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/"
-                                        target="_blank">Praveena Gunasekara</a></div>
+                    <div class="civ"><a href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/" target="_blank">Praveena Gunasekara</a></div>
                 </div>
             </div>
-
             <div class="cmap">
                 <div class="cmap-inner">
                     <i class="fas fa-map-marker-alt"></i>
@@ -886,21 +907,17 @@
 <footer>
     <div class="footer-inner">
         <div class="fn">A.PRAVEENA DHANUSHKA MENDIS GUNASEKARA</div>
-        <div class="fsub">Software Engineering Student · AI/ML Engineer · Business Owner</div>
+        <div class="fsub">Software Engineer · AI/ML Engineer · Business Owner</div>
         <div class="fsoc">
             <a href="https://github.com/slgunasekara" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/" target="_blank" title="LinkedIn"><i
-                    class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
             <a href="#" class="copy-email" title="Copy Email"><i class="fas fa-envelope"></i></a>
         </div>
-        <div class="fcp">&copy; 2026 <span>Praveena Gunasekara</span>. All rights reserved. · Made with <i
-                class="fas fa-heart" style="color:#ef4444"></i> in Sri Lanka
-        </div>
+        <div class="fcp">&copy; 2026 <span>Praveena Gunasekara (AMG)</span>. All rights reserved</div>
     </div>
 </footer>
 
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i
-        class="fas fa-arrow-up"></i></button>
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fas fa-arrow-up"></i></button>
 
 <div id="emailToast">
     <i class="fas fa-check-circle" style="color:#059669"></i>
@@ -914,7 +931,6 @@
     const heroSection = document.getElementById('home');
     const heroTubesCanvas = document.getElementById('heroTubesCanvas');
     let heroApp = null, heroStarted = false;
-
 
     const colorPalettes = [
         {tubes: ["#2563eb", "#0ea5e9", "#4f46e5"], lights: ["#60a5fa", "#38bdf8", "#818cf8", "#a5b4fc"]},
@@ -937,11 +953,10 @@
                 }
             });
 
-            // Mouse move colors auto-shift
             let lastShift = 0;
             heroSection.addEventListener('mousemove', () => {
                 const now = Date.now();
-                if (now - lastShift < 3000) return; // 3s gap
+                if (now - lastShift < 3000) return;
                 lastShift = now;
                 paletteIdx = (paletteIdx + 1) % colorPalettes.length;
                 if (heroApp && heroApp.tubes && heroApp.tubes.setColors) {
@@ -949,7 +964,6 @@
                 }
             });
 
-            // Hero section click color change
             heroSection.addEventListener('click', () => {
                 paletteIdx = (paletteIdx + 1) % colorPalettes.length;
                 const np = colorPalettes[paletteIdx];
@@ -963,7 +977,6 @@
         }
     }
 
-    // Hero section visible  start
     const heroObs = new IntersectionObserver(entries => {
         entries.forEach(e => {
             if (e.isIntersecting) initHeroTubes();

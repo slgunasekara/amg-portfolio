@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 02</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+
+        body {
+            margin: 20px;
+        }
+
+        section {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            background-color: rebeccapurple;
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+            border-radius: 6px;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: width 0.4s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            white-space: nowrap;
+        }
+
+        section:hover {
+            width: 250px;
+            background-color: purple;
+            box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .menu-label {
+            color: white;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            padding-left: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease 0.15s;
+        }
+
+        section:hover .menu-label {
+            opacity: 1;
+        }
+
+        .menu-icon {
+            color: white;
+            font-size: 22px;
+            min-width: 60px;
+            text-align: center;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        section:hover .menu-icon {
+            transform: scale(1.2);
+        }
+
+    </style>
+</head>
+<body>
+
+<section>
+    <span class="menu-label">Menu One</span>
+    <span class="menu-icon"><i class="fa-solid fa-address-book"></i></span>
+</section>
+
+<section>
+    <span class="menu-label">Menu Two</span>
+    <span class="menu-icon"><i class="fa-solid fa-truck-medical"></i></span>
+</section>
+
+<section>
+    <span class="menu-label">Menu Three</span>
+    <span class="menu-icon"><i class="fa-solid fa-globe"></i></span>
+</section>
+
+<section>
+    <span class="menu-label">Menu Four</span>
+    <span class="menu-icon"><i class="fa-solid fa-database"></i></span>
+</section>
+
+<section>
+    <span class="menu-label">Menu Five</span>
+    <span class="menu-icon"><i class="fa-solid fa-cart-arrow-down"></i></span>
+</section>
+
+</body>
+</html>

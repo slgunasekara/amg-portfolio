@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Case Two Layout</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            background: #0f172a;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            height: 50px;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            position: relative;
+            z-index: 10;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 36px;
+            width: auto;
+        }
+
+        header .logo-text {
+            font-size: 26px;
+            font-weight: 900;
+            color: #e63232;
+            letter-spacing: -1px;
+            font-style: italic;
+        }
+
+        header nav.top-nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        header nav.top-nav span {
+            font-size: 14px;
+            color: #222;
+            cursor: pointer;
+        }
+
+        header nav.top-nav span:hover {
+            color: #e63232;
+        }
+
+        .container {
+            display: flex;
+            min-height: calc(100vh - 90px);
+        }
+
+        nav.side-nav {
+            width: 180px;
+            min-width: 180px;
+            background: #4b0082;
+            padding: 30px 20px;
+            color: white;
+        }
+
+        nav.side-nav div {
+            margin: 14px 0;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        nav.side-nav div:hover {
+            color: #f0a0ff;
+        }
+
+        section {
+            flex: 1;
+            background: white;
+            padding: 20px 24px;
+        }
+
+        #imageDiv {
+            display: flex;
+            gap: 0;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+
+        #imageDiv > div {
+            flex: 1;
+            height: 200px;
+            border: 1px solid #bbb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        #imageDiv > div img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        #imageDiv > div .placeholder-icon {
+            width: 100px;
+            height: 100px;
+        }
+
+        section p {
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: #222;
+        }
+
+        section p br {
+            display: block;
+            margin-bottom: 8px;
+            content: "";
+        }
+
+        footer {
+            width: 100%;
+            height: 40px;
+            background: #888;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="assets/IJSE_Logo.png"
+             alt="IJSE Logo">
+        <span class="logo-text" style="display:none;">IJSE</span>
+    </div>
+    <nav class="top-nav">
+        <span>Home</span>
+        <span>Services</span>
+        <span>Contacts</span>
+        <span>About Us</span>
+    </nav>
+</header>
+
+<div class="container">
+    <nav class="side-nav">
+        <div>Home</div>
+        <div>Services</div>
+        <div>Contacts</div>
+        <div>About Us</div>
+    </nav>
+    <section>
+        <div id="imageDiv">
+            <div>
+                <img src="assets/monkey.gif"
+                     alt="Icon 1">
+            </div>
+            <div>
+                <img src="assets/monkey.gif"
+                     alt="Icon 2">
+            </div>
+            <div>
+                <img src="assets/monkey.gif"
+                     alt="Icon 3">
+            </div>
+        </div>
+
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi labore natus nemo perferendis sunt. Aperiam atque blanditiis dolore eius illum incidunt inventore labore modi nesciunt odit, officia praesentium quas vel?
+            <br>
+            Aliquam amet dolore esse obcaecati quas qui quo totam. Eius quod soluta voluptatem. Doloremque illo natus neque nulla tempora, tempore? Assumenda deserunt facere labore nobis odio quaerat quasi suscipit voluptate.
+            <br>
+            Accusamus aliquid amet asperiores assumenda atque aut consectetur, culpa cupiditate dignissimos ea eaque ipsam iste itaque nemo nesciunt odit porro quae quidem quos ratione repellendus rerum sit tempore ullam, velit.
+            <br>
+            Cupiditate eligendi incidunt laudantium maiores nisi odit placeat quaerat quod, repellendus? Consequatur cum deleniti dicta doloribus impedit ipsa mollitia necessitatibus non odio, qui repellendus suscipit ullam voluptas voluptate voluptatem!
+            <br>
+            A adipisci corporis cumque dolor dolore eligendi eum expedita, facere incidunt ipsum labore laborum magni molestias nulla quas, reiciendis repellat sit soluta voluptas voluptatibus. Commodi error harum laudantium minus quod!
+            <br>
+            Alias asperiores assumenda commodi consectetur, consequuntur dicta dolorem eligendi eum ex id magnam minus mollitia, nemo nesciunt optio quaerat quam quasi quia quisquam recusandae reprehenderit sapiente tempora temporibus veritatis vitae?
+            <br>
+            Amet eum explicabo in non omnis? Dolorem, eum eveniet laboriosam necessitatibus nemo non numquam perferendis provident, quibusdam quod similique soluta velit? Nemo pariatur quia rem. Alias atque placeat qui quod.
+            <br>
+            Dicta ex ipsa laboriosam laudantium modi nulla numquam quia, rerum tempore totam. Architecto, consectetur doloremque eius, enim est explicabo officia omnis, porro provident quis sint suscipit! Impedit labore minima nostrum.
+        </p>
+    </section>
+</div>
+<footer>
+    <p>Developed By IJSE</p>
+</footer>
+
+</body>
+</html>

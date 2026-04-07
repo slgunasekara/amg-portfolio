@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TASK_05</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        section {
+            display: flex;
+            width: 100vw;
+            height: 100vmin;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+        }
+
+
+        section::-webkit-scrollbar {
+            display: none;
+
+        }
+
+        div:first-child {
+            min-width: 100vw;
+            height: 100vmin;
+            scroll-snap-align: start;
+            background: url("assests/Image01.jpg") no-repeat center/cover;
+        }
+
+        div:nth-child(2) {
+            min-width: 100vw;
+            height: 100vmin;
+            scroll-snap-align: start;
+            background: url("assests/Image02.jpg") no-repeat center/cover;
+        }
+
+        div:last-child {
+            min-width: 100vw;
+            height: 100vmin;
+            scroll-snap-align: start;
+            background: url("assests/Image03.jpg") no-repeat center/cover;
+        }
+
+    </style>
+</head>
+<body>
+<section id="slider">
+    <div></div>
+    <div></div>
+    <div></div>
+</section>
+
+<script>
+    const slider = document.getElementById('slider');
+    const totalSlides = 3;
+    let currentIndex = 0;
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        slider.scrollTo({
+            left: currentIndex * slider.offsetWidth,
+            behavior: 'smooth'
+        });
+    }, 3000);
+</script>
+</body>
+</html>

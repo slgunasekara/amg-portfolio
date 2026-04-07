@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TASK_01</title>
+    <meta name="description" content="">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:image:alt" content="">
+
+    <meta name="theme-color" content="#fafafa">
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        :root {
+            --viewPort-width: 200.6vmin;
+            --viewPort-height: 99.98vmin;
+
+            --TLR-width: calc(200.6vmin / 2);
+            --TLR-height: calc(99.98vmin / 2);
+
+            --TLQcircle-size: calc(35vmin / 2);
+
+            --TLR-left-Qcircle-radius: 0 0 calc(60vmin /2) 0;
+            --TRR-right-Qcircle-radius: 0 0 0 calc(60vmin /2);
+
+            --BLR-left-Qcircle-radius: 0 calc(60vmin /2) 0 0;
+            --BRR-right-Qcircle-radius: calc(60vmin /2) 0 0 0;
+
+            --TLR-right-Qcircle-radius: 0 0 0 calc(60vmin /2);
+            --TRR-left-Qcircle-radius: 0 0 calc(60vmin /2) 0;
+
+            --BLR-right-Qcircle-radius: calc(60vmin /2) 0 0 0;
+            --BRR-left-Qcircle-radius: 0 calc(60vmin /2) 0 0;
+
+            --TRQcircle-Top-left: calc(200.6vmin / 2 - 12vmin);
+
+            --TRQcircle-Top-size: calc(25vmin / 2);
+
+            --TLR-middle-circle-left: 42vmin;
+            --TLR-middle-circle-top: 15vmin;
+
+            --TLR-middle-rectngle-size: 7vmin;
+
+            --TLR-bottom-rectngle-size: 8vmin;
+
+            --TLR-bottom-qurter-circle-size: calc( (var(--TLR-middle-rectngle-size) / 2) );
+            --TLR-bottom-quareter-circle-radius: var(--TLR-bottom-qurter-circle-size) 0 0 0;
+            --TRR-bottom-left-Qcircle-radius: 0 var(--TLR-bottom-qurter-circle-size) 0 0;
+
+            --BLR-top-right-Qcircle-radius: 0 0 0 var(--TLR-bottom-qurter-circle-size);
+            --BRR-top-left-Qcircle-radius: 0 0 var(--TLR-bottom-qurter-circle-size) 0;
+        }
+
+        .gridSection {
+            position: relative;
+            width: var(--viewPort-width);
+            height: var(--viewPort-height);
+            background: darkorange;
+        }
+
+        /*Second Top Right Rectangle*/
+
+        .gridSection .topLeftRectangle {
+            position: absolute;
+            width: var(--TLR-width);
+            height: var(--TLR-height);
+            background: red;
+        }
+
+        .gridSection  .topLeftRectangle  .topLeftQuarterCircle{
+            position: absolute;
+            width: var(--TLQcircle-size);
+            height: var(--TLQcircle-size);
+            background: white;
+            border-radius: var(--TLR-left-Qcircle-radius);
+        }
+
+        .gridSection  .topLeftRectangle  .topRightQuarterCircle{
+            position: absolute;
+            width: var(--TRQcircle-Top-size);
+            height: var(--TRQcircle-Top-size);
+            right: 0;
+            top: 0;
+            background: white;
+            border-radius: var(--TLR-right-Qcircle-radius);
+        }
+
+        .topLeftMiddleFullCircle{
+            position: absolute;
+            width: var(--TLQcircle-size);
+            height: var(--TLQcircle-size);
+            border-radius: 50%;
+            background: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .topLeftMiddleInRectangle{
+            position: absolute;
+            width: var(--TLR-middle-rectngle-size);
+            height: var(--TLR-middle-rectngle-size);
+            background: red;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .topLeftBottomRightRectangle{
+            position: absolute;
+            width: var(--TLR-bottom-rectngle-size);
+            height: var(--TLR-bottom-rectngle-size);
+            background: white;
+            bottom: 0;
+            right: 0;
+        }
+
+        .topLeftBottomRightQuarterCircle {
+            position: absolute;
+            width: var(--TLR-bottom-qurter-circle-size);
+            height: var(--TLR-bottom-qurter-circle-size);
+            background: red;
+            border-radius: var(--TLR-bottom-quareter-circle-radius);
+            right: 0;
+            bottom: 0;
+        }
+
+        /*Second Top Left Rectangle*/
+
+        .topRightRectangle {
+            position: absolute;
+            width: var(--TLR-width);
+            height: var(--TLR-height);
+            background: green;
+            top: 0;
+            right: 0;
+        }
+
+        .topRightRectangle .topLeftQuarterCircle {
+            position: absolute;
+            width: var(--TRQcircle-Top-size);
+            height: var(--TRQcircle-Top-size);
+            left: 0;
+            top: 0;
+            background: white;
+            border-radius: var(--TRR-left-Qcircle-radius);
+        }
+
+        .topRightQuarterCircle {
+            position: absolute;
+            width: var(--TLQcircle-size);
+            height: var(--TLQcircle-size);
+            top: 0;
+            right: 0;
+            background: white;
+            border-radius: var(--TRR-right-Qcircle-radius);
+        }
+
+        .topRightMiddleFullCircle {
+            position: absolute;
+            width: var(--TLQcircle-size);
+            height: var(--TLQcircle-size);
+            border-radius: 50%;
+            background: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .topRightMiddleInRectangle {
+            position: absolute;
+            width: var(--TLR-middle-rectngle-size);
+            height: var(--TLR-middle-rectngle-size);
+            background: red;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .topRightRectangle .topRightBottomLeftRectangle {
+            position: absolute;
+            width: var(--TLR-bottom-rectngle-size);
+            height: var(--TLR-bottom-rectngle-size);
+            background: white;
+            bottom: 0;
+            left: 0;
+        }
+
+        .topRightBottomLeftQuarterCircle {
+            position: absolute;
+            width: var(--TLR-bottom-qurter-circle-size);
+            height: var(--TLR-bottom-qurter-circle-size);
+            background: red;
+            border-radius: var(--TRR-bottom-left-Qcircle-radius);
+            left: 0;
+            bottom: 0;
+        }
+
+
+        /*First Bottom Left Rectangle*/
+
+        .bottomLeftRectangle {
+            position: absolute;
+            width: var(--TLR-width);
+            height: var(--TLR-height);
+            background: goldenrod;
+            bottom: 0;
+            left: 0;
+        }
+
+        .bottomLeftQuarterCircle {
+            position: absolute;
+            width: var(--TLQcircle-size);
+            height: var(--TLQcircle-size);
+            background: white;
+            border-radius: var(--BLR-left-Qcircle-radius);
+            left: 0;
+            bottom: 0;
+        }
+
+        .bottomRightQuarterCircle {
+            position: absolute;
+            width: var(--TRQcircle-Top-size);
+            height: var(--TRQcircle-Top-size);
+            bottom: 0;
+            right: 0;
+            background: white;
+            border-radius: var(--BLR-right-Qcircle-radius);
+        }
+
+        .bottomLeftMiddleFullCircle {
+            position: absolute;
+            width: var(--TLQcircle-size);
+            height: var(--TLQcircle-size);
+            border-radius: 50%;
+            background: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .bottomLeftMiddleInRectangle {
+            position: absolute;
+            width: var(--TLR-middle-rectngle-size);
+            height: var(--TLR-middle-rectngle-size);
+            background: red;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .bottomLeftTopRectangle {
+            position: absolute;
+            width: var(--TLR-bottom-rectngle-size);
+            height: var(--TLR-bottom-rectngle-size);
+            background: white;
+            top: 0;
+            right: 0;
+        }
+
+        .bottomLeftTopQuarterCircle {
+            position: absolute;
+            width: var(--TLR-bottom-qurter-circle-size);
+            height: var(--TLR-bottom-qurter-circle-size);
+            background: red;
+            border-radius: var(--BLR-top-right-Qcircle-radius);
+            top: 0;
+            right: 0;
+        }
+
+        /*Second Bottom Right Rectangle*/
+
+        .bottomRightRectangle {
+            position: absolute;
+            width: var(--TLR-width);
+            height: var(--TLR-height);
+            background: deeppink;
+            bottom: 0;
+            right: 0;
+        }
+
+        .bottomRightRectangle .bottomLeftTopRectangle {
+            position: absolute;
+            width: var(--TLR-bottom-rectngle-size);
+            height: var(--TLR-bottom-rectngle-size);
+            background: white;
+            top: 0;
+            left: 0;
+        }
+
+        .bottomRightRectangle .bottomLeftTopRectangle .bottomLeftTopQuarterCircle {
+            position: absolute;
+            width: var(--TLR-bottom-qurter-circle-size);
+            height: var(--TLR-bottom-qurter-circle-size);
+            background: red;
+            border-radius: var(--BRR-top-left-Qcircle-radius);
+            top: 0;
+            left: 0;
+        }
+
+        .bottomRightRectangle .bottomLeftQuarterCircle {
+            position: absolute;
+            width: var(--TRQcircle-Top-size);
+            height: var(--TRQcircle-Top-size);
+            bottom: 0;
+            right: 0;
+            background: white;
+            border-radius: var(--BRR-left-Qcircle-radius);
+        }
+
+        .bottomRightRectangle .bottomRightQuarterCircle {
+            position: absolute;
+            width: var(--TLQcircle-size);
+            height: var(--TLQcircle-size);
+            background: white;
+            border-radius: var(--BRR-right-Qcircle-radius);
+            right: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="gridSection">
+
+<!--        First Top Left Rectangle-->
+        <div class="topLeftRectangle">
+            <div class="topLeftQuarterCircle"></div>
+            <div class="topRightQuarterCircle"></div>
+            <div class="topLeftMiddleFullCircle">
+                <div class="topLeftMiddleInRectangle"></div>
+            </div>
+            <div class="topLeftBottomRightRectangle">
+                <div class="topLeftBottomRightQuarterCircle"></div>
+            </div>
+        </div>
+
+<!--        Second Top Right Rectangle-->
+        <div class="topRightRectangle">
+            <div class="topRightQuarterCircle"></div>
+            <div class="topLeftQuarterCircle"></div>
+            <div class="topRightMiddleFullCircle">
+                <div class="topRightMiddleInRectangle"></div>
+            </div>
+            <div class="topRightBottomLeftRectangle">
+                <div class="topRightBottomLeftQuarterCircle"></div>
+            </div>
+        </div>
+
+<!--        First Bottom Left Rectangle-->
+        <div class="bottomLeftRectangle">
+            <div class="bottomLeftQuarterCircle"></div>
+            <div class="bottomRightQuarterCircle"></div>
+            <div class="bottomLeftMiddleFullCircle">
+                <div class="bottomLeftMiddleInRectangle"></div>
+            </div>
+            <div class="bottomLeftTopRectangle">
+                <div class="bottomLeftTopQuarterCircle"></div>
+            </div>
+        </div>
+
+<!--        Second Bottom Right Rectangle-->
+        <div class="bottomRightRectangle">
+
+            <div class="bottomLeftQuarterCircle"></div>
+            <div class="bottomRightQuarterCircle"></div>
+
+            <div class="bottomLeftMiddleFullCircle">
+                <div class="bottomLeftMiddleInRectangle"></div>
+            </div>
+            <div class="bottomLeftTopRectangle">
+                <div class="bottomLeftTopQuarterCircle"></div>
+            </div>
+        </div>
+
+    </section>
+
+</body>
+</html>

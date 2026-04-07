@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TASK_06</title>
+
+    <style>
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --car-Size: 50vmin;
+            --wheel-Size: 10vmin;
+        }
+
+        .sky {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            background: url("assests/sky.jpg") center;
+            overflow-x: hidden;
+        }
+
+        .city {
+            position: absolute;
+            width: 500%;
+            height: 25vmin;
+            background: url("assests/city.png") repeat-x;
+            bottom: 30vmin;
+            left: 0;
+            right: 0;
+            z-index: 1;
+
+            animation: city 10s linear infinite;
+        }
+
+        .road {
+            position: absolute;
+            width: 500%;
+            height: 30%;
+            z-index: 1;
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            background: url("assests/road.jpg") repeat-x;
+            animation: highWay 5s ease-out infinite;
+        }
+
+
+        .car {
+            position: absolute;
+            top: 60%;
+            left: 30%;
+            width: var(--car-Size);
+            height: var(--car-Size);
+            background: url("assests/car.png") no-repeat;
+            background-size: var(--car-Size);
+            z-index: 2;
+
+            animation: carAnimation 1s linear infinite;
+        }
+
+        .wheel1 {
+            position: absolute;
+            top: 69%;
+            left: 32%;
+            width: var(--wheel-Size);
+            height: var(--wheel-Size);
+            background: url("assests/wheel.png") no-repeat;
+            background-size: var(--wheel-Size);
+            z-index: 3;
+
+            animation: rotateWheel 2s infinite linear;
+        }
+
+        .wheel2 {
+            position: absolute;
+            top: 69%;
+            left: 47.2%;
+            width: var(--wheel-Size);
+            height: var(--wheel-Size);
+            background: url("assests/wheel.png") no-repeat;
+            background-size: var(--wheel-Size);
+            z-index: 3;
+
+            animation: rotateWheel 2s infinite linear;
+        }
+
+        @keyframes highWay {
+            100% { transform: translateX(-300vmin); }
+        }
+
+        @keyframes carAnimation {
+            100% {
+                transform: translatey(-3px);
+            }
+            50% {
+                transform: translatey(2px);
+            }
+            0% {
+                transform: translatey(-3px);
+            }
+        }
+
+        @keyframes rotateWheel {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes city {
+            100% { transform: translateX(-200vmin); }
+        }
+
+    </style>
+</head>
+<body>
+        
+        <div class="sky">
+            <div class="city">
+            </div>
+            <div class="road">
+            </div>
+            <div class="car">
+            </div>
+            <div class="wheel1">
+            </div>
+            <div class="wheel2">
+            </div>
+        </div>
+
+</body>
+</html>

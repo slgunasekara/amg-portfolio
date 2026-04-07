@@ -1,3 +1,64 @@
+/* ===== EMAIL INJECTION (prevents Cloudflare obfuscation) ===== */
+(function () {
+    const u = 'praveengunasekara7';
+    const d = 'gmail.com';
+    const email = u + '@' + d;
+
+    // Inject into all display spots
+    const heroEl = document.getElementById('heroEmail');
+    if (heroEl) heroEl.textContent = email;
+
+    const contactEl = document.getElementById('contactEmail');
+    if (contactEl) contactEl.textContent = email;
+
+    // Store for copy function
+    window._AMG_EMAIL = email;
+})();
+
+/* ===== DARK MODE TOGGLE ===== */
+(function () {
+    const STORAGE_KEY = 'amg-theme';
+    const checkbox = document.getElementById('dmToggle');
+    const html = document.documentElement;
+
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+            if (checkbox) checkbox.checked = true;
+            localStorage.setItem(STORAGE_KEY, 'dark');
+        } else {
+            html.removeAttribute('data-theme');
+            if (checkbox) checkbox.checked = false;
+            localStorage.setItem(STORAGE_KEY, 'light');
+        }
+    }
+
+    // Apply saved theme immediately
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+        setTheme(saved);
+    } else {
+        // Sync with OS preference if no saved preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) setTheme('dark');
+    }
+
+    // Listen to checkbox change
+    if (checkbox) {
+        checkbox.addEventListener('change', () => {
+            setTheme(checkbox.checked ? 'dark' : 'light');
+        });
+    }
+
+    // Listen for OS theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem(STORAGE_KEY)) {
+            setTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+})();
+
+/* ===== PROJECTS DATA ===== */
 const projectsData = [
     {
         id: 0,
@@ -67,7 +128,7 @@ const projectsData = [
     }
 ];
 
-/*EXPERIENCE DATA ------------------------*/
+/* ===== EXPERIENCE DATA ===== */
 const experienceData = [
     {
         id: 0,
@@ -109,32 +170,25 @@ const experienceData = [
     }
 ];
 
-/* LOADER — ENHANCED --------------------- */
+/* ===== LOADER ===== */
 document.addEventListener('DOMContentLoaded', function () {
     (function () {
-        // Inject SVG gradient for ring
         const svgNS = 'http://www.w3.org/2000/svg';
         const defs = document.createElementNS(svgNS, 'defs');
         const lg = document.createElementNS(svgNS, 'linearGradient');
         lg.id = 'ldGradient';
-        lg.setAttribute('x1', '0%');
-        lg.setAttribute('y1', '0%');
-        lg.setAttribute('x2', '100%');
-        lg.setAttribute('y2', '0%');
+        lg.setAttribute('x1', '0%'); lg.setAttribute('y1', '0%');
+        lg.setAttribute('x2', '100%'); lg.setAttribute('y2', '0%');
         const s1 = document.createElementNS(svgNS, 'stop');
-        s1.setAttribute('offset', '0%');
-        s1.setAttribute('stop-color', '#1e3a8a');
+        s1.setAttribute('offset', '0%'); s1.setAttribute('stop-color', '#1e3a8a');
         const s2 = document.createElementNS(svgNS, 'stop');
-        s2.setAttribute('offset', '50%');
-        s2.setAttribute('stop-color', '#2563eb');
+        s2.setAttribute('offset', '50%'); s2.setAttribute('stop-color', '#2563eb');
         const s3 = document.createElementNS(svgNS, 'stop');
-        s3.setAttribute('offset', '100%');
-        s3.setAttribute('stop-color', '#0ea5e9');
+        s3.setAttribute('offset', '100%'); s3.setAttribute('stop-color', '#0ea5e9');
         lg.append(s1, s2, s3);
         defs.append(lg);
         document.querySelector('.ld-ring-svg').prepend(defs);
 
-        // Loader particles
         const lp = document.getElementById('ldParticles');
         for (let i = 0; i < 20; i++) {
             const p = document.createElement('div');
@@ -146,7 +200,6 @@ document.addEventListener('DOMContentLoaded', function () {
         style.textContent = '@keyframes ldPartFloat{0%,100%{transform:translateY(0) scale(1);opacity:.3}50%{transform:translateY(-30px) scale(1.2);opacity:.7}}';
         document.head.append(style);
 
-        // Animated progress
         const ring = document.getElementById('ldRingFill');
         const pct = document.getElementById('ldPercent');
         const txt = document.getElementById('ldText');
@@ -163,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (progress >= 100) clearInterval(interval);
         }, 60);
     })();
-}); // end DOMContentLoaded
+});
 
 window.addEventListener('load', () => {
     setTimeout(() => {
@@ -172,7 +225,7 @@ window.addEventListener('load', () => {
     }, 2000);
 });
 
-/*  PARTICLES -----------------------------*/
+/* ===== PARTICLES ===== */
 const pcv = document.getElementById('pcv');
 const pc = pcv.getContext('2d');
 let pts = [];
@@ -184,6 +237,7 @@ function rz() {
 
 rz();
 window.addEventListener('resize', rz);
+
 for (let i = 0; i < 60; i++) {
     pts.push({
         x: Math.random() * pcv.width,
@@ -197,10 +251,13 @@ for (let i = 0; i < 60; i++) {
 
 function drawPts() {
     pc.clearRect(0, 0, pcv.width, pcv.height);
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const particleColor = isDark ? '96,165,250' : '37,99,235';
+
     pts.forEach(p => {
         pc.beginPath();
         pc.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        pc.fillStyle = `rgba(37,99,235,${p.o})`;
+        pc.fillStyle = `rgba(${particleColor},${p.o})`;
         pc.fill();
         p.x += p.dx;
         p.y += p.dy;
@@ -211,7 +268,7 @@ function drawPts() {
         const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
         if (d < 100) {
             pc.beginPath();
-            pc.strokeStyle = `rgba(37,99,235,${.06 * (1 - d / 100)})`;
+            pc.strokeStyle = `rgba(${particleColor},${.06 * (1 - d / 100)})`;
             pc.lineWidth = .5;
             pc.moveTo(pts[i].x, pts[i].y);
             pc.lineTo(pts[j].x, pts[j].y);
@@ -223,7 +280,7 @@ function drawPts() {
 
 drawPts();
 
-/* HERO CANVAS — FLOATING BUBBLES BACKGROUND ------------------------*/
+/* ===== HERO CANVAS BUBBLES ===== */
 (function () {
     const hcv = document.getElementById('heroCanvas');
     if (!hcv) return;
@@ -237,6 +294,7 @@ drawPts();
 
     resizeHero();
     window.addEventListener('resize', resizeHero);
+
     for (let i = 0; i < 18; i++) {
         bubbles.push({
             x: Math.random() * hcv.width, y: Math.random() * hcv.height,
@@ -249,9 +307,11 @@ drawPts();
 
     function drawHero() {
         hctx.clearRect(0, 0, hcv.width, hcv.height);
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         bubbles.forEach(b => {
+            const opacity = isDark ? b.o * 2.5 : b.o;
             const grad = hctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
-            grad.addColorStop(0, `rgba(${b.color},${b.o})`);
+            grad.addColorStop(0, `rgba(${b.color},${opacity})`);
             grad.addColorStop(1, `rgba(${b.color},0)`);
             hctx.beginPath();
             hctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
@@ -261,10 +321,7 @@ drawPts();
             b.y += b.dy;
             if (b.x < -b.r) b.x = hcv.width + b.r;
             if (b.x > hcv.width + b.r) b.x = -b.r;
-            if (b.y < -b.r) {
-                b.y = hcv.height + b.r;
-                b.x = Math.random() * hcv.width;
-            }
+            if (b.y < -b.r) { b.y = hcv.height + b.r; b.x = Math.random() * hcv.width; }
         });
         requestAnimationFrame(drawHero);
     }
@@ -272,13 +329,12 @@ drawPts();
     drawHero();
 })();
 
-/* HERO CURSOR TRAIL -------------------------------- */
+/* ===== HERO CURSOR TRAIL ===== */
 (function () {
     const canvas = document.getElementById('heroCursorCanvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     let trail = [];
-    let mx = -999, my = -999;
     let inHero = false;
 
     function resize() {
@@ -290,22 +346,14 @@ drawPts();
     window.addEventListener('resize', resize);
 
     const heroSec = document.getElementById('home');
-    heroSec.addEventListener('mouseenter', () => {
-        inHero = true;
-        canvas.style.opacity = '1';
-    });
-    heroSec.addEventListener('mouseleave', () => {
-        inHero = false;
-        canvas.style.opacity = '0';
-    });
+    heroSec.addEventListener('mouseenter', () => { inHero = true; canvas.style.opacity = '1'; });
+    heroSec.addEventListener('mouseleave', () => { inHero = false; canvas.style.opacity = '0'; });
 
     document.addEventListener('mousemove', e => {
         if (!inHero) return;
-        mx = e.clientX;
-        my = e.clientY;
         for (let i = 0; i < 3; i++) {
             trail.push({
-                x: mx + (Math.random() - .5) * 8, y: my + (Math.random() - .5) * 8,
+                x: e.clientX + (Math.random() - .5) * 8, y: e.clientY + (Math.random() - .5) * 8,
                 r: Math.random() * 5 + 2, life: 1,
                 color: Math.random() > .5 ? '37,99,235' : (Math.random() > .5 ? '14,165,233' : '79,70,229'),
                 vx: (Math.random() - .5) * 1.5, vy: (Math.random() - .5) * 1.5 - .5
@@ -331,27 +379,14 @@ drawPts();
     drawTrail();
 })();
 
-// /* ===== CURSOR ===== */
-// const cur = document.getElementById('cur'), cur2 = document.getElementById('cur2');
-// if (cur) {
-//   document.addEventListener('mousemove', e => {
-//     cur.style.left = e.clientX + 'px'; cur.style.top = e.clientY + 'px';
-//     cur2.style.left = e.clientX + 'px'; cur2.style.top = e.clientY + 'px';
-//   });
-//   document.querySelectorAll('a,button,.ptag,.pc,.exc,.gallery-item,.adi,.ci').forEach(el => {
-//     el.addEventListener('mouseenter', () => { cur2.style.width='46px'; cur2.style.height='46px'; cur2.style.borderColor='var(--blue)'; cur2.style.background='rgba(37,99,235,.08)'; });
-//     el.addEventListener('mouseleave', () => { cur2.style.width='32px'; cur2.style.height='32px'; cur2.style.borderColor='var(--blue2)'; cur2.style.background='rgba(37,99,235,.04)'; });
-//   });
-// }
-
-
-/* NAV -------------------------------- */
+/* ===== NAV ===== */
 const nb = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     nb.classList.toggle('sc', window.scrollY > 50);
     document.getElementById('btt').classList.toggle('on', window.scrollY > 400);
     updateActiveNav();
 });
+
 const hbg = document.getElementById('hbg'), mm = document.getElementById('mm');
 hbg.addEventListener('click', () => {
     hbg.classList.toggle('on');
@@ -375,7 +410,7 @@ function updateActiveNav() {
     });
 }
 
-/* TYPED ------------------------------------- */
+/* ===== TYPED ===== */
 const words = ['Full-Stack Developer', 'AI/ML Engineer', 'Business Owner', 'UI/UX Designer', 'Java Developer', 'Python Programmer', 'Problem Solver', 'Tech Entrepreneur'];
 let wi = 0, ci = 0, del = false;
 const tEl = document.getElementById('typed');
@@ -384,24 +419,17 @@ function type() {
     const w = words[wi];
     if (!del) {
         tEl.textContent = w.slice(0, ++ci);
-        if (ci === w.length) {
-            del = true;
-            setTimeout(type, 2000);
-            return;
-        }
+        if (ci === w.length) { del = true; setTimeout(type, 2000); return; }
     } else {
         tEl.textContent = w.slice(0, --ci);
-        if (ci === 0) {
-            del = false;
-            wi = (wi + 1) % words.length;
-        }
+        if (ci === 0) { del = false; wi = (wi + 1) % words.length; }
     }
     setTimeout(type, del ? 48 : 78);
 }
 
 setTimeout(type, 2000);
 
-/* SCROLL REVEAL ------------------------------ */
+/* ===== SCROLL REVEAL ===== */
 const rvEls = document.querySelectorAll('.rv,.rvl,.rvr');
 const ro = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
@@ -413,7 +441,7 @@ const ro = new IntersectionObserver(entries => {
 }, {threshold: .1});
 rvEls.forEach(el => ro.observe(el));
 
-/*  SKILL BARS --------------------------- */
+/* ===== SKILL BARS ===== */
 const sbo = new IntersectionObserver(entries => {
     entries.forEach(e => {
         if (e.isIntersecting) {
@@ -424,7 +452,7 @@ const sbo = new IntersectionObserver(entries => {
 }, {threshold: .25});
 document.querySelectorAll('.sc2').forEach(el => sbo.observe(el));
 
-/* STAT COUNTERS -------------------------------- */
+/* ===== STAT COUNTERS ===== */
 function initAnimations() {
     const statObs = new IntersectionObserver(entries => {
         entries.forEach(e => {
@@ -448,48 +476,31 @@ function initAnimations() {
     if (hstats) statObs.observe(hstats);
 }
 
-/*  ORBITAL TOOLTIP ------------------------------- */
+/* ===== ORBITAL TOOLTIP ===== */
 (function () {
     const tip = document.getElementById('orbTip');
     if (!tip) return;
     const labels = {
-        'fa-github': 'GitHub',
-        'fa-linux': 'Linux',
-        'fa-database': 'MySQL',
-        'fa-java': 'Java',
-        'fa-python': 'Python',
-        'fa-desktop': 'IntelliJ IDEA',
-        'fa-html5': 'HTML5',
-        'fa-css3-alt': 'CSS3',
-        'fa-js': 'JavaScript',
-        'fa-code': 'C++',
-        'fa-leaf': 'Spring Boot',
-        'fa-brain': 'AI / ML',
-        'fa-gamepad': 'Game Dev',
-        'fa-camera': 'Photography'
+        'fa-github': 'GitHub', 'fa-linux': 'Linux', 'fa-database': 'MySQL',
+        'fa-java': 'Java', 'fa-python': 'Python', 'fa-desktop': 'IntelliJ IDEA',
+        'fa-html5': 'HTML5', 'fa-css3-alt': 'CSS3', 'fa-js': 'JavaScript',
+        'fa-code': 'C++', 'fa-leaf': 'Spring Boot', 'fa-brain': 'AI / ML',
+        'fa-gamepad': 'Game Dev', 'fa-camera': 'Photography'
     };
     document.querySelectorAll('.orb-node').forEach(node => {
         const icon = node.querySelector('i');
         if (!icon) return;
         let label = '';
         for (const [cls, lbl] of Object.entries(labels)) {
-            if (icon.classList.contains(cls)) {
-                label = lbl;
-                break;
-            }
+            if (icon.classList.contains(cls)) { label = lbl; break; }
         }
         if (!label) label = node.querySelector('span')?.textContent || '';
-        node.addEventListener('mouseenter', () => {
-            tip.textContent = '◆ ' + label + ' ◆';
-            tip.style.opacity = '1';
-        });
-        node.addEventListener('mouseleave', () => {
-            tip.style.opacity = '0';
-        });
+        node.addEventListener('mouseenter', () => { tip.textContent = '◆ ' + label + ' ◆'; tip.style.opacity = '1'; });
+        node.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
     });
 })();
 
-/*  PROJECT MODAL -----------------------------------*/
+/* ===== PROJECT MODAL ===== */
 function openProject(id) {
     const p = projectsData[id];
     if (!p) return;
@@ -516,7 +527,7 @@ function closeProjectModal(e, force) {
     document.body.style.overflow = '';
 }
 
-/* EXPERIENCE MODAL ----------------------------------*/
+/* ===== EXPERIENCE MODAL ===== */
 function openExp(id) {
     const ex = experienceData[id];
     if (!ex) return;
@@ -552,7 +563,7 @@ document.addEventListener('keydown', e => {
     }
 });
 
-/* GALLERY — LIGHTBOX ---------------------------------*/
+/* ===== GALLERY LIGHTBOX ===== */
 let lbImages = [], lbIndex = 0;
 
 function buildLbImages() {
@@ -609,53 +620,17 @@ document.getElementById('lightbox').addEventListener('click', function (e) {
     if (e.target === this) closeLightbox();
 });
 
-/*  GALLERY — LOAD MORE ------------------------ */
+/* ===== GALLERY LOAD MORE ===== */
 const extraPhotos = [
-    {
-        src: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=600&q=80",
-        title: "Deep Focus",
-        desc: "Late night debugging session"
-    },
-    {
-        src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80",
-        title: "Development",
-        desc: "Building great products"
-    },
-    {
-        src: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=600&q=80",
-        title: "Clean Code",
-        desc: "Writing beautiful code"
-    },
-    {
-        src: "https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=600&q=80",
-        title: "Sri Lanka Beauty",
-        desc: "Lush landscapes"
-    },
-    {
-        src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80",
-        title: "Highlands",
-        desc: "Mountain adventures"
-    },
-    {
-        src: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=600&q=80",
-        title: "Ocean View",
-        desc: "Hikkaduwa beaches"
-    },
-    {
-        src: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&q=80",
-        title: "Tech Setup",
-        desc: "My workspace"
-    },
-    {
-        src: "https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=600&q=80",
-        title: "Night Coding",
-        desc: "Building the future"
-    },
-    {
-        src: "https://images.unsplash.com/photo-1526925539332-aa3b66e35444?w=600&q=80",
-        title: "Team Moments",
-        desc: "Collaboration at IJSE"
-    }
+    { src: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=600&q=80", title: "Deep Focus", desc: "Late night debugging session" },
+    { src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80", title: "Development", desc: "Building great products" },
+    { src: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=600&q=80", title: "Clean Code", desc: "Writing beautiful code" },
+    { src: "https://images.unsplash.com/photo-1508921340878-ba53e1f016ec?w=600&q=80", title: "Sri Lanka Beauty", desc: "Lush landscapes" },
+    { src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80", title: "Highlands", desc: "Mountain adventures" },
+    { src: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?w=600&q=80", title: "Ocean View", desc: "Hikkaduwa beaches" },
+    { src: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=600&q=80", title: "Tech Setup", desc: "My workspace" },
+    { src: "https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=600&q=80", title: "Night Coding", desc: "Building the future" },
+    { src: "https://images.unsplash.com/photo-1526925539332-aa3b66e35444?w=600&q=80", title: "Team Moments", desc: "Collaboration at IJSE" }
 ];
 let extraLoaded = 0;
 const LOAD_COUNT = 3;
@@ -675,10 +650,10 @@ function loadMorePhotos() {
         item.className = 'gallery-item';
         item.style.setProperty('--rd', (i * 0.08) + 's');
         item.innerHTML = `
-      <img src="${photo.src}" alt="${photo.title}" loading="lazy"/>
-      <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-      <div class="gallery-overlay"><div class="gallery-caption"><h4>${photo.title}</h4><p>${photo.desc}</p></div></div>
-    `;
+            <img src="${photo.src}" alt="${photo.title}" loading="lazy"/>
+            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
+            <div class="gallery-overlay"><div class="gallery-caption"><h4>${photo.title}</h4><p>${photo.desc}</p></div></div>
+        `;
         item.addEventListener('click', () => openLightbox(item));
         grid.appendChild(item);
     });
@@ -692,7 +667,10 @@ function loadMorePhotos() {
 
 /* ===== EMAIL COPY ===== */
 (function () {
-    const EMAIL = 'praveengunasekara7@gmail.com';
+    function getEmail() {
+        return window._AMG_EMAIL || ('praveengunasekara7' + '@' + 'gmail.com');
+    }
+
     const toast = document.getElementById('emailToast');
 
     function showToast() {
@@ -707,6 +685,7 @@ function loadMorePhotos() {
 
     function copyEmail(e) {
         e.preventDefault();
+        const EMAIL = getEmail();
         navigator.clipboard.writeText(EMAIL).then(showToast).catch(() => {
             const ta = document.createElement('textarea');
             ta.value = EMAIL;
@@ -722,16 +701,16 @@ function loadMorePhotos() {
 
     document.querySelectorAll('.copy-email').forEach(el => {
         el.addEventListener('click', copyEmail);
-        el.addEventListener('mouseenter', () => {
-            el.style.color = 'var(--blue)';
-        });
-        el.addEventListener('mouseleave', () => {
-            el.style.color = '';
-        });
+        el.addEventListener('mouseenter', () => { el.style.color = 'var(--blue)'; });
+        el.addEventListener('mouseleave', () => { el.style.color = ''; });
     });
 })();
 
 /* ===== CONTACT ===== */
+function getEmail() {
+    return window._AMG_EMAIL || ('praveengunasekara7' + '@' + 'gmail.com');
+}
+
 function sendMsg() {
     const n = document.getElementById('fn').value.trim();
     const e = document.getElementById('fe').value.trim();
@@ -748,13 +727,13 @@ function sendMsg() {
         msg.className = 'fmsg err';
         return;
     }
-    window.location.href = `mailto:praveengunasekara7@gmail.com?subject=${encodeURIComponent(s || 'Portfolio Contact')}&body=${encodeURIComponent('Name: ' + n + '\nEmail: ' + e + '\n\n' + m)}`;
+    window.location.href = `mailto:${getEmail()}?subject=${encodeURIComponent(s || 'Portfolio Contact')}&body=${encodeURIComponent('Name: ' + n + '\nEmail: ' + e + '\n\n' + m)}`;
     msg.textContent = '✓ Opening your email client...';
     msg.className = 'fmsg ok';
     setTimeout(() => msg.textContent = '', 4000);
 }
 
-/* SMOOTH SCROLL-----------------------------*/
+/* ===== SMOOTH SCROLL ===== */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function (e) {
         const target = document.querySelector(this.getAttribute('href'));
@@ -765,7 +744,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     });
 });
 
-/* PROFESSIONAL SKILLS TAG ANIMATION ------------------------------- */
+/* ===== PROFESSIONAL SKILLS TAG ANIMATION ===== */
 const tagsObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
         if (e.isIntersecting) {
@@ -779,7 +758,7 @@ document.querySelectorAll('.ptags').forEach(el => {
     tagsObs.observe(el);
 });
 
-/* TILT EFFECT on EXPERIENCE CARDS ------------------------------ */
+/* ===== TILT — EXPERIENCE CARDS ===== */
 document.querySelectorAll('.exc').forEach(card => {
     card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
@@ -794,7 +773,7 @@ document.querySelectorAll('.exc').forEach(card => {
     });
 });
 
-/*  TILT EFFECT on PROJECT CARDS ---------------------- */
+/* ===== TILT — PROJECT CARDS ===== */
 document.querySelectorAll('.pc').forEach(card => {
     card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();

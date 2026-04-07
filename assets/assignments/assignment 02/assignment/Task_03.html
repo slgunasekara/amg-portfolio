@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="web, html, css, javascript, js, java, python">
+    <meta name="description" content="World best web development tutorials">
+    <meta name="author" content="IJSE">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        section{
+            width: 1000px;
+            height: 600px;
+        }
+        section > div{
+            width: 100px;
+            height: 150px;
+            background-color: red;
+            border-radius: 10%;
+
+
+            animation-name: myanimation;
+            animation-duration: 2000ms;
+            animation-iteration-count: infinite;
+
+
+            animation-direction: alternate;
+        }
+
+
+        @keyframes myanimation {
+            0%{
+                margin-left: 0;
+                margin-top: 0;
+                background-color: red;
+            }
+            25%{
+                margin-left: 900px;
+                margin-top: 0;
+                background-color: blue;
+                transform: rotate(360deg);
+            }
+            50%{
+                margin-left: 900px;
+                margin-top: 500px;
+                background-color: green;
+                transform: rotate(720deg);
+            }
+            75%{
+                margin-left: 0;
+                margin-top: 500px;
+                background-color: yellow;
+                transform: rotate(1080deg);
+            }
+        }
+
+
+    </style>
+
+
+</head>
+<body>
+<section>
+    <div>
+        <div></div>
+    </div>
+
+
+</section>
+
+
+</body>
+</html>
