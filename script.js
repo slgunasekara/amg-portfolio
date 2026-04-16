@@ -1166,3 +1166,4 @@ document.querySelectorAll('.pc').forEach(card => {
         card.style.transition = '.4s';
     });
 });
+// fscsd
