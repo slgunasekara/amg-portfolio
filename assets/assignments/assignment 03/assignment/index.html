@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Queue</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #2e3b4e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+
+  h1 {
+    color: #ccc;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+  }
+
+  .arena {
+    width: 680px;
+    min-height: 260px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .row-dequeue {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .row-queue {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-top: 2px solid #555;
+    border-bottom: 2px solid #555;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .row-enqueue {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+  }
+
+  .block {
+    width: 70px;
+    height: 44px;
+    border-radius: 4px;
+    position: absolute;
+    transition: none;
+  }
+
+  .queue-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding-left: 10px;
+  }
+
+  .queue-block {
+    width: 70px;
+    height: 44px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+
+  .controls {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+  }
+
+  button {
+    padding: 10px 32px;
+    font-size: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  button:active { transform: scale(0.97); }
+
+  #startBtn {
+    background: #4caf7d;
+    color: #fff;
+  }
+
+  #startBtn:hover { background: #3d9e6d; }
+
+  #stopBtn {
+    background: #e05252;
+    color: #fff;
+  }
+
+  #stopBtn:hover { background: #c94444; }
+
+  .label-tag {
+    color: #aaa;
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70px;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  #status {
+    color: #888;
+    font-size: 13px;
+    margin-top: 14px;
+    letter-spacing: 0.5px;
+    min-height: 18px;
+  }
+</style>
+</head>
+<body>
+
+<h1>JavaScript Queue</h1>
+
+<div class="arena">
+  <div class="row-dequeue" id="rowDequeue"></div>
+  <div class="row-queue" id="rowQueue">
+    <div class="queue-wrapper" id="queueWrapper"></div>
+  </div>
+  <div class="row-enqueue" id="rowEnqueue"></div>
+</div>
+
+<div id="status">Press Start to begin the queue animation</div>
+
+<div class="controls">
+  <button id="startBtn" onclick="startQueue()">Start</button>
+  <button id="stopBtn" onclick="stopQueue()">Stop</button>
+</div>
+
+<script>
+  const COLORS = ['#e53935','#43a047','#1e88e5','#fdd835','#e91e8c','#ff7043','#8e24aa','#00acc1'];
+  const BLOCK_W = 70;
+  const GAP = 6;
+
+  let queue = [];
+  let colorIndex = 0;
+  let animInterval = null;
+  let isRunning = false;
+  let isAnimating = false;
+  let nextColor = null;
+  let dequeueColor = null;
+
+  const rowDequeue = document.getElementById('rowDequeue');
+  const rowEnqueue = document.getElementById('rowEnqueue');
+  const queueWrapper = document.getElementById('queueWrapper');
+  const statusEl = document.getElementById('status');
+
+  function getNextColor() {
+    const c = COLORS[colorIndex % COLORS.length];
+    colorIndex++;
+    return c;
+  }
+
+  function initQueue() {
+    queue = [];
+    for (let i = 0; i < 4; i++) {
+      queue.push(getNextColor());
+    }
+    renderQueue();
+    nextColor = getNextColor();
+    renderEnqueueBlock(nextColor, false);
+    rowDequeue.innerHTML = '';
+  }
+
+  function renderQueue() {
+    queueWrapper.innerHTML = '';
+    queue.forEach(color => {
+      const b = document.createElement('div');
+      b.className = 'queue-block';
+      b.style.background = color;
+      b.style.position = 'relative';
+      queueWrapper.appendChild(b);
+    });
+  }
+
+  function renderEnqueueBlock(color, animate) {
+    rowEnqueue.innerHTML = '';
+    const b = document.createElement('div');
+    b.style.cssText = `width:70px;height:44px;border-radius:4px;background:${color};`;
+    if (animate) {
+      b.style.opacity = '0';
+      b.style.transform = 'translateX(40px)';
+      b.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      rowEnqueue.appendChild(b);
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        b.style.opacity = '1';
+        b.style.transform = 'translateX(0)';
+      }));
+    } else {
+      rowEnqueue.appendChild(b);
+    }
+  }
+
+  function animateStep() {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    dequeueColor = queue[0];
+    const enqueueColor = nextColor;
+
+    statusEl.textContent = `Dequeue: ${dequeueColor} | Enqueue: ${enqueueColor}`;
+
+    const frontBlock = queueWrapper.children[0];
+    if (frontBlock) {
+      frontBlock.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      frontBlock.style.transform = 'translateY(-60px)';
+      frontBlock.style.opacity = '0';
+    }
+
+    const deqBlock = document.createElement('div');
+    deqBlock.style.cssText = `width:70px;height:44px;border-radius:4px;background:${dequeueColor};position:absolute;left:10px;top:50%;transform:translateY(-50%) translateY(60px);opacity:0;transition:transform 0.5s ease, opacity 0.5s ease;`;
+    rowDequeue.innerHTML = '';
+    rowDequeue.appendChild(deqBlock);
+
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      deqBlock.style.transform = 'translateY(-50%)';
+      deqBlock.style.opacity = '1';
+    }));
+
+    const enqIncoming = rowEnqueue.children[0];
+    if (enqIncoming) {
+      enqIncoming.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      enqIncoming.style.transform = 'translateY(60px)';
+      enqIncoming.style.opacity = '0';
+    }
+
+    setTimeout(() => {
+      queue.shift();
+      queue.push(enqueueColor);
+      nextColor = getNextColor();
+
+      renderQueue();
+      renderEnqueueBlock(nextColor, true);
+
+      setTimeout(() => {
+        isAnimating = false;
+      }, 400);
+    }, 600);
+  }
+
+  function startQueue() {
+    if (isRunning) return;
+    isRunning = true;
+    statusEl.textContent = 'Queue is running...';
+    animInterval = setInterval(() => {
+      if (!isAnimating) animateStep();
+    }, 1400);
+  }
+
+  function stopQueue() {
+    isRunning = false;
+    clearInterval(animInterval);
+    animInterval = null;
+    statusEl.textContent = 'Queue stopped. Press Start to resume.';
+  }
+
+  initQueue();
+</script>
+</body>
+</html>

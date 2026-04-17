@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Calculator</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #c9cfe0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+
+  .calc {
+    background: #3a3f55;
+    border-radius: 10px;
+    padding: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    width: 320px;
+  }
+
+  .display-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .btn-clear {
+    background: #6e7494;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    width: 52px;
+    height: 52px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+
+  .btn-clear:hover { background: #8589aa; }
+  .btn-clear:active { background: #555a72; transform: scale(0.96); }
+
+  .display {
+    flex: 1;
+    background: #8a8e9e;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 400;
+    text-align: right;
+    padding: 0 12px;
+    height: 52px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    letter-spacing: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .btn {
+    background: #d6d8e0;
+    color: #333;
+    border: none;
+    border-radius: 6px;
+    height: 62px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.12s, transform 0.1s;
+  }
+
+  .btn:hover { background: #e8eaf0; }
+  .btn:active { background: #b8bac8; transform: scale(0.96); }
+
+  .btn.op {
+    background: #e8bfbc;
+    color: #5a2a28;
+  }
+
+  .btn.op:hover { background: #f2d0cd; }
+  .btn.op:active { background: #d4a5a2; transform: scale(0.96); }
+
+  .btn.equals {
+    background: #4dd0d8;
+    color: #fff;
+  }
+
+  .btn.equals:hover { background: #6adde4; }
+  .btn.equals:active { background: #38bcc4; transform: scale(0.96); }
+</style>
+</head>
+<body>
+
+<div class="calc">
+  <div class="display-row">
+    <button class="btn-clear" onclick="allClear()">C</button>
+    <div class="display" id="display">0</div>
+  </div>
+
+  <div class="grid">
+    <button class="btn" onclick="inputDigit('7')">7</button>
+    <button class="btn" onclick="inputDigit('8')">8</button>
+    <button class="btn" onclick="inputDigit('9')">9</button>
+    <button class="btn op" onclick="inputOperator('+')">+</button>
+
+    <button class="btn" onclick="inputDigit('4')">4</button>
+    <button class="btn" onclick="inputDigit('5')">5</button>
+    <button class="btn" onclick="inputDigit('6')">6</button>
+    <button class="btn op" onclick="inputOperator('-')">-</button>
+
+    <button class="btn" onclick="inputDigit('1')">1</button>
+    <button class="btn" onclick="inputDigit('2')">2</button>
+    <button class="btn" onclick="inputDigit('3')">3</button>
+    <button class="btn op" onclick="inputOperator('/')">&#247;</button>
+
+    <button class="btn" onclick="inputDigit('0')">0</button>
+    <button class="btn" onclick="inputDot()">.</button>
+    <button class="btn equals" onclick="calculate()">=</button>
+    <button class="btn op" onclick="inputOperator('*')">&#215;</button>
+  </div>
+</div>
+
+<script>
+  var display = document.getElementById('display');
+
+  var currentInput = '0';
+  var previousInput = '';
+  var operator = null;
+  var justCalculated = false;
+
+  function updateDisplay(val) {
+    var s = String(val);
+    if (s.length > 12) s = parseFloat(val).toExponential(4);
+    display.textContent = s;
+  }
+
+  function inputDigit(d) {
+    if (justCalculated) {
+      currentInput = d;
+      justCalculated = false;
+    } else {
+      if (currentInput === '0') {
+        currentInput = d;
+      } else {
+        if (currentInput.length < 12) currentInput += d;
+      }
+    }
+    updateDisplay(currentInput);
+  }
+
+  function inputDot() {
+    if (justCalculated) { currentInput = '0'; justCalculated = false; }
+    if (currentInput.indexOf('.') === -1) {
+      currentInput += '.';
+      updateDisplay(currentInput);
+    }
+  }
+
+  function inputOperator(op) {
+    justCalculated = false;
+    if (operator !== null && previousInput !== '') {
+      var result = compute(parseFloat(previousInput), parseFloat(currentInput), operator);
+      currentInput = String(result);
+      updateDisplay(currentInput);
+    }
+    previousInput = currentInput;
+    operator = op;
+    currentInput = '0';
+  }
+
+  function compute(a, b, op) {
+    if (op === '+') return a + b;
+    if (op === '-') return a - b;
+    if (op === '*') return a * b;
+    if (op === '/') {
+      if (b === 0) { allClear(); display.textContent = 'Error'; return 0; }
+      return a / b;
+    }
+    return b;
+  }
+
+  function calculate() {
+    if (operator === null || previousInput === '') return;
+    var a = parseFloat(previousInput);
+    var b = parseFloat(currentInput);
+    var result = compute(a, b, operator);
+    var rounded = parseFloat(result.toFixed(10));
+    currentInput = String(rounded);
+    previousInput = '';
+    operator = null;
+    justCalculated = true;
+    updateDisplay(currentInput);
+  }
+
+  function allClear() {
+    currentInput = '0';
+    previousInput = '';
+    operator = null;
+    justCalculated = false;
+    updateDisplay('0');
+  }
+</script>
+</body>
+</html>
