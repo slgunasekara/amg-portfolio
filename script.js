@@ -854,6 +854,34 @@ const assignmentsData = [
                 videoFile: "assets/assignments/assignment 02/ass_2_assets/video/Task_07.mp4"
             }
         ]
+    },
+    {
+        label: "Assignment 03",
+        githubUrl: "https://github.com/slgunasekara",
+        tasks: [
+            {
+                num: "Task 01",
+                title: "JavaScript Queue — Data Structures",
+                desc: "An interactive visual demonstration of a Queue data structure implemented in JavaScript. Features enqueue, dequeue, and peek operations with animated visualization of FIFO behaviour.",
+                thumb: "assets/assignments/assignment 03/ass_3_assets/image/Task_01.png",
+                taskFile: "assets/assignments/assignment 03/assignment/index.html",
+                videoFile: "assets/assignments/assignment 03/ass_3_assets/video/Task_01.mp4"
+            }
+        ]
+    },
+    {
+        label: "Assignment 04",
+        githubUrl: "https://github.com/slgunasekara",
+        tasks: [
+            {
+                num: "Task 01",
+                title: "JavaScript Calculator",
+                desc: "A fully functional calculator built with JavaScript. Supports standard arithmetic operations, keyboard input, chained calculations, and clear/backspace controls with a sleek dark UI.",
+                thumb: "assets/assignments/assignment 04/ass_4_assets/image/Task_01.png",
+                taskFile: "assets/assignments/assignment 04/assignment/index.html",
+                videoFile: "assets/assignments/assignment 04/ass_4_assets/video/Task_01.mp4"
+            }
+        ]
     }
 ];
 
@@ -921,8 +949,8 @@ function switchAsgnTab(idx) {
 
     const asgn = assignmentsData[idx];
     const panel = document.getElementById('asgnPanel');
-    const subtitles = ['HTML & CSS Fundamentals', 'CSS Animations & Interactive UI'];
-    const taskCounts = [6, 7];
+    const subtitles = ['HTML & CSS Fundamentals', 'CSS Animations & Interactive UI', 'JavaScript Fundamental','Calculator built with JavaScript'];
+    const taskCounts = [6, 7, 1, 1];
 
     // Fade out → swap → fade in
     panel.classList.add('switching');
@@ -1166,4 +1194,4 @@ document.querySelectorAll('.pc').forEach(card => {
         card.style.transition = '.4s';
     });
 });
-// fscsd
+// AMG
