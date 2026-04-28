@@ -3268,3 +3268,18 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
     .asgn-tab { padding: .42rem .9rem; font-size: .82rem; }
     .ap-title { font-size: .95rem; }
 }
+
+
+   /*ASSIGNMENT TABS respond */
+@media (max-width: 640px) {
+    .asgn-pills {
+        flex-wrap: wrap;
+        border-radius: 14px;
+        width: 100%;
+    }
+    .asgn-tab {
+        flex: 1 1 calc(50% - 4px);
+        justify-content: center;
+        text-align: center;
+    }
+}
