@@ -2258,6 +2258,12 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
+    /* Nav compact for smaller laptops — 10 links need tighter spacing */
+    nav { padding: 0 2.5%; gap: .3rem; }
+    .nl { gap: 0; }
+    .nl-a { font-size: .7rem; letter-spacing: .5px; padding: .35rem .45rem; }
+    .ncta { padding: .32rem .7rem !important; font-size: .7rem; letter-spacing: .5px; }
+
     .hcont { grid-template-columns: 1fr 1fr; gap: 2rem }
     .hframe { width: 240px; height: 240px }
     .hring1 { width: 300px; height: 300px }
@@ -2287,8 +2293,34 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
     .pm-features { grid-template-columns: 1fr }
 }
 
+/* ----------------------------------------------------------
+   NAV — Hamburger kicks in at 900px
+   Covers: iPad Air (820px), iPad Mini (768px), all tablets
+   ---------------------------------------------------------- */
+@media (max-width: 900px) {
+    :root { --nav: 65px; }
+
+    /* Hide desktop nav links, show hamburger */
+    .nl { display: none; }
+    .hbg { display: flex; }
+
+    /* Reset nav padding back to normal since links are gone */
+    nav { padding: 0 4%; gap: .5rem; }
+
+    /* Mobile menu — full-screen style on tablets */
+    .mmenu {
+        padding: 2rem 5%;
+        gap: 1.2rem;
+    }
+    .mmenu a {
+        font-size: 1rem;
+        letter-spacing: 1.5px;
+    }
+}
+
 @media (max-width: 768px) {
     :root { --nav: 62px }
+    /* .nl already hidden at 900px — keep for safety */
     .nl { display: none }
     .hbg { display: flex }
     body { cursor: auto }
@@ -3293,4 +3325,268 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
         justify-content: center;
         text-align: center;
     }
+}
+
+/* ======================================================
+   RESPONSIVE BREAKPOINTS — TASK 8
+   Assignment Required Breakpoints:
+   • Laptop Large  : 1440px
+   • Laptop        : 1024px  (existing)
+   • Tablet        : 768px   (existing)
+   • Mobile Large  : 425px
+   • Mobile Medium : 375px
+   • Mobile Small  : 320px
+   ====================================================== */
+
+/* ----------------------------------------------------------
+   LAPTOP LARGE — 1440px
+   Wide screens: increase max-widths, larger hero spacing
+   ---------------------------------------------------------- */
+@media (max-width: 1440px) {
+    .hcont {
+        max-width: 1300px;
+        gap: 4rem;
+    }
+    .hname {
+        font-size: 3.2rem;
+    }
+    .hname .bn {
+        font-size: 3.6rem;
+    }
+    section {
+        padding: 6rem 6%;
+    }
+    .agrid,
+    .sgrid,
+    .cwrap {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .pgrid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+}
+
+/* ----------------------------------------------------------
+   MOBILE LARGE — 425px
+   Tighten fonts, stacking, padding
+   ---------------------------------------------------------- */
+@media (max-width: 425px) {
+    :root {
+        --nav: 58px;
+    }
+
+    /* Typography */
+    .hname { font-size: 1.45rem; }
+    .hname .bn { font-size: 1.6rem; }
+    .st { font-size: 1.3rem; }
+    .htitle { font-size: .85rem; flex-direction: column; gap: .3rem; }
+    .ht-sep { display: none; }
+
+    /* Hero */
+    section#home { padding: 5rem 4% 3rem; }
+    .hframe { width: 160px; height: 160px; }
+    .hring1 { width: 205px; height: 205px; }
+    .hring2 { width: 250px; height: 250px; }
+    .hring3 { width: 295px; height: 295px; }
+    .horbit1 { width: 195px; height: 195px; }
+    .horbit2 { width: 240px; height: 240px; }
+    .horbit3 { width: 280px; height: 280px; }
+
+    /* Buttons */
+    .hbtns { flex-direction: column; align-items: center; gap: .7rem; }
+    .hbtns a { width: 100%; max-width: 280px; justify-content: center; }
+
+    /* Stats */
+    .hstats { gap: 1rem; }
+    .sn { font-size: 1.4rem; }
+
+    /* Sections */
+    section { padding: 4rem 4%; }
+
+    /* Skills */
+    .sc2 { padding: 1.5rem; }
+    .skn, .skp { font-size: .82rem; }
+
+    /* Education timeline */
+    .etl::before { left: 14px; }
+    .etime { font-size: .72rem; padding: .2rem .55rem; }
+
+    /* Projects */
+    .pc { padding: 1.5rem; }
+
+    /* Assignments tabs */
+    .asgn-tab { padding: .38rem .7rem; font-size: .78rem; }
+
+    /* Contact */
+    .ci { gap: .75rem; }
+    .cic { width: 38px; height: 38px; font-size: .9rem; }
+
+    /* Gallery */
+    .gallery-grid { columns: 1; gap: .6rem; }
+    .gallery-item { margin-bottom: .6rem; }
+
+    /* Footer */
+    .footer-links { flex-wrap: wrap; gap: .5rem; justify-content: center; }
+}
+
+/* ----------------------------------------------------------
+   MOBILE MEDIUM — 375px
+   Tighter padding, smaller font sizes
+   ---------------------------------------------------------- */
+@media (max-width: 375px) {
+    /* Typography scale-down */
+    .hname { font-size: 1.3rem; }
+    .hname .bn { font-size: 1.45rem; }
+    .st { font-size: 1.2rem; }
+
+    /* Hero image smaller */
+    .hframe { width: 145px; height: 145px; }
+    .hring1 { width: 185px; height: 185px; }
+    .hring2 { width: 228px; height: 228px; }
+    .hring3 { width: 268px; height: 268px; }
+    .horbit1 { width: 178px; height: 178px; }
+    .horbit2 { width: 218px; height: 218px; }
+    .horbit3 { width: 256px; height: 256px; }
+
+    /* Sections tighter */
+    section { padding: 3.5rem 3.5%; }
+    section#home { padding: 4.5rem 3.5% 2.5rem; }
+
+    /* Nav */
+    .logo { font-size: 1.1rem; }
+
+    /* Typed text */
+    .typed-w { font-size: .82rem; }
+
+    /* Info rows */
+    .hii { font-size: .8rem; }
+    .hii-icon { font-size: .85rem; }
+
+    /* Stats row */
+    .hstats { flex-direction: row; justify-content: center; gap: .8rem; }
+    .sn { font-size: 1.25rem; }
+    .sl2 { font-size: .65rem; }
+
+    /* About details */
+    .adi { gap: .5rem; }
+    .adl { font-size: .72rem; }
+    .adv { font-size: .82rem; }
+
+    /* Skill bars */
+    .skbar { height: 6px; }
+
+    /* Contact cards */
+    .cinfo h3 { font-size: 1.2rem; }
+    .ci { padding: .7rem 0; }
+    .cil { font-size: .7rem; }
+    .civ { font-size: .85rem; }
+
+    /* Contributor cards */
+    .contrib-grid { max-width: 320px; }
+    .contrib-card { padding: 1.8rem 1.2rem 1.5rem; }
+}
+
+
+@media (max-width: 320px) {
+    /* Base */
+    :root { --nav: 54px; }
+    body { font-size: 14px; }
+
+    /* Sections */
+    section { padding: 3rem 3%; }
+    section#home { padding: 4rem 3% 2rem; }
+
+    /* Nav */
+    .logo { font-size: 1rem; letter-spacing: .02em; }
+
+    /* Hero text */
+    .greet-text { font-size: .72rem; }
+    .hname { font-size: 1.15rem; line-height: 1.3; }
+    .hname .bn { font-size: 1.3rem; }
+    .htitle { font-size: .78rem; }
+    .typed-w { font-size: .78rem; }
+
+    /* Hero image */
+    .hframe { width: 125px; height: 125px; }
+    .hring1 { width: 162px; height: 162px; }
+    .hring2 { width: 200px; height: 200px; }
+    .hring3 { width: 235px; height: 235px; }
+    .horbit1 { width: 155px; height: 155px; }
+    .horbit2 { width: 190px; height: 190px; }
+    .horbit3 { width: 225px; height: 225px; }
+
+    /* Buttons — stack vertically, full width */
+    .hbtns { flex-direction: column; align-items: stretch; gap: .6rem; }
+    .hbtns a {
+        width: 100%;
+        font-size: .8rem;
+        padding: .65rem 1rem;
+        justify-content: center;
+    }
+
+    /* Social links */
+    .hsoc { gap: .5rem; }
+    .soc-a { width: 32px; height: 32px; font-size: .85rem; }
+
+    /* Stats */
+    .hstats { gap: .6rem; }
+    .sn { font-size: 1.1rem; }
+    .sl2 { font-size: .6rem; }
+
+    /* Section headings */
+    .st { font-size: 1.1rem; }
+
+    /* About */
+    .atxt h3 { font-size: 1rem; }
+    .atxt p { font-size: .82rem; }
+    .aimgw { max-width: 240px; }
+
+    /* Skills */
+    .sc2 { padding: 1.2rem; }
+    .sc2 h3 { font-size: .95rem; }
+    .skn, .skp { font-size: .78rem; }
+    .ptag { font-size: .72rem; padding: .25rem .55rem; }
+
+    /* Education */
+    .etl::before { left: 10px; }
+    .ec { width: 22px; height: 22px; font-size: .7rem; }
+    .eti { margin-left: .8rem; }
+    .eth { font-size: .92rem; }
+    .etime { font-size: .68rem; }
+    .edet { font-size: .78rem; }
+
+    /* Experience */
+    .exc { padding: 1.2rem; }
+    .exh { font-size: .9rem; }
+
+    /* Projects */
+    .pc { padding: 1.2rem; }
+    .pct { font-size: .95rem; }
+
+    /* Assignments */
+    .asgn-tab { font-size: .72rem; padding: .32rem .55rem; }
+    .ap-title { font-size: .88rem; }
+    .ap-sub { font-size: .72rem; }
+
+    /* Contact */
+    .cic { width: 32px; height: 32px; font-size: .8rem; }
+    .cil { font-size: .68rem; }
+    .civ a { font-size: .8rem; }
+    .cinfo p { font-size: .82rem; }
+
+    /* Gallery */
+    .gallery-intro { font-size: .82rem; }
+
+    /* Contributors */
+    .contrib-card { padding: 1.5rem 1rem 1.2rem; }
+    .contrib-img-wrap { width: 85px; height: 85px; }
+    .contrib-name { font-size: .95rem; }
+    .contrib-role { font-size: .75rem; }
+
+    /* Footer */
+    footer { padding: 1.5rem 3%; }
+    .footer-links { gap: .4rem; }
+    .footer-links a { font-size: .75rem; }
 }
