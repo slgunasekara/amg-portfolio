@@ -3327,21 +3327,7 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
     }
 }
 
-/* ======================================================
-   RESPONSIVE BREAKPOINTS — TASK 8
-   Assignment Required Breakpoints:
-   • Laptop Large  : 1440px
-   • Laptop        : 1024px  (existing)
-   • Tablet        : 768px   (existing)
-   • Mobile Large  : 425px
-   • Mobile Medium : 375px
-   • Mobile Small  : 320px
-   ====================================================== */
 
-/* ----------------------------------------------------------
-   LAPTOP LARGE — 1440px
-   Wide screens: increase max-widths, larger hero spacing
-   ---------------------------------------------------------- */
 @media (max-width: 1440px) {
     .hcont {
         max-width: 1300px;
@@ -3368,10 +3354,7 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
     }
 }
 
-/* ----------------------------------------------------------
-   MOBILE LARGE — 425px
-   Tighten fonts, stacking, padding
-   ---------------------------------------------------------- */
+
 @media (max-width: 425px) {
     :root {
         --nav: 58px;
@@ -3431,10 +3414,7 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
     .footer-links { flex-wrap: wrap; gap: .5rem; justify-content: center; }
 }
 
-/* ----------------------------------------------------------
-   MOBILE MEDIUM — 375px
-   Tighter padding, smaller font sizes
-   ---------------------------------------------------------- */
+
 @media (max-width: 375px) {
     /* Typography scale-down */
     .hname { font-size: 1.3rem; }
