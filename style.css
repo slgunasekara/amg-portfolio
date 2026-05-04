@@ -34,6 +34,12 @@
     --radius-sm: 8px;
     --radius-lg: 20px;
     --dm-transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    --blue-lt: var(--blue-light);
+    --blue-dk: var(--blue-dark);
+    --text: var(--txt);
+    --muted: var(--txt3);
+    --sec-pad: 5rem 0;
+    --nav-bg: #ffffff;
 }
 
 /* ===== DARK MODE VARIABLES ===== */
@@ -66,6 +72,12 @@
     --shadow-md: 0 8px 32px rgba(0, 0, 0, .5);
     --shadow-lg: 0 20px 60px rgba(0, 0, 0, .6);
     --shadow-xl: 0 32px 80px rgba(0, 0, 0, .7);
+    /* Dark mode alias overrides */
+    --blue-lt: var(--blue-light);
+    --blue-dk: var(--blue-dark);
+    --text: var(--txt);
+    --muted: var(--txt3);
+    --nav-bg: #0a0a12;
 }
 
 *, *::before, *::after {
@@ -245,7 +257,6 @@ img {
 .switch {
     position: relative;
     flex-shrink: 0;
-    /* Scale down the original 1em-based component to fit nav */
     font-size: 13px;
 }
 
@@ -316,12 +327,12 @@ img {
 }
 
 .switch__input::before {
-    background-color: hsl(50,90%,50%);
+    background-color: hsl(50, 90%, 50%);
     border-radius: inherit;
-    mask-image: linear-gradient(120deg,hsl(0,0%,0%) 20%,hsla(0,0%,0%,0) 80%);
-    -webkit-mask-image: linear-gradient(120deg,hsl(0,0%,0%) 20%,hsla(0,0%,0%,0) 80%);
+    mask-image: linear-gradient(120deg, black 20%, transparent 80%);
+    -webkit-mask-image: -webkit-linear-gradient(120deg, black 20%, transparent 80%);
     inset: 0;
-    transition: background-color 0.3s cubic-bezier(0.76,0.05,0.24,0.95);
+    transition: background-color 0.3s cubic-bezier(0.76, 0.05, 0.24, 0.95);
 }
 
 .switch__input::after {
@@ -3035,7 +3046,7 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
 }
 
 /* ======================================================
-   RESPONSIVE — Assignments & Stepper
+   RESPONSIVE
    ====================================================== */
 @media (max-width: 768px) {
     .asgn-block { padding: 1.5rem 1.2rem 1.2rem; }
@@ -3134,7 +3145,7 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
 }
 
 /* ======================================================
-   ASSIGNMENT TABS — compact pill switcher
+   ASSIGNMENT TABS
    ====================================================== */
 .asgn-tab-row {
     display: flex;
@@ -3200,10 +3211,10 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
 }
 
 /* ======================================================
-   ASSIGNMENT PANEL — frameless, clean
+   ASSIGNMENT PANEL
    ====================================================== */
 .asgn-panel {
-    /* No border, no card background — flows with page */
+     /*-----------No border, no card background  */
 }
 
 .asgn-panel-header {
@@ -3270,7 +3281,7 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
 }
 
 
-   /*ASSIGNMENT TABS respond */
+/*ASSIGNMENT TABS respond */
 @media (max-width: 640px) {
     .asgn-pills {
         flex-wrap: wrap;

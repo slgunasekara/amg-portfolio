@@ -1,4 +1,4 @@
-/* ===== EMAIL INJECTION (prevents Cloudflare obfuscation) ===== */
+/* ===== EMAIL INJECTION===== */
 (function () {
     const u = 'praveengunasekara7';
     const d = 'gmail.com';
