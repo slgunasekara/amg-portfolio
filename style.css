@@ -3214,7 +3214,7 @@ footer { background: var(--bg3); border-top: 1px solid var(--border); padding: 3
    ASSIGNMENT PANEL
    ====================================================== */
 .asgn-panel {
-     /*-----------No border, no card background  */
+    /*-----------No border, no card background  */
 }
 
 .asgn-panel-header {
