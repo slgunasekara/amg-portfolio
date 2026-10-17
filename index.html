@@ -1,1186 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="keywords" content="software engineer,ai,portfolio,business">
-    <meta name="description" content="Praveena Gunasekara's Portfolio">
-    <meta name="author" content="Praveena Gunasekara">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Praveena Gunasekara | Portfolio</title>
-
-
-    <link rel="icon" type="image/x-icon" href="assets/AMG%20Group%20Logo%20with%20Circuitry.png">
-    <!--    font - Rjdhani, Plus Jakarta Sans, JetBrains Mono-->
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
-          rel="stylesheet"/>
-    <!--    icon library-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    <link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Praveena Gunasekara | Portfolio</title>
+<meta name="description" content="Praveena (AMG) Gunasekara: Founder of AMG Lanka Group, software and AI/ML engineer, Hikkaduwa, Sri Lanka.">
+<link rel="icon" href="assets/AMG%20Group%20Logo%20with%20Circuitry.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lib/fa/all.min.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="loader"><img src="assets/brand/amg-nav.png" alt=""><div class="ld-bar"><i></i></div></div>
 
-<div id="cur"></div>
-<div id="cur2"></div>
-<canvas id="pcv"></canvas>
-<canvas id="heroCursorCanvas"></canvas>
+<!-- fixed video background -->
+<video id="bgv" autoplay muted loop playsinline preload="auto" poster="assets/video/bg-poster.jpg"><source src="assets/video/bg.mp4" type="video/mp4"></video>
+<div class="bg-tint"></div>
+<canvas id="gl" aria-hidden="true"></canvas>
 
-<!-- LOADING SCREEN -->
-<div id="loader">
-    <div class="ld-particles" id="ldParticles"></div>
-    <div class="ld-inner">
-        <!-- AMG logo circular progress ring -->
-        <div class="ld-logo-wrap">
-            <svg class="ld-ring-svg" viewBox="0 0 160 160">
-                <circle class="ld-ring-track" cx="80" cy="80" r="70"/>
-                <circle class="ld-ring-fill" cx="80" cy="80" r="70" id="ldRingFill"/>
-            </svg>
-            <div class="ld-logo-center">
-                <span class="ld-logo-a">A</span><span class="ld-logo-m">M</span><span class="ld-logo-g">G</span>
-            </div>
-        </div>
-        <!-- Percentage counter-->
-        <div class="ld-percent" id="ldPercent">0%</div>
-        <div class="ld-dots">
-            <span class="ld-dot"></span><span class="ld-dot"></span><span class="ld-dot"></span>
-        </div>
-        <div class="ld-text" id="ldText">Loading assets...</div>
-    </div>
-</div>
-
-<!-- NAV -->
-<nav id="navbar">
-    <a href="#home" class="logo">
-        <span class="logo-a">A</span><span class="logo-m">M</span><span class="logo-g">G</span>
-    </a>
-    <ul class="nl">
-        <li><a href="#home" class="nl-a" data-sec="home">Home</a></li>
-        <li><a href="#about" class="nl-a" data-sec="about">About</a></li>
-        <li><a href="#skills" class="nl-a" data-sec="skills">Skills</a></li>
-        <li><a href="#projects" class="nl-a" data-sec="projects">Projects</a></li>
-        <li><a href="#assignments" class="nl-a" data-sec="assignments">Assignments</a></li>
-        <li><a href="#education" class="nl-a" data-sec="education">Education</a></li>
-        <li><a href="#experience" class="nl-a" data-sec="experience">Experience</a></li>
-        <li><a href="#contributors" class="nl-a" data-sec="contributors">Contributors</a></li>
-        <li><a href="#gallery" class="nl-a" data-sec="gallery">Gallery</a></li>
-        <li><a href="#contact" class="ncta">Contact</a></li>
+<!-- glass nav -->
+<header id="nav">
+  <nav class="glass nav-pill" aria-label="Main">
+    <a href="#home" class="brand" aria-label="AMG home"><img src="assets/brand/amg-nav.png" alt="AMG"></a>
+    <ul id="navlinks">
+      <li><a class="key" href="#home" data-s="home">Home</a></li>
+      <li><a class="key" href="#about" data-s="about">About</a></li>
+      <li><a class="key" href="#skills" data-s="skills">Skills</a></li>
+      <li><a class="key" href="#projects" data-s="projects">Projects</a></li>
+      <li><a class="key" href="#assignments" data-s="assignments">Assignments</a></li>
+      <li><a class="key" href="#education" data-s="education">Education</a></li>
+      <li><a class="key" href="#experience" data-s="experience">Experience</a></li>
+      <li><a class="key" href="#certificates" data-s="certificates">Certificates</a></li>
+      <li><a class="key" href="#contributors" data-s="contributors">People</a></li>
+      <li><a class="key" href="#gallery" data-s="gallery">Gallery</a></li>
+      <li><a class="key" href="#contact" data-s="contact">Contact</a></li>
+      <li><a class="key key-gold" href="https://slgunasekara.github.io/AMGLankaGroup/" target="_blank" rel="noopener"><i class="fa-solid fa-building"></i> Company</a></li>
     </ul>
-    <!-- Nav Right: Dark Mode Toggle Switch + Hamburger -->
-    <div class="nav-right">
-        <label class="switch" title="Toggle Dark Mode">
-            <input class="switch__input" id="dmToggle" type="checkbox" role="switch" aria-label="Toggle Dark Mode">
-            <svg class="switch__icon switch__icon--light" viewBox="0 0 12 12" width="12px" height="12px" aria-hidden="true">
-                <g fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round">
-                    <circle cx="6" cy="6" r="2" />
-                    <g stroke-dasharray="1.5 1.5">
-                        <polyline points="6 10,6 11.5" transform="rotate(0,6,6)" />
-                        <polyline points="6 10,6 11.5" transform="rotate(45,6,6)" />
-                        <polyline points="6 10,6 11.5" transform="rotate(90,6,6)" />
-                        <polyline points="6 10,6 11.5" transform="rotate(135,6,6)" />
-                        <polyline points="6 10,6 11.5" transform="rotate(180,6,6)" />
-                        <polyline points="6 10,6 11.5" transform="rotate(225,6,6)" />
-                        <polyline points="6 10,6 11.5" transform="rotate(270,6,6)" />
-                        <polyline points="6 10,6 11.5" transform="rotate(315,6,6)" />
-                    </g>
-                </g>
-            </svg>
-            <svg class="switch__icon switch__icon--dark" viewBox="0 0 12 12" width="12px" height="12px" aria-hidden="true">
-                <g fill="none" stroke="#fff" stroke-width="1" stroke-linejoin="round" transform="rotate(-45,6,6)">
-                    <path d="m9,10c-2.209,0-4-1.791-4-4s1.791-4,4-4c.304,0,.598.041.883.105-.995-.992-2.367-1.605-3.883-1.605C2.962.5.5,2.962.5,6s2.462,5.5,5.5,5.5c1.516,0,2.888-.613,3.883-1.605-.285.064-.578.105-.883.105Z"/>
-                </g>
-            </svg>
-            <span class="switch__sr">Dark Mode</span>
-        </label>
-        <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+    <button class="key hbg" id="hbg" aria-label="Menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  </nav>
+</header>
+
+<main>
+<!-- HOME -->
+<section id="home" class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-txt">
+      <p class="hello glass-chip"><span class="dot"></span> Hikkaduwa, Sri Lanka</p>
+      <h1>Praveena<br>Gunasekara</h1>
+      <p class="roles">Full Stack Developer, AI &amp; ML Engineer and Founder of AMG Lanka Group and SL Travel Buddy. Manager of Gunasekara Travels.</p>
+      <div class="typed"><span id="typed"></span><b class="caret"></b></div>
+      <div class="btn-row">
+        <a class="key key-blue" href="#projects"><i class="fa-solid fa-rocket"></i> View my work</a>
+        <a class="key" href="#contact"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+        <a class="key" href="assets/cv/amgCV.pdf" download><i class="fa-solid fa-download"></i> Download CV</a>
+        <a class="key key-gold" href="https://slgunasekara.github.io/AMGLankaGroup/" target="_blank" rel="noopener"><i class="fa-solid fa-building"></i> Company</a>
+      </div>
+      <div class="brands">
+        <button class="brand-tile" data-brand="aml" title="AMG Lanka Group (Pvt) Ltd: social media"><img src="assets/brand/amg-lanka-group.png" alt="AMG Lanka Group"></button>
+        <button class="brand-tile" data-brand="slt" title="SL Travel Buddy: social media"><img src="assets/brand/sltravelbuddy.png" alt="SL Travel Buddy"></button>
+        <a class="brand-tile" href="#experience" title="Gunasekara Travels"><img class="rounded" src="assets/brand/gunasekara-travels-rounded.png" alt="Gunasekara Travels"></a>
+      </div>
     </div>
-</nav>
-<div class="mmenu" id="mm">
-    <a href="#home" onclick="cm()">Home</a>
-    <a href="#about" onclick="cm()">About</a>
-    <a href="#skills" onclick="cm()">Skills</a>
-    <a href="#projects" onclick="cm()">Projects</a>
-    <a href="#assignments" onclick="cm()">Assignments</a>
-    <a href="#education" onclick="cm()">Education</a>
-    <a href="#experience" onclick="cm()">Experience</a>
-    <a href="#gallery" onclick="cm()">Gallery</a>
-    <a href="#contributors" onclick="cm()">Contributors</a>
-    <a href="#contact" onclick="cm()">Contact</a>
-</div>
-
-<!-- HERO ----------------- -->
-<section id="home">
-    <!-- Hero Tubes Canvas -->
-    <canvas id="heroTubesCanvas"></canvas>
-
-    <!-- hero background -->
-    <div class="hero-bg">
-        <div class="hb-aurora hb-a1"></div>
-        <div class="hb-aurora hb-a2"></div>
-        <div class="hb-aurora hb-a3"></div>
-        <div class="hb-wave hb-w1"></div>
-        <div class="hb-wave hb-w2"></div>
-        <canvas class="hb-canvas" id="heroCanvas"></canvas>
-        <div class="hb-glow hb-g1"></div>
-        <div class="hb-glow hb-g2"></div>
-    </div>
-
-    <div class="hcont">
-        <div class="htxt">
-            <div class="greet">
-                <span class="gline"></span>
-                <span class="greet-text">Hello, I AM</span>
-                <span class="gline"></span>
-            </div>
-            <h1 class="hname">
-                A.Praveena Dhanushka
-                <span class="bn" data-text="Mendis Gunasekara">Mendis Gunasekara</span>
-            </h1>
-            <p class="htitle">
-                <span class="ht-badge"><i class="fas fa-code"></i> Software Engineer</span>
-                <span class="ht-sep">|</span>
-                <span>AI/ML Engineer</span>
-                <span class="ht-sep">|</span>
-                <span>Business Owner</span>
-            </p>
-            <div class="typed-w"><span class="tw-prompt">&gt;&nbsp;</span><span id="typed"></span><span
-                    class="cb"></span></div>
-            <div class="hinfo">
-                <div class="hii"><span class="hii-icon"><i class="fas fa-map-marker-alt"></i></span><span>Hikkaduwa, Sri Lanka</span>
-                </div>
-                <div class="hii"><span class="hii-icon"><i class="fas fa-envelope"></i></span><span class="copy-email" style="cursor:pointer" id="heroEmail"></span>
-                </div>
-                <div class="hii"><span class="hii-icon"><i class="fas fa-phone"></i></span><span>+94 76 442 4053</span>
-                </div>
-            </div>
-            <div class="hbtns">
-                <a href="#projects" class="bp"><i class="fas fa-rocket"></i>View My Work<span class="btn-shine"></span></a>
-                <a href="#contact" class="bo"><i class="fas fa-paper-plane"></i>Contact Me</a>
-                <a href="assets/cv/amgCV.pdf" class="bo" download="amgCV.pdf" style="background:linear-gradient(135deg,var(--blue),#0ea5e9);color:#fff;border-color:transparent;"><i class="fas fa-download"></i>Download CV</a>
-            </div>
-            <div class="hsoc">
-                <a href="https://github.com/slgunasekara" class="soc-a" target="_blank" title="GitHub"><i
-                        class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/" class="soc-a" target="_blank"
-                   title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="soc-a copy-email" title="Copy Email"><i class="fas fa-envelope"></i></a>
-            </div>
-            <div class="hstats">
-                <div class="hstat">
-                    <div class="sn" data-count="3" data-suffix="+">0+</div>
-                    <div class="sl2">Years Business</div>
-                </div>
-                <div class="hstat">
-                    <div class="sn" data-count="4">0</div>
-                    <div class="sl2">Projects</div>
-                </div>
-                <div class="hstat">
-                    <div class="sn" data-count="6" data-suffix="K+">0K+</div>
-                    <div class="sl2">LinkedIn</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="himgw">
-            <div class="hframe">
-                <div class="hring hring1"></div>
-                <div class="hring hring2"></div>
-                <div class="hring hring3"></div>
-                <div class="hcorner hc-tl"></div>
-                <div class="hcorner hc-tr"></div>
-                <div class="hcorner hc-bl"></div>
-                <div class="hcorner hc-br"></div>
-                <div class="horbit horbit1">
-                    <div class="horbit-dot"></div>
-                </div>
-                <div class="horbit horbit2">
-                    <div class="horbit-dot hod2"></div>
-                </div>
-                <div class="horbit horbit3">
-                    <div class="horbit-dot hod3"></div>
-                </div>
-                <div class="hfborder">
-                    <div class="hfinner">
-                        <img src="assets/My%20image%20.jpg"
-                             alt="Praveena Gunasekara"
-                             onerror="this.style.display='none'"/>
-                        <div class="img-overlay"></div>
-                        <div class="img-scan"></div>
-                    </div>
-                </div>
-                <!--                <div class="hstatus"><span class="hstatus-dot"></span>Available for Work</div>-->
-                <div class="fb fb1"><i class="fas fa-code"></i>Full-Stack Dev</div>
-                <div class="fb fb2"><i class="fas fa-brain"></i>AI/ML Engineer</div>
-                <div class="fb fb3"><i class="fas fa-plane"></i>Business Owner</div>
-                <div class="hhud hhud-l">
-                    <div class="hhud-line"></div>
-                    <div class="hhud-line short"></div>
-                    <div class="hhud-line"></div>
-                </div>
-                <div class="hhud hhud-r">
-                    <div class="hhud-line"></div>
-                    <div class="hhud-line short"></div>
-                    <div class="hhud-line"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="hero-scroll-hint">
-        <div class="scroll-mouse">
-            <div class="scroll-wheel"></div>
-        </div>
-        <span>Scroll to explore</span>
-    </div>
+    <div class="hero-photo"><img src="assets/praveena-hero.png" alt="Praveena Gunasekara"></div>
+  </div>
+  <a class="scroll-hint" href="#about" aria-label="Scroll down"><span></span></a>
 </section>
 
-<!--ABOUT ----------------------->
+<!-- ABOUT -->
 <section id="about">
-    <div class="sh rv">
-        <h2 class="st">About <span>Me</span></h2>
-        <div class="sl"><span class="sd"></span></div>
-    </div>
-    <div class="agrid">
-        <div class="aimgw rvl">
-            <div class="aimg" id="aboutImgWrap">
-                <img src="assets/Myimage2.png" alt="About Praveena"
-                     onerror="this.onerror=null;this.style.display='none';document.getElementById('aboutImgWrap').classList.add('img-fallback');"/>
-                <div class="aimg-frame"></div>
-            </div>
-            <div class="astatb"><span class="snum">3+</span><span class="slbl">Yrs Business</span></div>
+  <div class="wrap">
+    <h2 class="st">About me</h2>
+    <div class="about-grid">
+      <div class="glass photo-card" data-tilt><img src="assets/Myimage2.png" alt="Praveena Gunasekara" onerror="this.src='assets/My%20image%20.jpg'"></div>
+      <div class="glass pad" data-tilt>
+        <h3>Software engineering student and entrepreneur</h3>
+        <p>I study Computer Software Engineering at the University of Bolton and the Graduate Diploma in Software Engineering at IJSE, and I completed the Certified AI &amp; ML Engineer program with an overall A+ (94/100). I work in Java, Python, JavaScript, Spring Boot, React, MySQL and PostgreSQL.</p>
+        <p>I founded AMG Lanka Group, a software engineering studio, and I run Gunasekara Travels, the family bus business in Hikkaduwa. SL Travel Buddy, our bus booking platform, brings both sides together.</p>
+        <div class="facts">
+          <div><i class="fa-solid fa-location-dot"></i><span>Location</span><b>Hikkaduwa, Sri Lanka</b></div>
+          <div><i class="fa-brands fa-linkedin"></i><span>LinkedIn</span><b>6,000+ followers</b></div>
+          <div><i class="fa-solid fa-language"></i><span>Languages</span><b>Sinhala, English</b></div>
+          <div><i class="fa-solid fa-graduation-cap"></i><span>AI &amp; ML</span><b>Certified, A+ (94/100)</b></div>
         </div>
-        <div class="atxt rvr">
-            <h3>Software Engineering Student &amp; Entrepreneur</h3>
-            <p>Results-driven Software Engineering student at IJSE with comprehensive expertise in full-stack
-                development, database management, and AI/ML technologies. Proficient in Python, Java, MySQL, PostgreSQL,
-                and modern web technologies.</p>
-            <p>Entrepreneurial business owner of <strong style="color:var(--blue)">Gunasekara Travels</strong> with 3+
-                years of proven success in operations management and customer relations.</p>
-            <p>Strong analytical foundation from advanced studies in Combined Mathematics, Physics and Chemistry, plus
-                leadership experience as school prefect and 6,000+ LinkedIn connections.</p>
-            <div class="adet">
-                <div class="adi"><i class="fas fa-user"></i>
-                    <div>
-                        <div class="adl">Name</div>
-                        <div class="adv">A. Praveena D. M. G.</div>
-                    </div>
-                </div>
-                <div class="adi"><i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <div class="adl">Location</div>
-                        <div class="adv">Hikkaduwa, Sri Lanka</div>
-                    </div>
-                </div>
-                <div class="adi"><i class="fab fa-linkedin"></i>
-                    <div>
-                        <div class="adl">LinkedIn</div>
-                        <div class="adv">6,000+ Followers</div>
-                    </div>
-                </div>
-                <div class="adi"><i class="fas fa-language"></i>
-                    <div>
-                        <div class="adl">Languages</div>
-                        <div class="adv">Sinhala, English</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-<!--SKILLS------------------------- -->
+<!-- SKILLS -->
 <section id="skills">
-    <div class="sh rv">
-        <h2 class="st">Skills &amp; <span>Expertise</span></h2>
-        <div class="sl"><span class="sd"></span></div>
+  <div class="wrap">
+    <h2 class="st">Skills</h2>
+    <div class="skills-grid">
+      <div class="glass pad" data-tilt>
+        <h3>Technical proficiency</h3>
+        <div id="bars"></div>
+      </div>
+      <div class="glass pad" data-tilt>
+        <h3>Tools and technologies</h3>
+        <div class="chips" id="techChips"></div>
+        <h3 class="mt">Professional skills</h3>
+        <div class="chips small" id="proChips"></div>
+      </div>
     </div>
-    <div class="sgrid">
-        <div class="sc2 rvl">
-            <h3><i class="fas fa-terminal"></i>Technical Proficiency</h3>
-            <div class="ski">
-                <div class="skh"><span class="skn">Java</span></div>
-                <div class="skbar"><div class="skfill" data-w="90"></div></div>
-            </div>
-            <div class="ski">
-                <div class="skh"><span class="skn">Python</span></div>
-                <div class="skbar"><div class="skfill" data-w="82"></div></div>
-            </div>
-            <div class="ski">
-                <div class="skh"><span class="skn">JavaScript</span></div>
-                <div class="skbar"><div class="skfill" data-w="75"></div></div>
-            </div>
-            <div class="ski">
-                <div class="skh"><span class="skn">PHP</span></div>
-                <div class="skbar"><div class="skfill" data-w="65"></div></div>
-            </div>
-            <div class="ski">
-                <div class="skh"><span class="skn">MySQL / PostgreSQL</span></div>
-                <div class="skbar"><div class="skfill" data-w="80"></div></div>
-            </div>
-            <div class="ski">
-                <div class="skh"><span class="skn">HTML / CSS</span></div>
-                <div class="skbar"><div class="skfill" data-w="88"></div></div>
-            </div>
-            <div class="ski">
-                <div class="skh"><span class="skn">JavaFX</span></div>
-                <div class="skbar"><div class="skfill" data-w="72"></div></div>
-            </div>
-            <div class="ski">
-                <div class="skh"><span class="skn">OOP / Design Patterns</span></div>
-                <div class="skbar"><div class="skfill" data-w="85"></div></div>
-            </div>
-
-            <h3 style="margin-top:2.5rem"><i class="fas fa-briefcase"></i>Professional Skills</h3>
-            <div class="ptags" id="proTags">
-                <span class="ptag" style="--d:0ms">Team Building</span>
-                <span class="ptag" style="--d:60ms">Problem Solving</span>
-                <span class="ptag" style="--d:120ms">Strategic Planning</span>
-                <span class="ptag" style="--d:180ms">Data Analysis</span>
-                <span class="ptag" style="--d:240ms">Finance &amp; Accounting</span>
-                <span class="ptag" style="--d:300ms">Marketing</span>
-                <span class="ptag" style="--d:360ms">Customer Service</span>
-                <span class="ptag" style="--d:420ms">Business Management</span>
-                <span class="ptag" style="--d:480ms">Communication</span>
-                <span class="ptag" style="--d:540ms">Research Skills</span>
-                <span class="ptag" style="--d:600ms">Web Development</span>
-                <span class="ptag" style="--d:660ms">UI/UX</span>
-                <span class="ptag" style="--d:720ms">AI/ML</span>
-                <span class="ptag" style="--d:780ms">Data Science</span>
-                <span class="ptag" style="--d:840ms">Desktop application Development</span>
-            </div>
-        </div>
-
-        <div class="sc2 rvr">
-            <h3><i class="fas fa-circle-nodes"></i>Tools &amp; Technologies</h3>
-            <div class="orb-system" id="orbSys">
-                <div class="orb-core">
-                    <div class="orb-core-inner">
-                        <i class="fas fa-microchip"></i>
-                        <span>Tech<br/>Stack</span>
-                    </div>
-                    <div class="orb-pulse"></div>
-                    <div class="orb-pulse2"></div>
-                    <div class="orb-pulse3"></div>
-                </div>
-                <div class="orb-ring orb-r1" id="orbR1">
-                    <div class="orb-wrap" style="--a:0deg">
-                        <div class="orb-node" style="--c:#1a1a1a"><i class="fab fa-github"></i><span>GitHub</span></div>
-                    </div>
-                    <div class="orb-wrap" style="--a:60deg">
-                        <div class="orb-node" style="--c:#d4a017"><i class="fab fa-linux"></i><span>Linux</span></div>
-                    </div>
-                    <div class="orb-wrap" style="--a:120deg">
-                        <div class="orb-node" style="--c:#4479a1"><i class="fas fa-database"></i><span>MySQL</span></div>
-                    </div>
-                    <div class="orb-wrap" style="--a:180deg">
-                        <div class="orb-node" style="--c:#ef4444"><i class="fab fa-java"></i><span>Java</span></div>
-                    </div>
-                    <div class="orb-wrap" style="--a:240deg">
-                        <div class="orb-node" style="--c:#3b82f6"><i class="fab fa-python"></i><span>Python</span></div>
-                    </div>
-                    <div class="orb-wrap" style="--a:300deg">
-                        <div class="orb-node" style="--c:#e05c3a"><i class="fas fa-desktop"></i><span>IntelliJ</span></div>
-                    </div>
-                </div>
-                <div class="orb-ring orb-r2" id="orbR2">
-                    <div class="orb-wrap" style="--a:0deg">
-                        <div class="orb-node" style="--c:#e34c26"><i class="fab fa-html5"></i><span>HTML</span></div>
-                    </div>
-                    <div class="orb-wrap" style="--a:45deg">
-                        <div class="orb-node" style="--c:#264de4"><i class="fab fa-css3-alt"></i><span>CSS</span></div>
-                    </div>
-                    <div class="orb-wrap" style="--a:90deg">
-                        <div class="orb-node" style="--c:#d4a017"><i class="fab fa-js"></i><span>JavaScript</span></div>
-                    </div>
-                    <div class="orb-wrap" style="--a:135deg">
-                        <div class="orb-node" style="--c:#00599c"><i class="fas fa-code"></i><span>C++</span></div>
-                    </div>
-                    <div class="orb-wrap" style="--a:180deg">
-                        <div class="orb-node" style="--c:#6db33f"><i class="fas fa-leaf"></i><span>Spring</span></div>
-                    </div>
-                    <div class="orb-wrap" style="--a:225deg">
-                        <div class="orb-node" style="--c:#7c3aed"><i class="fas fa-brain"></i><span>AI / ML</span></div>
-                    </div>
-                    <div class="orb-wrap" style="--a:270deg">
-                        <div class="orb-node" style="--c:#0ea5e9"><i class="fas fa-gamepad"></i><span>Game Dev</span></div>
-                    </div>
-                    <div class="orb-wrap" style="--a:315deg">
-                        <div class="orb-node" style="--c:#ec4899"><i class="fas fa-camera"></i><span>Photo</span></div>
-                    </div>
-                </div>
-                <div class="orb-tooltip" id="orbTip"></div>
-            </div>
-            <div class="orb-mobile-grid">
-                <div class="omc" style="--c:#1a1a1a"><i class="fab fa-github"></i><span>GitHub</span></div>
-                <div class="omc" style="--c:#d4a017"><i class="fab fa-linux"></i><span>Linux</span></div>
-                <div class="omc" style="--c:#4479a1"><i class="fas fa-database"></i><span>MySQL</span></div>
-                <div class="omc" style="--c:#ef4444"><i class="fab fa-java"></i><span>Java</span></div>
-                <div class="omc" style="--c:#3b82f6"><i class="fab fa-python"></i><span>Python</span></div>
-                <div class="omc" style="--c:#e05c3a"><i class="fas fa-desktop"></i><span>IntelliJ</span></div>
-                <div class="omc" style="--c:#e34c26"><i class="fab fa-html5"></i><span>HTML</span></div>
-                <div class="omc" style="--c:#264de4"><i class="fab fa-css3-alt"></i><span>CSS</span></div>
-                <div class="omc" style="--c:#d4a017"><i class="fab fa-js"></i><span>JS</span></div>
-                <div class="omc" style="--c:#00599c"><i class="fas fa-code"></i><span>C++</span></div>
-                <div class="omc" style="--c:#6db33f"><i class="fas fa-leaf"></i><span>Spring</span></div>
-                <div class="omc" style="--c:#7c3aed"><i class="fas fa-brain"></i><span>AI/ML</span></div>
-                <div class="omc" style="--c:#0ea5e9"><i class="fas fa-gamepad"></i><span>Game Dev</span></div>
-                <div class="omc" style="--c:#ec4899"><i class="fas fa-camera"></i><span>Photo</span></div>
-            </div>
-        </div>
-    </div>
+    <h3 class="subhead">Core competencies</h3>
+    <div class="cards three" id="compGrid"></div>
+  </div>
 </section>
 
-<!--PROJECTS -------------------------------->
+<!-- PROJECTS -->
 <section id="projects">
-    <div class="sh rv">
-        <h2 class="st">Featured <span>Projects</span></h2>
-        <div class="sl"><span class="sd"></span></div>
-    </div>
-    <p class="section-sub rv">Click any project to see full details &amp; GitHub repository</p>
-
-    <!-- DOT STEPPER -->
-    <div class="dot-stepper rv" id="projectsStepper">
-        <div class="ds-track-wrap">
-            <div class="ds-track" id="projectsTrack">
-                <div class="ds-slide">
-                    <div class="pc" data-pid="0" onclick="openProject(0)">
-                        <div class="pthumb">
-                            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=500&q=80" alt="Stock Management"/>
-                            <div class="pthumb-overlay"></div>
-                            <span class="pthumb-tag">Java / CLI</span>
-                            <div class="pthumb-hover"><i class="fas fa-external-link-alt"></i><span>View Details</span></div>
-                        </div>
-                        <div class="pbody">
-                            <h3>Stock Management System</h3>
-                            <div class="pcourse"><i class="fas fa-graduation-cap"></i> PRF Coursework — Programming Fundamentals</div>
-                            <p>CLI-based stock management system with inventory tracking, stock level management, and robust data handling &amp; validation.</p>
-                            <div class="ptgs"><span class="ptg">Java</span><span class="ptg">CLI</span><span class="ptg">OOP</span><span class="ptg">Data Structures</span></div>
-                            <div class="pc-footer">
-                                <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
-                                <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ds-slide">
-                    <div class="pc" data-pid="1" onclick="openProject(1)">
-                        <div class="pthumb">
-                            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&q=80" alt="Connect Four"/>
-                            <div class="pthumb-overlay"></div>
-                            <span class="pthumb-tag">Java / AI</span>
-                            <div class="pthumb-hover"><i class="fas fa-external-link-alt"></i><span>View Details</span></div>
-                        </div>
-                        <div class="pbody">
-                            <h3>Connect Four Game with AI</h3>
-                            <div class="pcourse"><i class="fas fa-graduation-cap"></i> OOP Coursework — Object-Oriented Programming</div>
-                            <p>Classic Connect Four game with intelligent AI opponent, showcasing AI algorithm design and OOP design principles.</p>
-                            <div class="ptgs"><span class="ptg">Java</span><span class="ptg">AI Algorithm</span><span class="ptg">OOP</span><span class="ptg">Minimax</span></div>
-                            <div class="pc-footer">
-                                <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
-                                <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ds-slide">
-                    <div class="pc" data-pid="2" onclick="openProject(2)">
-                        <div class="pthumb">
-                            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&q=80" alt="POS System"/>
-                            <div class="pthumb-overlay"></div>
-                            <span class="pthumb-tag">JavaFX / MySQL</span>
-                            <div class="pthumb-hover"><i class="fas fa-external-link-alt"></i><span>View Details</span></div>
-                        </div>
-                        <div class="pbody">
-                            <h3>Point of Sale (POS) System</h3>
-                            <div class="pcourse"><i class="fas fa-graduation-cap"></i> GDSE Semester Final Project</div>
-                            <p>Comprehensive POS system with inventory management, customer handling, billing, and full MySQL database integration.</p>
-                            <div class="ptgs"><span class="ptg">JavaFX</span><span class="ptg">MySQL</span><span class="ptg">CRUD</span><span class="ptg">GUI</span></div>
-                            <div class="pc-footer">
-                                <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
-                                <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ds-slide">
-                    <div class="pc" data-pid="3" onclick="openProject(3)">
-                        <div class="pthumb">
-                            <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=500&q=80" alt="UI/UX Design"/>
-                            <div class="pthumb-overlay"></div>
-                            <span class="pthumb-tag">Figma / UI/UX</span>
-                            <div class="pthumb-hover"><i class="fas fa-external-link-alt"></i><span>View Details</span></div>
-                        </div>
-                        <div class="pbody">
-                            <h3>UI/UX for Special Needs Students</h3>
-                            <div class="pcourse"><i class="fas fa-graduation-cap"></i> IIT Foundation — Innovative Solutions Module</div>
-                            <p>Accessibility-focused UI/UX design project for special needs students with user-centered design and Figma prototyping.</p>
-                            <div class="ptgs"><span class="ptg">Figma</span><span class="ptg">UI/UX</span><span class="ptg">Accessibility</span><span class="ptg">No-Code</span></div>
-                            <div class="pc-footer">
-                                <span class="pc-status done"><i class="fas fa-check-circle"></i> Completed</span>
-                                <span class="pc-github"><i class="fab fa-github"></i> View Code</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ds-controls">
-            <button class="ds-arrow ds-prev" id="projectsPrev" aria-label="Previous project"><i class="fas fa-chevron-left"></i></button>
-            <div class="ds-dots" id="projectsDots">
-                <span class="ds-dot active" data-idx="0"></span>
-                <span class="ds-dot" data-idx="1"></span>
-                <span class="ds-dot" data-idx="2"></span>
-                <span class="ds-dot" data-idx="3"></span>
-            </div>
-            <button class="ds-arrow ds-next" id="projectsNext" aria-label="Next project"><i class="fas fa-chevron-right"></i></button>
-        </div>
-    </div>
+  <div class="wrap">
+    <h2 class="st">Projects</h2>
+    <p class="sub">Select a project for details and its repository.</p>
+    <div class="cards" id="projectCards"></div>
+  </div>
 </section>
 
-<!-- PROJECT MODAL -->
-<div class="modal-overlay" id="projectModal" onclick="closeProjectModal(event)">
-    <div class="pm-box">
-        <button class="modal-close" onclick="closeProjectModal(null, true)"><i class="fas fa-times"></i></button>
-        <div class="pm-img-wrap">
-            <img id="pm-img" src="" alt=""/>
-            <div class="pm-img-overlay"></div>
-            <span class="pm-tag" id="pm-tag"></span>
-        </div>
-        <div class="pm-body">
-            <h2 class="pm-title" id="pm-title"></h2>
-            <div class="pm-course" id="pm-course"></div>
-            <p class="pm-desc" id="pm-desc"></p>
-            <div class="pm-section">
-                <h4><i class="fas fa-star"></i> Key Features</h4>
-                <ul class="pm-features" id="pm-features"></ul>
-            </div>
-            <div class="pm-section">
-                <h4><i class="fas fa-code"></i> Tech Stack</h4>
-                <div class="pm-tech" id="pm-tech"></div>
-            </div>
-            <div class="pm-actions">
-                <a class="pm-gh-btn" id="pm-gh-btn" href="#" target="_blank">
-                    <i class="fab fa-github"></i> View on GitHub
-                </a>
-                <span class="pm-status" id="pm-status"></span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ASSIGNMENTS -------------------------------->
+<!-- ASSIGNMENTS -->
 <section id="assignments">
-    <div class="sh rv">
-        <h2 class="st">My <span>Assignments</span></h2>
-        <div class="sl"><span class="sd"></span></div>
-    </div>
-
-    <!-- TAB ROW: pill switcher + github -->
-    <div class="asgn-tab-row rv">
-        <div class="asgn-pills" id="asgnTabs">
-            <button class="asgn-tab active" data-tab="0" onclick="switchAsgnTab(0)">
-                <span class="at-dot"></span> Assignment 01
-            </button>
-            <button class="asgn-tab" data-tab="1" onclick="switchAsgnTab(1)">
-                <span class="at-dot"></span> Assignment 02
-            </button>
-            <button class="asgn-tab" data-tab="2" onclick="switchAsgnTab(2)">
-                <span class="at-dot"></span> Assignment 03
-            </button>
-            <button class="asgn-tab" data-tab="3" onclick="switchAsgnTab(3)">
-                <span class="at-dot"></span> Assignment 04
-            </button>
-        </div>
-        <a id="apGhBtn" href="https://github.com/slgunasekara" class="asgn-gh-btn" target="_blank">
-            <i class="fab fa-github"></i> View on GitHub
-        </a>
-    </div>
-
-    <!-- PANEL — no frame, flows with page -->
-    <div class="asgn-panel" id="asgnPanel">
-        <div class="asgn-panel-header">
-            <div class="asgn-panel-info">
-                <span class="ap-badge" id="apBadge"><i class="fas fa-folder-open"></i> Assignment 01</span>
-                <div>
-                    <div class="ap-title" id="apTitle">HTML &amp; CSS Fundamentals</div>
-                    <div class="ap-sub" id="apSub">6 tasks · Click any card to view details or run</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="dot-stepper" id="asgnStepper">
-            <div class="ds-track-wrap">
-                <div class="ds-track" id="asgnTrack"></div>
-            </div>
-            <div class="ds-controls">
-                <button class="ds-arrow ds-prev" id="asgnPrev" aria-label="Previous task"><i class="fas fa-chevron-left"></i></button>
-                <div class="ds-dots" id="asgnDots"></div>
-                <button class="ds-arrow ds-next" id="asgnNext" aria-label="Next task"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
-    </div>
+  <div class="wrap">
+    <h2 class="st">Assignments</h2>
+    <div class="tabs" id="asgnTabs"></div>
+    <p class="sub" id="asgnSub"></p>
+    <div class="cards small" id="asgnCards"></div>
+  </div>
 </section>
 
-<!-- TASK MODAL -->
-<div class="modal-overlay" id="taskModal" onclick="closeTaskModal(event)">
-    <div class="tm-box">
-        <button class="modal-close" onclick="closeTaskModal(null,true)"><i class="fas fa-times"></i></button>
-        <div class="tm-header">
-            <div class="tm-tag-row">
-                <span class="tm-asgn-badge" id="tm-asgn-badge">Assignment 01</span>
-                <span class="tm-task-num" id="tm-task-num">Task 01</span>
-            </div>
-            <h2 class="tm-title" id="tm-title"></h2>
-        </div>
-        <div class="tm-body">
-            <p class="tm-desc" id="tm-desc"></p>
-            <div class="tm-actions">
-                <button class="tm-btn tm-run" id="tmRunBtn" onclick="tmOpenFullscreen()">
-                    <i class="fas fa-play"></i> Run Code
-                </button>
-                <button class="tm-btn tm-vid" id="tmVidBtn" onclick="tmToggleVideo()" style="display:none">
-                    <i class="fas fa-video"></i> Watch Demo
-                </button>
-                <a class="tm-btn tm-gh" id="tmGhBtn" href="https://github.com/slgunasekara" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-            </div>
-            <!-- Video embed stays inside modal -->
-            <div id="tmVideoArea" class="tm-embed-area" style="display:none">
-                <div class="tm-embed-header">
-                    <span><i class="fas fa-video"></i> Demo Video</span>
-                    <button onclick="tmToggleVideo()" class="tm-close-embed"><i class="fas fa-times"></i></button>
-                </div>
-                <video id="tmVideo" controls playsinline preload="metadata">
-                    Your browser does not support video.
-                </video>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- FULLSCREEN RUN OVERLAY -->
-<div id="fsRunOverlay" style="display:none">
-    <div class="fsr-bar">
-        <button class="fsr-back" onclick="tmCloseFullscreen()">
-            <i class="fas fa-arrow-left"></i> Back
-        </button>
-        <div class="fsr-title" id="fsrTitle"></div>
-        <div class="fsr-spacer"></div>
-    </div>
-    <iframe id="fsrIframe" src="" frameborder="0" allowfullscreen></iframe>
-</div>
-
-<!-- EDUCATION ------------------------------->
+<!-- EDUCATION -->
 <section id="education">
-    <canvas id="eduCanvas"></canvas>
-    <div class="edu-overlay"></div>
-    <div class="sh rv" style="position:relative;z-index:2">
-        <h2 class="st">My <span>Education</span></h2>
-        <div class="sl"><span class="sd"></span></div>
-    </div>
-    <div class="etl" style="position:relative;z-index:2">
-        <div class="ei r rv">
-            <div class="ee"></div>
-            <div class="edc"><div class="edot"></div></div>
-            <div class="ec">
-                <div class="eyr">JAN 2025 – MAY 2027</div>
-                <div class="edeg">Graduate Diploma in Software Engineering (GDSE)</div>
-                <div class="einst">IJSE | Institute of Software Engineering</div>
-                <div class="edet">Computer Science — Full-stack development, AI/ML, Database Management Systems</div>
-            </div>
-        </div>
-        <div class="ei l rv" style="transition-delay:.1s">
-            <div class="ec">
-                <div class="eyr">NOV 2025 – NOV 2026</div>
-                <div class="edeg">Certificate in AI &amp; ML Engineering (CAME)</div>
-                <div class="einst">IJSE | Institute of Software Engineering</div>
-                <div class="edet">Artificial Intelligence, Machine Learning, Intelligent Systems Development</div>
-            </div>
-            <div class="edc"><div class="edot"></div></div>
-            <div class="ee"></div>
-        </div>
-        <div class="ei r rv" style="transition-delay:.2s">
-            <div class="ee"></div>
-            <div class="edc"><div class="edot"></div></div>
-            <div class="ec">
-                <div class="eyr">FEB 2025 – SEP 2025</div>
-                <div class="edeg">Certificate Course in English Language</div>
-                <div class="einst">University of Colombo</div>
-                <div class="edet">English language proficiency certification program</div>
-            </div>
-        </div>
-        <div class="ei l rv" style="transition-delay:.3s">
-            <div class="ec">
-                <div class="eyr">DEC 2022 – DEC 2023</div>
-                <div class="edeg">Web Development &amp; 2D Game Development</div>
-                <div class="einst">Java Institute for Advanced Technology</div>
-                <div class="edet">Web development fundamentals and 2D game development using Java</div>
-            </div>
-            <div class="edc"><div class="edot"></div></div>
-            <div class="ee"></div>
-        </div>
-        <div class="ei r rv" style="transition-delay:.4s">
-            <div class="ee"></div>
-            <div class="edc"><div class="edot"></div></div>
-            <div class="ec">
-                <div class="eyr">2020 – 2024</div>
-                <div class="edeg">Advanced Level — Combined Maths, Physics, Chemistry</div>
-                <div class="einst">G/Sri Devananda College, Ambalangoda</div>
-                <div class="edet">Activities: Prefect · Chess · Football · Science Group · Maths Group</div>
-            </div>
-        </div>
-        <div class="ei l rv" style="transition-delay:.5s">
-            <div class="ec">
-                <div class="eyr">2014 – 2019</div>
-                <div class="edeg">Ordinary Level</div>
-                <div class="einst">G/Sri Devananda College, Ambalangoda</div>
-                <div class="edet">Activities: Chess · Football · Art Group · Science Group</div>
-            </div>
-            <div class="edc"><div class="edot"></div></div>
-            <div class="ee"></div>
-        </div>
-    </div>
+  <div class="wrap">
+    <h2 class="st">Education</h2>
+    <div class="timeline" id="eduList"></div>
+  </div>
 </section>
 
-<!-- EXPERIENCE ------------------------- -->
+<!-- EXPERIENCE -->
 <section id="experience">
-    <div class="sh rv">
-        <h2 class="st">My <span>Experience</span></h2>
-        <div class="sl"><span class="sd"></span></div>
-    </div>
-    <!--    <p class="section-sub rv">Click any card to learn more</p>-->
-    <div class="excs">
-        <div class="exc rv" onclick="openExp(0)">
-            <div class="exc-img">
-                <img src="https://images.unsplash.com/photo-1562654501-a0ccc0fc3fb1?w=600&q=80" alt="IJSE"/>
-                <div class="exc-img-overlay"></div>
-                <div class="exc-img-icon"><i class="fas fa-laptop-code"></i></div>
-            </div>
-            <div class="exc-body">
-                <div class="exci"><i class="fas fa-laptop-code"></i></div>
-                <div class="extt">Undergraduate Student</div>
-                <div class="exorg">IJSE — Institute of Software Engineering</div>
-                <div class="exprd"><i class="fas fa-calendar-alt"></i>February 2025 – Present</div>
-                <div class="exdsc">Focusing on AI/ML Engineering, Full-Stack Web Development, and Intelligent Systems using Python, Java, and SQL.</div>
-                <div class="extgs"><span class="extg">AI/ML</span><span class="extg">Full-Stack</span><span class="extg">Python</span><span class="extg">Java</span><span class="extg">Linux</span></div>
-                <div class="exc-more"><i class="fas fa-arrow-right"></i> Click for details</div>
-            </div>
-        </div>
-
-        <div class="exc rv" style="transition-delay:.15s" onclick="openExp(1)">
-            <div class="exc-img">
-                <img src="assets/gallery/FB_IMG_1755176113507.jpg" alt="Gunasekara Travels"/>
-                <div class="exc-img-overlay"></div>
-                <div class="exc-img-icon"><i class="fas fa-plane-departure"></i></div>
-            </div>
-            <div class="exc-body">
-                <div class="exci"><i class="fas fa-plane-departure"></i></div>
-                <div class="extt">Business Owner &amp; Director</div>
-                <div class="exorg">Gunasekara Travels</div>
-                <div class="exprd"><i class="fas fa-calendar-alt"></i>July 2022 – Present | Seenigama, Hikkaduwa</div>
-                <div class="exdsc">Managing operations, finance, marketing, and customer relations for a successful travel &amp; transportation business.</div>
-                <div class="extgs"><span class="extg">Operations</span><span class="extg">Finance</span><span class="extg">Marketing</span><span class="extg">Leadership</span></div>
-                <div class="exc-more"><i class="fas fa-arrow-right"></i> Click for details</div>
-            </div>
-        </div>
-    </div>
+  <div class="wrap">
+    <h2 class="st">Experience</h2>
+    <div class="cards two" id="expCards"></div>
+  </div>
 </section>
 
-<!-- EXPERIENCE MODAL -->
-<div class="modal-overlay" id="expModal" onclick="closeExpModal(event)">
-    <div class="em-box">
-        <button class="modal-close" onclick="closeExpModal(null, true)"><i class="fas fa-times"></i></button>
-        <div class="em-header">
-            <div class="em-img"><img id="em-img" src="" alt=""/></div>
-            <div class="em-hinfo">
-                <div class="em-icon"><i id="em-icon" class="fas fa-briefcase"></i></div>
-                <h2 id="em-title"></h2>
-                <div class="em-org" id="em-org"></div>
-                <div class="em-period" id="em-period"></div>
-                <div class="em-location" id="em-location"></div>
-            </div>
-        </div>
-        <div class="em-body">
-            <div class="em-section">
-                <h4><i class="fas fa-info-circle"></i> Overview</h4>
-                <p id="em-desc"></p>
-            </div>
-            <div class="em-section">
-                <h4><i class="fas fa-trophy"></i> Key Achievements</h4>
-                <ul id="em-achievements"></ul>
-            </div>
-            <div class="em-section">
-                <h4><i class="fas fa-tags"></i> Skills Gained</h4>
-                <div id="em-tags" class="em-tags"></div>
-            </div>
-        </div>
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="wrap">
+    <h2 class="st">Certificates</h2>
+    <div class="glass came" data-tilt>
+      <div class="came-imgs">
+        <img src="assets/certificates/came-certificate.png" alt="IJSE Certified AI and ML Engineer certificate" data-lb="certs" data-i="0" loading="lazy">
+        <img src="assets/certificates/came-transcript.png" alt="IJSE official academic transcript" data-lb="certs" data-i="1" loading="lazy">
+      </div>
+      <div class="came-txt">
+        <h3>Certified AI &amp; ML Engineer</h3>
+        <p>Institute of Software Engineering (IJSE), issued 3 September 2026. Credential ID CAME-2026-10015.</p>
+        <p>Six modules and a completed capstone project, 6 months, overall classification A+ with 94/100: AI/ML foundations, core machine learning, advanced algorithms, deep learning and computer vision, NLP and large language models, MLOps, generative AI and agents.</p>
+        <a class="key key-blue" href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> View on LinkedIn</a>
+      </div>
     </div>
-</div>
+    <h3 class="subhead">HackerRank skill certificates <small>earned 20 June 2026</small></h3>
+    <div class="cert-grid" id="hrGrid"></div>
+  </div>
+</section>
 
-<!-- CONTRIBUTORS ----------------------->
+<!-- CONTRIBUTORS -->
 <section id="contributors">
-    <div class="sh rv">
-        <h2 class="st">People Who <span>Contribute</span></h2>
-        <div class="sl"><span class="sd"></span></div>
+  <div class="wrap">
+    <h2 class="st">People who inspire me</h2>
+    <div class="cards three">
+      <article class="glass person" data-tilt><img src="assets/contribute/umesh.jpg" alt="Umesh Gunasekara"><h3>Umesh Gunasekara</h3><p class="role">Senior Software Engineer</p><p>Land Transport Authority (LTA), Singapore</p><span class="rel">My brother</span><a class="key" href="https://www.linkedin.com/in/umesh-gunasekara-37767060/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a></article>
+      <article class="glass person" data-tilt><img src="assets/contribute/krishan.jpg" alt="Krishan Gunasekara"><h3>Krishan Gunasekara</h3><p class="role">Senior Software Engineer</p><p>Rabbit Solutions</p><span class="rel">My brother</span><a class="key" href="https://www.linkedin.com/in/krishan-gunasekara-51458b223/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a></article>
+      <article class="glass person" data-tilt><img src="assets/contribute/nadeeshani.jpg" alt="Nadeeshani Jayawardana"><h3>Nadeeshani Jayawardana</h3><p class="role">Senior Software Engineer</p><p>Thales Digital Identity &amp; Security, Singapore</p><span class="rel">My sister</span><a class="key" href="https://www.linkedin.com/in/kanchana-jayawardana/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a></article>
     </div>
-    <p class="section-sub rv">The amazing people who inspire and support my journey</p>
-    <div class="contrib-grid">
-
-        <div class="contrib-card rv">
-            <div class="contrib-img-wrap">
-                <div class="contrib-img-ring"></div>
-                <div class="contrib-img-ring contrib-img-ring2"></div>
-                <div class="contrib-avatar">
-                    <img src="assets/contribute/umesh.jpg" alt="Umesh Gunasekara" onerror="this.style.display='none'"/>
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="contrib-badge"><i class="fas fa-code"></i></div>
-            </div>
-            <div class="contrib-body">
-                <h3 class="contrib-name">Umesh Gunasekara</h3>
-                <div class="contrib-role">Senior Software Engineer</div>
-                <div class="contrib-company"><i class="fas fa-building"></i> Land Transport Authority (LTA), Singapore</div>
-                <div class="contrib-relation">My Brother</div>
-                <a href="https://www.linkedin.com/in/umesh-gunasekara-37767060/" target="_blank" class="contrib-linkedin">
-                    <i class="fab fa-linkedin-in"></i> View LinkedIn
-                </a>
-            </div>
-        </div>
-
-        <div class="contrib-card rv" style="transition-delay:.1s">
-            <div class="contrib-img-wrap">
-                <div class="contrib-img-ring"></div>
-                <div class="contrib-img-ring contrib-img-ring2"></div>
-                <div class="contrib-avatar">
-                    <img src="assets/contribute/krishan.jpg" alt="Krishan Gunasekara" onerror="this.style.display='none'"/>
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="contrib-badge"><i class="fas fa-laptop-code"></i></div>
-            </div>
-            <div class="contrib-body">
-                <h3 class="contrib-name">Krishan Gunasekara</h3>
-                <div class="contrib-role">Senior Software Engineer</div>
-                <div class="contrib-company"><i class="fas fa-building"></i> Rabbit Solutions</div>
-                <div class="contrib-relation">My Brother</div>
-                <a href="https://www.linkedin.com/in/krishan-gunasekara-51458b223/" target="_blank" class="contrib-linkedin">
-                    <i class="fab fa-linkedin-in"></i> View LinkedIn
-                </a>
-            </div>
-        </div>
-
-        <div class="contrib-card rv" style="transition-delay:.2s">
-            <div class="contrib-img-wrap">
-                <div class="contrib-img-ring"></div>
-                <div class="contrib-img-ring contrib-img-ring2"></div>
-                <div class="contrib-avatar">
-                    <img src="assets/contribute/nadeeshani.jpg" alt="Nadeeshani Jayawardana" onerror="this.style.display='none'"/>
-                    <i class="fas fa-user"></i>
-                </div>
-                <div class="contrib-badge"><i class="fas fa-shield-alt"></i></div>
-            </div>
-            <div class="contrib-body">
-                <h3 class="contrib-name">Nadeeshani Jayawardana</h3>
-                <div class="contrib-role">Senior Software Engineer</div>
-                <div class="contrib-company"><i class="fas fa-building"></i> Thales Digital Identity &amp; Security, Singapore</div>
-                <div class="contrib-relation">My Sister</div>
-                <a href="https://media.licdn.com/dms/image/v2/C4D03AQH7UpBynS3FAQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1595247333260?e=1778716800&v=beta&t=Qmv1DOqKJCzbRJNMQHjVkSkqrRxnJvdpVl_c_8lRLoE" target="_blank" class="contrib-linkedin">
-                    <i class="fab fa-linkedin-in"></i> View LinkedIn
-                </a>
-            </div>
-        </div>
-
-    </div>
+  </div>
 </section>
 
-<!--GALLERY ------------------->
+<!-- GALLERY -->
 <section id="gallery">
-    <div class="sh rv">
-        <h2 class="st">My <span>Gallery</span></h2>
-        <div class="sl"><span class="sd"></span></div>
-    </div>
-    <p class="gallery-intro rv">
-        A glimpse into my <span>world</span> — projects, memories, and moments. Click any image to view full screen.
-    </p>
-
-    <div class="gallery-grid" id="galleryGrid">
-        <div class="gallery-item rv"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&q=80" alt="Coding"/>
-            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay"><div class="gallery-caption"><h4>Software Projects</h4><p>Java development at IJSE</p></div></div>
-        </div>
-        <div class="gallery-item rv" style="--rd:.05s"><img src="assets/gallery/ijse.png" alt="Campus"/>
-            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay"><div class="gallery-caption"><h4>Campus Life</h4><p>IJSE — Software Engineering</p></div></div>
-        </div>
-        <div class="gallery-item rv" style="--rd:.1s"><img src="assets/gallery/amg.png" alt="Travel"/>
-            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay"><div class="gallery-caption"><h4>GTA VI</h4><p>Character</p></div></div>
-        </div>
-        <div class="gallery-item rv" style="--rd:.15s"><img src="assets/gallery/FB_IMG_1755176113507.jpg" alt="Photography"/>
-            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay"><div class="gallery-caption"><h4>Gunasekara Travels</h4><p>ICO</p></div></div>
-        </div>
-        <div class="gallery-item rv" style="--rd:.2s"><img src="assets/gallery/IMG_20250331_143040.jpg" alt="Web Dev"/>
-            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay"><div class="gallery-caption"><h4>Businessman</h4><p>CeylonMora (AMG Group)</p></div></div>
-        </div>
-        <div class="gallery-item rv" style="--rd:.25s"><img src="assets/gallery/IMG_20250401_130609.jpg" alt="Journey"/>
-            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay"><div class="gallery-caption"><h4>On the Road</h4><p>Gunasekara Travels journeys</p></div></div>
-        </div>
-        <div class="gallery-item rv" style="--rd:.3s"><img src="assets/gallery/santa-fe.jpg" alt="Teamwork"/>
-            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay"><div class="gallery-caption"><h4>My Vehicle</h4><p>Hyundai Santa fe CM</p></div></div>
-        </div>
-        <div class="gallery-item rv" style="--rd:.35s"><img src="assets/gallery/My%20image%20.jpg" alt="Leisure"/>
-            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay"><div class="gallery-caption"><h4>AMG</h4><p>amg</p></div></div>
-        </div>
-        <div class="gallery-item rv" style="--rd:.4s"><img src="assets/gallery/My%20image%202.png" alt="Laptop"/>
-            <div class="gallery-zoom"><i class="fas fa-expand-alt"></i></div>
-            <div class="gallery-overlay"><div class="gallery-caption"><h4>AMG</h4><p>amg</p></div></div>
-        </div>
-    </div>
+  <div class="wrap">
+    <h2 class="st">Gallery</h2>
+    <p class="sub">Select an image to view it full screen.</p>
+    <div class="gallery" id="galGrid"></div>
+  </div>
 </section>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-    <div class="lb-inner" id="lbInner">
-        <img id="lbImg" src="" alt=""/>
-        <div class="lb-caption">
-            <h4 id="lbTitle"></h4>
-            <p id="lbDesc"></p>
-        </div>
-        <div class="lb-nav">
-            <button class="lb-btn" onclick="lbNav(-1)"><i class="fas fa-chevron-left"></i></button>
-            <span id="lbCounter" class="lb-counter"></span>
-            <button class="lb-btn" onclick="lbNav(1)"><i class="fas fa-chevron-right"></i></button>
-        </div>
-        <button class="lb-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
-    </div>
-</div>
-
-<!-- CONTACT ---------------------- -->
+<!-- CONTACT -->
 <section id="contact">
-    <div class="sh rv">
-        <h2 class="st">Get In <span>Touch</span></h2>
-        <div class="sl"><span class="sd"></span></div>
+  <div class="wrap">
+    <h2 class="st">Get in touch</h2>
+    <div class="contact-grid">
+      <div class="glass pad" data-tilt>
+        <h3>Let's connect</h3>
+        <p>Open to new projects, ideas and opportunities.</p>
+        <ul class="clist">
+          <li><i class="fa-solid fa-envelope"></i><a href="#" class="copy-email" id="mail"></a></li>
+          <li><i class="fa-solid fa-phone"></i><a href="tel:+94754424053">+94 75 442 4053</a></li>
+          <li><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/94754424053?text=Hi%20Praveena%2C%20can%20I%20get%20more%20of%20your%20details%3F" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><i class="fa-brands fa-github"></i><a href="https://github.com/slgunasekara" target="_blank" rel="noopener">github.com/slgunasekara</a></li>
+          <li><i class="fa-brands fa-linkedin-in"></i><a href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/" target="_blank" rel="noopener">Praveena Gunasekara</a></li>
+          <li><i class="fa-brands fa-facebook"></i><a href="https://www.facebook.com/praveena.gunasekara" target="_blank" rel="noopener">Facebook</a></li>
+          <li><i class="fa-solid fa-location-dot"></i><a href="https://maps.app.goo.gl/dRnJiN9fx1T2444x7" target="_blank" rel="noopener">Hikkaduwa, Southern Province</a></li>
+        </ul>
+        <div class="map"><iframe title="Map: Hikkaduwa, Sri Lanka" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Hikkaduwa%2C%20Sri%20Lanka&amp;z=13&amp;output=embed"></iframe></div>
+      </div>
+      <form class="glass pad" id="cform" data-tilt>
+        <label>Your name<input id="fn" required autocomplete="name"></label>
+        <label>Email address<input id="fe" type="email" required autocomplete="email"></label>
+        <label>Subject<input id="fs"></label>
+        <label>Message<textarea id="fm" rows="5" required></textarea></label>
+        <button class="key key-blue" type="submit"><i class="fa-solid fa-paper-plane"></i> Send message</button>
+        <p class="fmsg" id="fmsg" role="status"></p>
+      </form>
     </div>
-    <div class="cwrap">
-        <div class="cinfo rvl">
-            <h3>Let's <span>Connect</span></h3>
-            <p>I'm always open to discussing new projects, creative ideas, or opportunities. Feel free to reach out!</p>
-            <div class="ci">
-                <div class="cic"><i class="fas fa-envelope"></i></div>
-                <div class="cit">
-                    <div class="cil">Email</div>
-                    <div class="civ"><a href="#" class="copy-email" id="contactEmail"></a></div>
-                </div>
-            </div>
-            <div class="ci">
-                <div class="cic"><i class="fas fa-phone"></i></div>
-                <div class="cit">
-                    <div class="cil">Phone</div>
-                    <div class="civ"><a href="tel:+94754424053">+94 75 442 4053</a></div>
-                </div>
-            </div>
-            <div class="ci">
-                <div class="cic"><i class="fas fa-map-marker-alt"></i></div>
-                <div class="cit">
-                    <div class="cil">Location</div>
-                    <div class="civ"><a href="https://maps.app.goo.gl/dRnJiN9fx1T2444x7" target="_blank">Hikkaduwa, Southern Province, Sri Lanka</a></div>
-                </div>
-            </div>
-            <div class="ci">
-                <div class="cic"><i class="fab fa-github"></i></div>
-                <div class="cit">
-                    <div class="cil">GitHub</div>
-                    <div class="civ"><a href="https://github.com/slgunasekara" target="_blank">github.com/slgunasekara</a></div>
-                </div>
-            </div>
-            <div class="ci">
-                <div class="cic"><i class="fab fa-linkedin-in"></i></div>
-                <div class="cit">
-                    <div class="cil">LinkedIn</div>
-                    <div class="civ"><a href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/" target="_blank">Praveena Gunasekara</a></div>
-                </div>
-            </div>
-            <!--            whatsapp-->
-            <div class="ci">
-                <div class="cic"><i class="fab fa-whatsapp"></i></div>
-                <div class="cit">
-                    <div class="cil">Whatsapp</div>
-                    <div class="civ"><a href="https://wa.me/94754424053?text=Hi%20Praveena%2c%20%0D%0ACan%20I%20get%20more%20your%20details%3F" target="_blank">Whatsapp</a></div>
-                </div>
-            </div>
-            <div class="ci">
-                <div class="cic"><i class="fab fa-facebook"></i></div>
-                <div class="cit">
-                    <div class="cil">Facebook</div>
-                    <div class="civ"><a href="https://www.facebook.com/praveena.gunasekara" target="_blank">Facebook</a></div>
-                </div>
-            </div>
-            <div class="cmap">
-                <div class="cmap-inner">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Hikkaduwa, Sri Lanka 🇱🇰</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="rvr">
-            <div class="cform-card">
-                <div class="fr">
-                    <div class="fg float-label">
-                        <input type="text" id="fn" placeholder=" " autocomplete="off"/>
-                        <label for="fn">Your Name</label>
-                        <div class="fg-line"></div>
-                    </div>
-                    <div class="fg float-label">
-                        <input type="email" id="fe" placeholder=" " autocomplete="off"/>
-                        <label for="fe">Email Address</label>
-                        <div class="fg-line"></div>
-                    </div>
-                </div>
-                <div class="fg float-label">
-                    <input type="text" id="fs" placeholder=" " autocomplete="off"/>
-                    <label for="fs">Subject</label>
-                    <div class="fg-line"></div>
-                </div>
-                <div class="fg float-label">
-                    <textarea id="fm" placeholder=" "></textarea>
-                    <label for="fm">Your Message</label>
-                    <div class="fg-line"></div>
-                </div>
-                <button class="bsend" onclick="sendMsg()">
-                    <span class="bsend-text"><i class="fas fa-paper-plane"></i>Send Message</span>
-                    <span class="bsend-shine"></span>
-                </button>
-                <div class="fmsg" id="fmsg"></div>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
+</main>
 
-<!-- FOOTER -->
-<footer>
-    <div class="footer-inner">
-        <div class="fn">A.PRAVEENA DHANUSHKA MENDIS GUNASEKARA</div>
-        <div class="fsub">Software Engineer · AI/ML Engineer · Business Owner</div>
-        <div class="fsoc">
-            <a href="https://github.com/slgunasekara" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/praveena-gunasekara-4a46a5352/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="copy-email" title="Copy Email"><i class="fas fa-envelope"></i></a>
-        </div>
-        <div class="fcp">&copy; 2026 <span>Praveena Gunasekara (AMG)</span>. All rights reserved</div>
-    </div>
+<footer class="glass foot">
+  <img src="assets/brand/amg-nav.png" alt="AMG">
+  <p>Agampodi Praveena Danushka Mendis Gunasekara</p>
+  <p class="muted">&copy; 2026 Praveena Gunasekara (AMG). All rights reserved.</p>
 </footer>
 
-<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+<!-- modals -->
+<div class="overlay" id="modal" aria-hidden="true"><div class="glass modal-box" role="dialog" aria-modal="true"><button class="key close" data-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button><div id="modalBody"></div></div></div>
+<div class="overlay lb" id="lb" aria-hidden="true"><button class="key close" data-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button><button class="key lb-prev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button><figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure><button class="key lb-next" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button></div>
+<div class="overlay run" id="run" aria-hidden="true"><div class="run-bar"><button class="key" data-close><i class="fa-solid fa-arrow-left"></i> Back</button><b id="runTitle"></b></div><iframe id="runFrame" title="Assignment preview"></iframe></div>
+<div id="toast" role="status">Email copied to clipboard</div>
 
-<div id="emailToast">
-    <i class="fas fa-check-circle" style="color:#059669"></i>
-    Email copied to clipboard!
-</div>
-
-<!--HERO TUBES — ====== -->
-<script type="module">
-    import TubesCursor from "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js";
-
-    const heroSection = document.getElementById('home');
-    const heroTubesCanvas = document.getElementById('heroTubesCanvas');
-    let heroApp = null, heroStarted = false;
-
-    const colorPalettes = [
-        {tubes: ["#2563eb", "#0ea5e9", "#4f46e5"], lights: ["#60a5fa", "#38bdf8", "#818cf8", "#a5b4fc"]},
-        {tubes: ["#0ea5e9", "#06b6d4", "#2563eb"], lights: ["#38bdf8", "#67e8f9", "#60a5fa", "#7dd3fc"]},
-        {tubes: ["#4f46e5", "#7c3aed", "#2563eb"], lights: ["#818cf8", "#a78bfa", "#60a5fa", "#c4b5fd"]},
-        {tubes: ["#0284c7", "#0ea5e9", "#38bdf8"], lights: ["#7dd3fc", "#38bdf8", "#bae6fd", "#60a5fa"]},
-        {tubes: ["#1e3a8a", "#2563eb", "#0ea5e9"], lights: ["#93c5fd", "#60a5fa", "#38bdf8", "#a5b4fc"]},
-    ];
-    let paletteIdx = 0;
-
-    function initHeroTubes() {
-        if (heroStarted) return;
-        heroStarted = true;
-        try {
-            const p = colorPalettes[0];
-            heroApp = TubesCursor(heroTubesCanvas, {
-                tubes: {
-                    colors: p.tubes,
-                    lights: {intensity: 100, colors: p.lights}
-                }
-            });
-
-            let lastShift = 0;
-            heroSection.addEventListener('mousemove', () => {
-                const now = Date.now();
-                if (now - lastShift < 3000) return;
-                lastShift = now;
-                paletteIdx = (paletteIdx + 1) % colorPalettes.length;
-                if (heroApp && heroApp.tubes && heroApp.tubes.setColors) {
-                    heroApp.tubes.setColors(colorPalettes[paletteIdx].tubes);
-                }
-            });
-
-            heroSection.addEventListener('click', () => {
-                paletteIdx = (paletteIdx + 1) % colorPalettes.length;
-                const np = colorPalettes[paletteIdx];
-                if (heroApp && heroApp.tubes && heroApp.tubes.setColors) {
-                    heroApp.tubes.setColors(np.tubes);
-                }
-            });
-
-        } catch (e) {
-            console.warn('Hero TubesCursor failed:', e);
-        }
-    }
-
-    const heroObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) initHeroTubes();
-        });
-    }, {threshold: 0.05});
-    heroObs.observe(heroSection);
-</script>
-
-<!-- EDUCATION TUBES -->
-<script type="module">
-    import TubesCursor from "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js";
-
-    const section = document.getElementById('education');
-    const canvas = document.getElementById('eduCanvas');
-    let app = null, started = false;
-
-    function initTubes() {
-        if (started) return;
-        started = true;
-        try {
-            app = TubesCursor(canvas, {
-                tubes: {
-                    colors: ["#2563eb", "#1e3a8a", "#0ea5e9"],
-                    lights: {intensity: 150, colors: ["#60a5fa", "#38bdf8", "#818cf8", "#a5b4fc"]}
-                }
-            });
-            section.addEventListener('click', () => {
-                if (!app) return;
-                app.tubes.setColors([
-                    "#" + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0"),
-                    "#" + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0"),
-                    "#" + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0")
-                ]);
-            });
-        } catch (e) {
-            console.warn('TubesCursor failed:', e);
-        }
-    }
-
-    const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if (e.isIntersecting) initTubes();
-        });
-    }, {threshold: 0.1});
-    obs.observe(section);
-</script>
-
+<script src="assets/lib/three.min.js"></script>
 <script src="script.js"></script>
+<script src="config.js"></script>
+<script src="config.local.js" onerror="void 0"></script>
+<script src="chat.js"></script>
 </body>
 </html>
