@@ -182,8 +182,12 @@ $('#cform').addEventListener('submit', e => {
 
 /* ===== NAV, REVEAL, TYPED, TILT ===== */
 const hbg = $('#hbg'), links = $('#navlinks');
-hbg.onclick = () => { const o = links.classList.toggle('open'); hbg.setAttribute('aria-expanded', o); };
-links.addEventListener('click', e => { if (e.target.closest('a')) { links.classList.remove('open'); hbg.setAttribute('aria-expanded', false); } });
+const setMenu = o => { links.classList.toggle('open', o); hbg.setAttribute('aria-expanded', o); hbg.innerHTML = `<i class="fa-solid ${o ? 'fa-xmark' : 'fa-bars'}"></i>`; };
+hbg.onclick = () => setMenu(!links.classList.contains('open'));
+links.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+// click or tap anywhere outside the menu, or press Escape, minimizes it
+document.addEventListener('pointerdown', e => { if (links.classList.contains('open') && !e.target.closest('#nav')) setMenu(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && links.classList.contains('open')) setMenu(false); });
 
 const io = new IntersectionObserver(es => es.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); $$('[data-w]', x.target).forEach(b => b.style.width = b.dataset.w + '%'); io.unobserve(x.target); } }), { threshold: .12 });
 $$('.rv').forEach(el => io.observe(el));

@@ -76,6 +76,8 @@ ${KNOW}`;
   $('#bFab').onclick = () => toggle(panel.hidden);
   $('#bClose').onclick = () => toggle(false);
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) toggle(false); });
+  // click or tap anywhere outside Buddy minimizes the chat
+  document.addEventListener('pointerdown', e => { if (!panel.hidden && !root.contains(e.target)) toggle(false); });
   sug.addEventListener('click', e => { const c = e.target.closest('.b-chip'); if (c) send(c.textContent); });
   $('#bForm').addEventListener('submit', e => { e.preventDefault(); send(input.value); });
 
